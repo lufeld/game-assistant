@@ -7,6 +7,8 @@ This project implements an AI-powered gaming assistant that uses speech-to-speec
 
 ## Architecture
 
+See also [Detailed Architecture](./ARCHITECTURE.md).
+
 The system consists of four main modules:
 
 1. **Speech-to-Text (STT)**: Converts user voice input to text using OpenAI Whisper
