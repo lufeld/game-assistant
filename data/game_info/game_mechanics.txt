@@ -1,0 +1,19 @@
+GAME MECHANICS
+
+Combat System:
+The game features a turn-based combat system where players can perform actions such as attack, defend, use items, or cast spells. Each character has an action point pool that refreshes at the start of their turn. Basic attacks cost 1 action point, while special abilities may cost 2-3 action points.
+
+Experience and Leveling:
+Players gain experience points (XP) by defeating enemies, completing quests, and discovering new locations. The XP required for each level increases exponentially. Upon leveling up, players receive skill points that can be allocated to various attributes like Strength, Dexterity, Intelligence, and Vitality.
+
+Health and Stamina:
+Health Points (HP) represent a character's life force. When HP reaches zero, the character is knocked out and must be revived. Stamina is used for physical actions like running, dodging, and performing special attacks. Stamina regenerates slowly over time or can be restored with items.
+
+Magic System:
+Magic in the game is divided into three schools: Elemental (fire, ice, lightning), Restoration (healing, buffs), and Shadow (curses, debuffs). Each spell requires mana points (MP) to cast. Mana regenerates slowly or can be restored with potions. Spells can be learned from scrolls found throughout the world or taught by NPC mages.
+
+Crafting System:
+Players can craft weapons, armor, potions, and accessories using materials gathered from exploration and enemy drops. Crafting requires specific recipes that can be found or purchased. Higher-level items require rare materials and advanced crafting skills.
+
+Resource Management:
+Players must manage multiple resources including gold (currency), inventory space (limited to 50 items), weapon durability, and consumables like food and water. Food and water are required for long journeys and provide temporary stat bonuses when consumed.

@@ -1,0 +1,25 @@
+# Core dependencies
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Audio processing
+sounddevice>=0.4.6
+
+# Speech-to-Text (Whisper)
+openai-whisper>=20230314
+torch>=2.0.0
+
+# RAG Database and Embeddings
+langchain>=0.1.0
+langchain-community>=0.0.10
+chromadb>=0.4.0
+sentence-transformers>=2.2.2
+
+# LLM
+openai>=1.0.0
+
+# Text-to-Speech
+TTS>=0.22.0
+
+# Utilities
+python-dotenv>=1.0.0

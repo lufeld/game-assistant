@@ -1,0 +1,95 @@
+QUESTS AND LOCATIONS
+
+MAIN QUEST LINE:
+
+Quest: The Lost Artifact
+- Level requirement: 1
+- Starting location: Village of Greenwood
+- Objectives:
+  1. Speak to Elder Marcus in Greenwood
+  2. Travel to the Ancient Ruins
+  3. Defeat the Guardian of the Ruins
+  4. Retrieve the Crystal of Power
+  5. Return to Elder Marcus
+- Rewards: 500 XP, 200 gold, Iron Sword
+- Description: The village elder needs help recovering an ancient artifact to protect the village from dark forces.
+
+Quest: The Dragon's Lair
+- Level requirement: 15
+- Starting location: City of Ironforge
+- Objectives:
+  1. Gather information about the dragon from locals
+  2. Prepare by crafting or purchasing fire-resistant gear
+  3. Travel to Dragon Mountain
+  4. Navigate through the mountain caves
+  5. Defeat the Ancient Dragon
+  6. Claim the dragon's treasure
+- Rewards: 5000 XP, 2000 gold, Dragon Scale, choice of legendary weapon
+- Description: A fearsome dragon has been terrorizing the region. Only a true hero can defeat it.
+
+SIDE QUESTS:
+
+Quest: The Missing Herbs
+- Level requirement: 3
+- Starting location: Greenwood Village
+- Objectives:
+  1. Speak to Herbalist Anna
+  2. Collect 5 Moonflowers from the Forest
+  3. Collect 3 Red Mushrooms from the Cave
+  4. Return herbs to Anna
+- Rewards: 150 XP, 50 gold, 3 Health Potions
+- Description: The village herbalist needs rare ingredients for her remedies.
+
+Quest: Bandit Troubles
+- Level requirement: 5
+- Starting location: Trading Post
+- Objectives:
+  1. Talk to Merchant Guild representative
+  2. Locate the Bandit Camp in the Western Woods
+  3. Defeat Bandit Leader and 5 bandits
+  4. Recover stolen goods
+  5. Return to Trading Post
+- Rewards: 300 XP, 150 gold, Leather Armor
+- Description: Bandits have been raiding merchant caravans and must be stopped.
+
+LOCATIONS:
+
+Village of Greenwood
+- Type: Starting area
+- Level range: 1-5
+- Features: Inn, General Store, Blacksmith, Herbalist
+- Description: A peaceful village surrounded by forests, perfect for new adventurers.
+
+Ancient Ruins
+- Type: Dungeon
+- Level range: 3-7
+- Enemies: Skeletons, Zombies, Guardian Golem
+- Treasures: Ancient coins, Old weapons, Crystal of Power
+- Description: Mysterious ruins from a long-lost civilization, now inhabited by undead creatures.
+
+City of Ironforge
+- Type: Major city
+- Level range: 10+
+- Features: Large marketplace, Mage Tower, Training Grounds, Multiple guilds
+- Description: A bustling metropolis and center of trade and learning.
+
+Dragon Mountain
+- Type: Raid dungeon
+- Level range: 15-20
+- Enemies: Dragon Cultists, Fire Elementals, Ancient Dragon (boss)
+- Treasures: Dragon hoard with legendary items and massive gold
+- Description: A treacherous mountain lair where an ancient dragon sleeps atop its treasure.
+
+Whispering Forest
+- Type: Exploration area
+- Level range: 4-8
+- Resources: Herbs, Wood, Wild game for hunting
+- Secrets: Hidden groves, Fairy circles, Ancient tree spirits
+- Description: A magical forest filled with both beauty and danger.
+
+Dark Caverns
+- Type: Mine/Cave system
+- Level range: 6-10
+- Resources: Ore deposits, Crystals, Rare gems
+- Enemies: Giant Spiders, Cave Trolls, Bats
+- Description: Deep underground caverns rich in minerals but home to dangerous creatures.

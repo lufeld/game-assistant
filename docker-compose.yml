@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  game-assistant:
+    build: .
+    container_name: game-assistant
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - LLM_MODEL=${LLM_MODEL:-gpt-3.5-turbo}
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./outputs:/app/outputs
+    stdin_open: true
+    tty: true
+    command: ["--mode", "text"]

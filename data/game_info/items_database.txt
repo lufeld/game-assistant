@@ -1,0 +1,100 @@
+ITEMS DATABASE
+
+WEAPONS:
+
+Iron Sword
+- Type: One-handed sword
+- Damage: 15-20
+- Requirements: Strength 10
+- Special: None
+- Value: 100 gold
+- Description: A basic iron sword suitable for beginning adventurers.
+
+Elven Bow
+- Type: Bow
+- Damage: 25-35
+- Requirements: Dexterity 15
+- Special: +10% critical hit chance
+- Value: 350 gold
+- Description: Crafted by elven artisans, this bow is lightweight and deadly accurate.
+
+Staff of Flames
+- Type: Two-handed staff
+- Damage: 10-15
+- Requirements: Intelligence 20
+- Special: Casts Fireball spell (costs 3 MP)
+- Value: 500 gold
+- Description: A magical staff imbued with fire elemental energy.
+
+ARMOR:
+
+Leather Armor
+- Type: Light armor
+- Defense: 10
+- Weight: 5 kg
+- Special: +5% dodge chance
+- Value: 80 gold
+- Description: Lightweight armor made from tanned leather.
+
+Steel Plate Armor
+- Type: Heavy armor
+- Defense: 35
+- Weight: 25 kg
+- Special: -10% movement speed, +15% physical resistance
+- Value: 600 gold
+- Description: Heavy plate armor that offers excellent protection.
+
+Mage Robes
+- Type: Cloth armor
+- Defense: 5
+- Weight: 2 kg
+- Special: +20% mana regeneration, +10 max MP
+- Value: 400 gold
+- Description: Enchanted robes that enhance magical abilities.
+
+CONSUMABLES:
+
+Health Potion
+- Effect: Restores 50 HP instantly
+- Value: 25 gold
+- Description: A red potion that heals wounds.
+
+Mana Potion
+- Effect: Restores 40 MP instantly
+- Value: 30 gold
+- Description: A blue potion that restores magical energy.
+
+Stamina Elixir
+- Effect: Restores 60 Stamina over 10 seconds
+- Value: 20 gold
+- Description: A green elixir that revitalizes the body.
+
+Antidote
+- Effect: Cures poison status
+- Value: 15 gold
+- Description: Neutralizes toxins in the bloodstream.
+
+Food Ration
+- Effect: Restores 20 HP over 30 seconds, prevents hunger
+- Value: 5 gold
+- Description: Dried meat and bread for sustenance.
+
+SPECIAL ITEMS:
+
+Phoenix Feather
+- Type: Rare material
+- Effect: Can be used to craft resurrection items
+- Value: 1000 gold
+- Description: A magical feather from the legendary phoenix.
+
+Dragon Scale
+- Type: Rare material
+- Effect: Used in crafting high-level armor
+- Value: 800 gold
+- Description: An incredibly tough scale from a dragon's hide.
+
+Ancient Scroll
+- Type: Spell scroll
+- Effect: Teaches a random high-level spell when used
+- Value: 1500 gold
+- Description: Contains ancient magical knowledge.
