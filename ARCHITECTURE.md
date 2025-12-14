@@ -83,6 +83,7 @@ game-assistant/
 TODO:
 ├── Dockerfile               # Container definition
 ├── docker-compose.yml       # Deployment config
+├── environment.yml          # Conda environment for easier venv usage (optional)
 └── requirements.txt         # Python dependencies
 ```
 
