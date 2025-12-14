@@ -26,7 +26,7 @@ The system consists of four main modules:
       - If the environment doesn't yet exist on this machine, install using `conda env create --name game-assistant --file=environment.yml`
 
 
-Note: if the environment has been updated, export conda environment as .yml using `conda env export -n game-assistant -c conda-forge -c defaults --from-history --no-builds > environment.yml`
+Note: if the environment has been updated, export conda environment as .yml using `conda env export -n game-assistant -c conda-forge -c defaults --no-builds > environment.yml`
 
 ## Usage
 TODO
