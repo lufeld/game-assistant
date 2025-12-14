@@ -19,38 +19,39 @@ def run_assistant(prompt: str) -> str:
         }
     ]
 
+    while True:
+        try:
+            # First, we get the user prompt
+            user_input = prompt
 
-    try:
-        # First, we get the user prompt
-        user_input = prompt
-
-        if user_input.lower() in ['exit', 'quit']:
-            return "Shutting down game assistant. Have a nice day!"
-
-
-        # Add user input to conversation history
-        messages.append({'role': 'user', 'content': user_input})
+            if user_input.lower() in ['exit', 'quit']:
+                return "Shutting down game assistant. Have a nice day!"
 
 
-        # Second, we generate the response.
-        # TODO: in the end, this needs to happen in a streamed way such that the TTS can start talking right away
-        #  (otherwise, we have a strong delay).
-        full_assistant_response = ""
-        stream = ollama.chat(model=MODEL_NAME, messages=messages, stream=True)
+            # Add user input to conversation history
+            messages.append({'role': 'user', 'content': user_input})
 
-        for chunk in stream:
-            # TODO: probably pass the chunk to STT already here
-            content = chunk['message']['content']
-            full_assistant_response += content
 
-        # This, we add these messages to the history
-        messages.append({'role': 'assistant', 'content': full_assistant_response})
-        return full_assistant_response
+            # Second, we generate the response.
+            # TODO: in the end, this needs to happen in a streamed way such that the TTS can start talking right away
+            #  (otherwise, we have a strong delay).
+            full_assistant_response = ""
+            stream = ollama.chat(model=MODEL_NAME, messages=messages, stream=True)
 
-    except KeyboardInterrupt:
-        # TODO: remove this once actual STT is implemented (because keyboard interrupts aren't possible any longer then)
-        return "Keyboard Interrupt."
-    except Exception as e:
-        # TODO: replace this with actual user-friendly errors once the pipeline works.
-        return f"We encountered an error. The following exeception occurred: {e}"
+            for chunk in stream:
+                # TODO: probably pass the chunk to STT already here
+                content = chunk['message']['content']
+                print(content)
+                full_assistant_response += content
+
+            # This, we add these messages to the history
+            messages.append({'role': 'assistant', 'content': full_assistant_response})
+            return full_assistant_response
+
+        except KeyboardInterrupt:
+            # TODO: remove this once actual STT is implemented (because keyboard interrupts aren't possible any longer then)
+            return "Keyboard Interrupt."
+        except Exception as e:
+            # TODO: replace this with actual user-friendly errors once the pipeline works.
+            return f"We encountered an error. The following exeception occurred: {e}"
 

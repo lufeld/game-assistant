@@ -17,7 +17,16 @@ The system consists of four main modules:
 4. **Text-to-Speech (TTS)**: Converts text responses back to speech
 
 ## Installation
-TODO
+1. Install Ollama on the machine: https://ollama.com/download
+2. Run `ollama pull qwen3:4b-instruct`
+3. Set up a python virtual environment (either manually or using conda).
+   1. Install Anaconda
+   2. Activate the environment
+      - If the environment already exists on this machine: Activate environment with `conda activate gameassistant` and update it with `conda env update --file environment.yml --prune`
+      - If the environment doesn't yet exist on this machine, install using `conda env create --name gameassistant --file=environment.yml`
+
+
+Note: if the environment has been updated, export conda environment as .yml using `conda env export -n gameassistant -c conda-forge -c defaults --from-history --no-builds > environment.yml`
 
 ## Usage
 TODO
