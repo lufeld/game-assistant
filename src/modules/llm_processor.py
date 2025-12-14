@@ -4,7 +4,7 @@ import sys
 # Important: run "ollama pull qwen3:4b-instruct" before running this file.
 MODEL_NAME = "qwen3:4b-instruct"
 
-def run_assistant(prompt: str) -> str:
+def run_assistant():
     """
     This function should be run repeatedly in a loop where it is fed the result of STT.
     It provides the LLM output as a string, which shall then be passed to the TTS section.
@@ -22,7 +22,8 @@ def run_assistant(prompt: str) -> str:
     while True:
         try:
             # First, we get the user prompt
-            user_input = prompt
+            print("Please provide your prompt: ")
+            user_input = input()
 
             if user_input.lower() in ['exit', 'quit']:
                 return "Shutting down game assistant. Have a nice day!"
@@ -46,12 +47,20 @@ def run_assistant(prompt: str) -> str:
 
             # This, we add these messages to the history
             messages.append({'role': 'assistant', 'content': full_assistant_response})
-            return full_assistant_response
 
         except KeyboardInterrupt:
             # TODO: remove this once actual STT is implemented (because keyboard interrupts aren't possible any longer then)
-            return "Keyboard Interrupt."
+            print("Keyboard Interrupt.")
+            break
         except Exception as e:
             # TODO: replace this with actual user-friendly errors once the pipeline works.
-            return f"We encountered an error. The following exeception occurred: {e}"
+            print(f"We encountered an error. The following exeception occurred: {e}")
+            break
+    with open("latest_communication.txt", "w", encoding="utf-8") as f:
+        if full_assistant_response != "":
+            f.write(full_assistant_response)
 
+
+# TODO: remove this function once the rest is implemented (once the actual main function is there that calls run_:assistant)
+if __name__=="__main__":
+    run_assistant()
