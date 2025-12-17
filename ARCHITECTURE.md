@@ -8,9 +8,9 @@ The Game Assistant is a Speech-to-Speech (S2S) AI system designed to help users 
 
 ### Architecture Flow Diagram
 
-![System Architecture Flowchart](data/architecture_illustrations/S2S_model_flow.svg "System Architecture Flowchart")
+![System Architecture Flowchart](data/documentation/S2S_model_flow.svg "System Architecture Flowchart")
 
-[Open illustrations folder](data/architecture_illustrations/)
+[Open documentations folder](data/documentation/)
 
 ## Component Details
 

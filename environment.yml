@@ -35,4 +35,6 @@ dependencies:
     - pydantic-core==2.41.5
     - typing-extensions==4.15.0
     - typing-inspection==0.4.2
-prefix: C:\Users\janze\miniconda3\envs\game-assistant
+    - numpy>=2.0,<3.0
+    - filelock
+# prefix: C:\Users\janze\miniconda3\envs\game-assistant
