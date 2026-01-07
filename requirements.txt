@@ -1,67 +1,60 @@
-annotated-types==0.7.0
-anyio==4.12.0
-certifi==2025.11.12
-h11==0.16.0
-httpcore==1.0.9
-httpx==0.28.1
-idna==3.11
-ollama==0.6.1
-pydantic==2.12.5
-pydantic-core==2.41.5
-typing-extensions==4.15.0
-typing-inspection==0.4.2
-openai-whisper>=20231117
-
+# --- Core AI & Machine Learning ---
 torch>=2.0.0
 torchaudio>=2.0.0
+openai-whisper>=20231117
+transformers>=4.35.0
+tokenizers>=0.15.0
 
-numpy>=1.23.0,<2.0.0
-numba>=0.57.0
-
-sounddevice>=0.4.6          # Microphone input/output
-soundfile>=0.12.1           # Audio file I/O
-scipy>=1.10.0               # Signal processing
-librosa>=0.10.0             # Advanced audio analysis (optional)
-webrtcvad>=2.0.10           # Robust VAD for better silence detection
-
+# --- LLM & LangChain ---
+ollama>=0.6.1
 langchain>=0.1.0
 langchain-community>=0.0.10
 chromadb>=0.4.22
 sentence-transformers>=2.2.2
 
-transformers>=4.35.0
-tokenizers>=0.15.0
+# --- Audio Processing & TTS ---
+pyttsx3>=2.90
+TTS>=0.22.0
+sounddevice>=0.4.6
+soundfile>=0.12.1
+scipy>=1.10.0
+librosa>=0.10.0
+webrtcvad>=2.0.10
+pydub>=0.25.1
+pyaudio>=0.2.13
 
-pypdf>=3.17.0               # PDF parsing
-python-docx>=1.1.0          # Word document parsing
-beautifulsoup4>=4.12.0      # HTML parsing
-lxml>=4.9.0                 # XML/HTML processing
+# --- Data Science & Math ---
+numpy>=1.23.0,<2.0.0
+numba>=0.57.0
+pandas>=1.4,<2.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
 
+# --- API & Web ---
+fastapi>=0.108.0
+uvicorn>=0.25.0
+httpcore>=1.0.9
+h11>=0.16.0
+httpx>=0.28.1
 
-ollama>=0.1.0
-
-
-TTS>=0.22.0                 # Coqui TTS
-pydub>=0.25.1               # Audio manipulation
-pyaudio>=0.2.13             # Audio playback (alternative to sounddevice)
-python-dotenv>=1.0.0        # Environment variable management
-pydantic>=2.5.0             # Data validation
-typing-extensions>=4.8.0    # Type hints backport
-
-loguru>=0.7.2               # Enhanced logging (optional)
-tqdm>=4.66.0                # Progress bars
-
-pyyaml>=6.0.1               # YAML config files
-toml>=0.10.2                # TOML config files
-
-fastapi>=0.108.0            # REST API framework
-uvicorn>=0.25.0             # ASGI server
-pydantic-settings>=2.1.0    # Settings management
-httpx>=0.26.0               # Async HTTP client
-
-pandas>=1.4,<2.0            # Data manipulation (compatible with TTS)
-matplotlib>=3.8.0           # Plotting
-seaborn>=0.13.0             # Statistical visualization
-
-numpy>=2.0,<3.0
+# --- Utilities & Parsing ---
+pydantic>=2.12.5
+pydantic-core>=2.41.5
+pydantic-settings>=2.1.0
+annotated-types>=0.7.0
+typing-extensions>=4.15.0
+python-dotenv>=1.0.0
+loguru>=0.7.2
+tqdm>=4.66.0
 filelock
+certifi>=2025.11.12
+anyio>=4.12.0
+idna>=3.11
+
+# --- File Parsing ---
+pypdf>=3.17.0
+python-docx>=1.1.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+pyyaml>=6.0.1
+toml>=0.10.2
