@@ -1,0 +1,24 @@
+Recipe: Rabbit Stew
+Result: 1x Rabbit Stew
+
+Recipe Type: Shapeless Crafting
+
+Ingredients (can be placed in any arrangement):
+  - 1x Baked Potato
+  - 1x Cooked Rabbit
+  - 1x Bowl
+  - 1x Carrot
+  - 1x Red Mushroom
+
+============================================================
+
+Description:
+To make Rabbit Stew in Minecraft, you don’t need to follow a specific pattern — just place the ingredients in any order on a crafting table. You’ll need:
+
+- 1 baked potato  
+- 1 cooked rabbit  
+- 1 bowl  
+- 1 carrot  
+- 1 red mushroom  
+
+Just drop these five items into the crafting grid in any arrangement. The result will be 1 Rabbit Stew. It’s a hearty meal you can make anytime you’ve got these items — perfect for a cozy, satisfying dinner!

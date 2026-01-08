@@ -1,0 +1,35 @@
+Recipe: Glistering Melon Slice
+Result: 1x Glistering Melon Slice
+
+Recipe Type: Shaped Crafting
+
+Crafting Grid Layout:
+  [Gold Nugget] [Gold Nugget] [Gold Nugget]
+  [Gold Nugget] [Melon Slice] [Gold Nugget]
+  [Gold Nugget] [Gold Nugget] [Gold Nugget]
+
+Ingredients needed:
+  - 8x Gold Nugget
+  - 1x Melon Slice
+
+Step-by-step placement:
+  1. Place Gold Nugget in top-left
+  1. Place Gold Nugget in top-center
+  1. Place Gold Nugget in top-right
+  2. Place Gold Nugget in middle-left
+  2. Place Melon Slice in center
+  2. Place Gold Nugget in middle-right
+  3. Place Gold Nugget in bottom-left
+  3. Place Gold Nugget in bottom-center
+  3. Place Gold Nugget in bottom-right
+
+============================================================
+
+Description:
+To craft a Glistering Melon Slice, you’ll need 8 gold nuggets and 1 melon slice. This is a shaped crafting recipe, so you’ll place the items in a 3x3 grid in your crafting table.
+
+Start by placing a gold nugget in every spot except the center — that’s all the corners and edges. So, put a gold nugget in the top-left, top-center, top-right, middle-left, middle-right, and bottom-left, bottom-center, and bottom-right. That’s 8 gold nuggets total.
+
+Then, place the melon slice in the very center of the grid.
+
+Once you’ve arranged it like that, the Glistering Melon Slice will appear in the result slot. It’s a shiny, glowing slice of melon that you can use for decorative or special effects — like in the Nether or for enchanting. Just make sure you have your ingredients ready and your crafting table open!

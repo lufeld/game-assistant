@@ -1,0 +1,12 @@
+Recipe: Hay Block
+Result: 1x Hay Block
+
+Recipe Type: Shapeless Crafting
+
+Ingredients (can be placed in any arrangement):
+  - 9x Wheat
+
+============================================================
+
+Description:
+To craft a Hay Block, you don’t need to follow a specific pattern—just place 9 wheat items in any arrangement within a 3x3 crafting grid. The wheat can be in any order, as long as there are exactly nine of them. Once you’ve arranged the wheat however you like, the Hay Block will appear in the result slot. It’s a simple recipe, perfect for building or crafting with ease.

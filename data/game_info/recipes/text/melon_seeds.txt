@@ -1,0 +1,12 @@
+Recipe: Melon Seeds
+Result: 1x Melon Seeds
+
+Recipe Type: Shapeless Crafting
+
+Ingredients (can be placed in any arrangement):
+  - 1x Melon Slice
+
+============================================================
+
+Description:
+To craft melon seeds in Minecraft, open your crafting table and arrange one melon slice in any spot—there’s no specific pattern needed. Just place the melon slice anywhere in the 3x3 grid, and you’ll get one melon seed as a result. It’s a simple, shapeless recipe, so you can place the slice in any position, not just one spot. Just make sure you have a melon slice to start with.

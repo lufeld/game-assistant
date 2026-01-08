@@ -1,0 +1,13 @@
+Recipe: Cooked Chicken
+Result: 1x Cooked Chicken
+
+Recipe Type: Smelting (Furnace)
+
+Input: 1x Chicken
+Processing time: 200 ticks (10.0 seconds)
+Experience: 0.35
+
+============================================================
+
+Description:
+To make Cooked Chicken in Minecraft, you’ll need 1 raw chicken. Place the chicken in a furnace and smelt it. The process takes about 10 seconds (200 ticks) and gives you 1 cooked chicken. This recipe doesn’t require any special arrangement—just drop the chicken into the furnace, and it will cook automatically. You’ll gain 0.35 experience points during the process. Just make sure you have a furnace and a chicken to start with!

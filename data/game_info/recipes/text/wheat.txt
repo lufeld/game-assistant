@@ -1,0 +1,12 @@
+Recipe: Wheat
+Result: 9x Wheat
+
+Recipe Type: Shapeless Crafting
+
+Ingredients (can be placed in any arrangement):
+  - 1x Hay Block
+
+============================================================
+
+Description:
+To craft wheat in Minecraft, you don’t need to follow a specific pattern—just place one hay block anywhere in a 3x3 crafting grid. The hay block can go in any spot, as long as it’s in the grid. When you do this, you’ll get 9 wheat items. Just open your crafting table, place the hay block in any cell, and you’re done—no need to line things up in a certain order. It’s simple and quick!

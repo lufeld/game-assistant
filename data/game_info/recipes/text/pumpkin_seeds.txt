@@ -1,0 +1,12 @@
+Recipe: Pumpkin Seeds
+Result: 4x Pumpkin Seeds
+
+Recipe Type: Shapeless Crafting
+
+Ingredients (can be placed in any arrangement):
+  - 1x Pumpkin
+
+============================================================
+
+Description:
+To make Pumpkin Seeds in Minecraft, you don’t need to follow a specific pattern — just place one pumpkin in any spot on your crafting grid. The crafting table doesn’t care about where you put it, so you can place the pumpkin anywhere, even in the corners or next to other items. Once you’ve placed the pumpkin, you’ll get 4 pumpkin seeds as a result. This is a shapeless recipe, which means you don’t have to line up the items in a certain way. Just drop one pumpkin into your 3x3 crafting grid, and you’re done!

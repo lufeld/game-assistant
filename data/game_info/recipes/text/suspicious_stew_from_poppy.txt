@@ -1,0 +1,15 @@
+Recipe: Suspicious Stew
+Result: 1x Suspicious Stew
+
+Recipe Type: Shapeless Crafting
+
+Ingredients (can be placed in any arrangement):
+  - 1x Bowl
+  - 1x Brown Mushroom
+  - 1x Red Mushroom
+  - 1x Poppy
+
+============================================================
+
+Description:
+To craft Suspicious Stew in Minecraft, you don’t need to follow a specific layout—just place the ingredients in any order on a crafting table. You’ll need one bowl, one brown mushroom, one red mushroom, and one poppy. Just drop them anywhere on the 3x3 grid, and as long as all four are present, the recipe will work. The result is one Suspicious Stew, which gives you a chance to get a random item when you eat it—like a rare drop! It’s a fun way to find something unexpected in your game.

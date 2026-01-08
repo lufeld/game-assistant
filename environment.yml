@@ -37,4 +37,7 @@ dependencies:
     - typing-inspection==0.4.2
     - numpy>=2.0,<3.0
     - filelock
+    # RAG added dependency
+    - chromadb
+    
 # prefix: C:\Users\janze\miniconda3\envs\game-assistant

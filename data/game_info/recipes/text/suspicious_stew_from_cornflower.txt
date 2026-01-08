@@ -1,0 +1,22 @@
+Recipe: Suspicious Stew
+Result: 1x Suspicious Stew
+
+Recipe Type: Shapeless Crafting
+
+Ingredients (can be placed in any arrangement):
+  - 1x Bowl
+  - 1x Brown Mushroom
+  - 1x Red Mushroom
+  - 1x Cornflower
+
+============================================================
+
+Description:
+To craft Suspicious Stew in Minecraft, you don’t need to follow a specific pattern—just place the ingredients in any arrangement in a crafting grid. You’ll need:
+
+- 1 Bowl  
+- 1 Brown Mushroom  
+- 1 Red Mushroom  
+- 1 Cornflower  
+
+Just drop these four items into any spot in the 3x3 crafting grid, and Suspicious Stew will appear in the center. It’s a fun, unique item that can be used to give a special effect when eaten, so it’s worth keeping around!

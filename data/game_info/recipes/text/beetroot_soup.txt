@@ -1,0 +1,19 @@
+Recipe: Beetroot Soup
+Result: 1x Beetroot Soup
+
+Recipe Type: Shapeless Crafting
+
+Ingredients (can be placed in any arrangement):
+  - 1x Bowl
+  - 6x Beetroot
+
+============================================================
+
+Description:
+To make Beetroot Soup in Minecraft, you don’t need to follow a specific pattern — it’s a shapeless recipe, which means you can just place the ingredients anywhere in the crafting grid.
+
+You’ll need:
+- 1 Bowl
+- 6 Beetroots
+
+Just open your crafting table and place the Bowl and 6 Beetroots in any spot on the 3x3 grid. The order doesn’t matter, and they don’t have to be in a line or a shape. As long as you have one Bowl and six Beetroots, you’ll get 1 Beetroot Soup when you craft it. It’s a simple recipe — perfect for making a tasty, quick meal!

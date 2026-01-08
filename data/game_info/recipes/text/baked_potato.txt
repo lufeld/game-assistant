@@ -1,0 +1,13 @@
+Recipe: Baked Potato
+Result: 1x Baked Potato
+
+Recipe Type: Smelting (Furnace)
+
+Input: 1x Potato
+Processing time: 200 ticks (10.0 seconds)
+Experience: 0.35
+
+============================================================
+
+Description:
+To make a Baked Potato in Minecraft, you’ll need one potato. Place the potato in a furnace and smelt it for 10 seconds—this takes 200 game ticks. No extra ingredients or crafting grid is needed. When it’s done, you’ll get one Baked Potato. The process gives you 0.35 experience points, so it’s a small reward, but it’s a tasty result! Just drop the potato in the furnace and wait for it to finish.

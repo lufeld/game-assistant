@@ -1,0 +1,12 @@
+Recipe: Melon
+Result: 1x Melon
+
+Recipe Type: Shapeless Crafting
+
+Ingredients (can be placed in any arrangement):
+  - 9x Melon Slice
+
+============================================================
+
+Description:
+To craft a melon in Minecraft, you don’t need to follow a specific layout—just place 9 melon slices in any arrangement on a crafting table. The slices can be in any order, like a cluster or scattered across the grid. Just make sure you have 9 melon slices ready, and once they’re placed, you’ll get one full melon. It’s simple—no exact pattern needed, just gather your slices and start crafting!

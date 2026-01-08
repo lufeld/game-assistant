@@ -1,0 +1,33 @@
+Recipe: Golden Carrot
+Result: 1x Golden Carrot
+
+Recipe Type: Shaped Crafting
+
+Crafting Grid Layout:
+  [Gold Nugget] [Gold Nugget] [Gold Nugget]
+  [Gold Nugget] [Carrot] [Gold Nugget]
+  [Gold Nugget] [Gold Nugget] [Gold Nugget]
+
+Ingredients needed:
+  - 8x Gold Nugget
+  - 1x Carrot
+
+Step-by-step placement:
+  1. Place Gold Nugget in top-left
+  1. Place Gold Nugget in top-center
+  1. Place Gold Nugget in top-right
+  2. Place Gold Nugget in middle-left
+  2. Place Carrot in center
+  2. Place Gold Nugget in middle-right
+  3. Place Gold Nugget in bottom-left
+  3. Place Gold Nugget in bottom-center
+  3. Place Gold Nugget in bottom-right
+
+============================================================
+
+Description:
+To craft a Golden Carrot in Minecraft, you'll need 8 gold nuggets and 1 carrot.
+
+Use a 3x3 crafting grid. Start by placing a gold nugget in each of the top row (left, center, right). Then, place another gold nugget in the middle-left, the carrot in the center, and another gold nugget in the middle-right. Finally, fill out the bottom row with three more gold nuggets—left, center, and right.
+
+The result is one Golden Carrot, which you can use to make golden items or give to others. Just make sure you have enough gold nuggets and a carrot before starting!

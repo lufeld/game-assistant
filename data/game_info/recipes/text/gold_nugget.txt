@@ -1,0 +1,16 @@
+Recipe: Gold Nugget
+Result: 9x Gold Nugget
+
+Recipe Type: Shapeless Crafting
+
+Ingredients (can be placed in any arrangement):
+  - 1x Gold Ingot
+
+============================================================
+
+Description:
+To craft a Gold Nugget in Minecraft, you don’t need to follow a specific pattern—this is a shapeless recipe, which means you can place the ingredients anywhere in the crafting grid.
+
+Just place one Gold Ingot into any spot in the 3x3 crafting grid. You’ll get 9 Gold Nuggets as a result. The key is that the Ingot doesn’t have to be in a certain position—just make sure it’s in the grid at all, and you’ll get the full amount. 
+
+This makes it easy to make multiple nuggets quickly if you have a few ingots on hand.

@@ -1,0 +1,14 @@
+Recipe: Fermented Spider Eye
+Result: 1x Fermented Spider Eye
+
+Recipe Type: Shapeless Crafting
+
+Ingredients (can be placed in any arrangement):
+  - 1x Spider Eye
+  - 1x Brown Mushroom
+  - 1x Sugar
+
+============================================================
+
+Description:
+To make a Fermented Spider Eye, you don’t need to follow a specific pattern — just place the three ingredients in any arrangement on a crafting table. You’ll need one Spider Eye, one Brown Mushroom, and one Sugar. Just drop them into the crafting grid, no matter where you put them, and you’ll get one Fermented Spider Eye as a result. It’s a handy item for brewing potions, especially for making stronger effects.

@@ -1,0 +1,13 @@
+Recipe: Cooked Rabbit
+Result: 1x Cooked Rabbit
+
+Recipe Type: Smelting (Furnace)
+
+Input: 1x Rabbit
+Processing time: 200 ticks (10.0 seconds)
+Experience: 0.35
+
+============================================================
+
+Description:
+To cook a rabbit in Minecraft, you'll need one raw rabbit and a furnace. Place the raw rabbit in the furnace and let it smelt for about 10 seconds — that’s 200 game ticks. The result is one cooked rabbit. This process gives you 0.35 experience points, which you can use to level up your character. Just make sure your rabbit is in the furnace and you're patient — it won’t take long!

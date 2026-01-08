@@ -1,0 +1,19 @@
+Recipe: Cooked Cod
+Result: 1x Cooked Cod
+
+Recipe Type: Smelting (Furnace)
+
+Input: 1x Cod
+Processing time: 200 ticks (10.0 seconds)
+Experience: 0.35
+
+============================================================
+
+Description:
+To make Cooked Cod in Minecraft, you’ll need 1 Cod and a furnace.  
+
+Place the Cod in the furnace and let it smelt for about 10 seconds (or 200 ticks). The process is simple: just put the raw Cod in the furnace, and after it finishes smelting, you’ll get 1 Cooked Cod.  
+
+This recipe gives you 0.35 experience points, so it’s a small reward for your effort. No crafting table or specific arrangement is needed—just the raw Cod and a working furnace.  
+
+Cooked Cod is great for eating or using in recipes later, like making a stew or a potion.

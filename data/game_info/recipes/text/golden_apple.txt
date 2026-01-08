@@ -1,0 +1,37 @@
+Recipe: Golden Apple
+Result: 1x Golden Apple
+
+Recipe Type: Shaped Crafting
+
+Crafting Grid Layout:
+  [Gold Ingot] [Gold Ingot] [Gold Ingot]
+  [Gold Ingot] [Apple] [Gold Ingot]
+  [Gold Ingot] [Gold Ingot] [Gold Ingot]
+
+Ingredients needed:
+  - 8x Gold Ingot
+  - 1x Apple
+
+Step-by-step placement:
+  1. Place Gold Ingot in top-left
+  1. Place Gold Ingot in top-center
+  1. Place Gold Ingot in top-right
+  2. Place Gold Ingot in middle-left
+  2. Place Apple in center
+  2. Place Gold Ingot in middle-right
+  3. Place Gold Ingot in bottom-left
+  3. Place Gold Ingot in bottom-center
+  3. Place Gold Ingot in bottom-right
+
+============================================================
+
+Description:
+To craft a Golden Apple in Minecraft, you’ll need 8 gold ingots and 1 apple.
+
+Use a 3x3 crafting grid. Place 8 gold ingots around the edges and corners, forming a square shape with gold on all sides. Specifically:
+
+- Fill the top row with gold ingots (left, center, right).
+- Place the apple in the center of the middle row.
+- Fill the bottom row with gold ingots (left, center, right).
+
+So, the center of the grid will have the apple, and all the surrounding slots will be gold ingots. Just make sure you have 8 gold ingots and 1 apple ready—then arrange them in that pattern, and you’ll get one golden apple.

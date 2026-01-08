@@ -13,3 +13,11 @@ typing-inspection==0.4.2
 
 numpy>=2.0,<3.0
 filelock
+
+# RAG added dependency
+chromadb
+#onnxruntime-gpu==1.23.2
+#InstructorEmbedding==1.0.1
+#torch # pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu126
+#transformers
+#sentence-transformers
