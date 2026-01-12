@@ -81,12 +81,15 @@ def run_assistant(stt_engine, tts_engine, rag_db):
                 # Buffer logic: Send to TTS only when we hit a punctuation mark
                 # This makes the speech sound natural instead of robotic/choppy
                 if re.search(r'[.!?\n]', content):
-                    tts_engine.say(current_sentence, wait=False)
+                    tts_engine.say(current_sentence, wait=True)
                     current_sentence = ""
 
             # Flush any remaining text in the buffer
             if current_sentence.strip():
                 tts_engine.say(current_sentence, wait=True)
+            
+            # Ensure all audio has finished playing before listening again
+            tts_engine.wait()
 
             # 4. Update History
             # We overwrite the last message to just be the user prompt (removing the RAG context to save tokens)

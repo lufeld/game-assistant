@@ -10,8 +10,11 @@ def main():
 
     try:
         # 1. Initialize Text-to-Speech
+        print("DEBUG: Initializing TTS...")
         tts = TextToSpeech(rate=170)
+        print("DEBUG: Saying 'Initializing system'...")
         tts.say("Initializing system.", wait=True)
+        print("DEBUG: Finished saying 'Initializing system'.")
 
         # 2. Initialize Speech-to-Text
         print("Loading Whisper model...")
@@ -22,7 +25,9 @@ def main():
         db = Database()
 
         print("\n--- System Ready ---")
+        print("DEBUG: Saying 'System ready'...")
         tts.say("System ready. waiting for input.", wait=True)
+        print("DEBUG: Finished saying 'System ready'.")
 
         # 4. Start the main loop
         run_assistant(stt_engine=stt, tts_engine=tts, rag_db=db)
