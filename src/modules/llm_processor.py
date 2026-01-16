@@ -28,10 +28,8 @@ def run_assistant(stt_engine, tts_engine, rag_db):
 
     while True:
         try:
-            # 1. Get Input (STT)
-            # This blocks until the user stops speaking
-            print("Listening...")
-            user_input = stt_engine.transcribe_microphone(duration=4.0)
+            # 1. Get Input (STT with automatic silence detection)
+            user_input = stt_engine.listen_with_vad(energy_threshold=0.005)
 
             # If STT picked up nothing (silence), skip processing
             if not user_input or len(user_input.strip()) < 2:

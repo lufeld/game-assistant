@@ -1,5 +1,7 @@
 import numpy as np
 import warnings
+import sounddevice as sd
+import time
 
 warnings.filterwarnings("ignore", message="FP16 is not supported on CPU")
 
@@ -21,16 +23,72 @@ class SpeechToText:
     def transcribe_file(self, audio_path):
         return self.transcribe(audio_path)
 
-    def transcribe_microphone(self, duration=5.0):
-        import sounddevice as sd
+    def listen_with_vad(self, energy_threshold=0.02, silence_duration_ms=900, max_duration=30):        
+        """Listens and auto-stops when you stop speaking using energy-based detection."""
         config_sr = 16000
-        print(f"Speak now ({duration}s)...")
-        audio = sd.rec(int(duration*config_sr), samplerate=config_sr, channels=1, dtype="float32")
-        sd.wait()
-        audio = audio.flatten()
-        return self.transcribe(audio)
+        frame_duration_ms = 100
+        frame_size = int(config_sr * frame_duration_ms / 1000)
+        
+        print("\n Speak now...")
+        
+        audio_buffer = []
+        silence_frames = 0
+        silence_threshold = int(silence_duration_ms / frame_duration_ms)
+        speech_detected = False
+        start_time = time.time()
+        
+        def audio_callback(indata, frames, time_info, status):
+            audio_buffer.append(indata.copy())
+        
+        with sd.InputStream(samplerate=config_sr, channels=1, dtype='float32',
+                           blocksize=frame_size, callback=audio_callback):
+            
+            while True:
+                if time.time() - start_time > max_duration:
+                    print("\n[Timeout] ")
+                    break
+                
+                if len(audio_buffer) == 0:
+                    time.sleep(0.01)
+                    continue
+                
+                # Calculate energy (RMS) of latest frame
+                frame = audio_buffer[-1]
+                energy = np.sqrt(np.mean(frame**2))
+                
+                # Check if speech based on energy
+                if energy > energy_threshold:
+                    if not speech_detected:
+                        speech_detected = True
+                        print("Recording...")
+                    silence_frames = 0
+                else:
+                    if speech_detected:
+                        silence_frames += 1
+                        if silence_frames > silence_threshold:
+                            print("Silence detected")
+                            break
+                
+                time.sleep(frame_duration_ms / 1000)
+        
+        if not audio_buffer:
+            return ""
+        
+        # Concatenate and normalize
+        audio_np = np.concatenate(audio_buffer, axis=0).flatten()
+        
+        print("Transcribing...")
+        return self.transcribe(audio_np)
 
 if __name__ == "__main__":
     stt = SpeechToText(model_size="base")   
-    text = stt.transcribe_microphone(duration=3.0)
-    print("You said:", text)
+    print("Testing VAD - speak and it will auto-stop when you finish\n")
+    print("Tip: Speak normally into your microphone. If it doesn't detect, try speaking louder.\n")
+    
+    while True:
+        # Lower threshold to 0.005 for better sensitivity
+        text = stt.listen_with_vad(energy_threshold=0.005)
+        print(f"\n You said: '{text}'\n")
+        
+        if "exit" in text.lower() or "quit" in text.lower():
+            break
