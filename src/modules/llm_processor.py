@@ -1,12 +1,15 @@
 import ollama
 import sys
 import re
+from modules.rag_database import Database
+from modules.speech_to_text import SpeechToText
+from modules.text_to_speech import TextToSpeech
 
 # Important: run "ollama pull qwen3:4b-instruct" before running this file.
 MODEL_NAME = "qwen3:4b-instruct"
 
 
-def run_assistant(stt_engine, tts_engine, rag_db):
+def run_assistant(stt_engine: SpeechToText, tts_engine: TextToSpeech, rag_db: Database):
 
     # This function controls the main conversation loop.
     # It takes the initialized STT, TTS, and RAG database as arguments
@@ -19,7 +22,7 @@ def run_assistant(stt_engine, tts_engine, rag_db):
             'content': (
                 'You are a helpful Minecraft assistant. '
                 'Use the provided context to answer questions about crafting and recipes. '
-                'Keep answers concise and relevant to the game. Do not use emoji in your answers.'
+                'Keep answers short, concise and relevant to the game. Do not use emoji in your answers.'
             )
         }
     ]
@@ -46,10 +49,17 @@ def run_assistant(stt_engine, tts_engine, rag_db):
             # Query the database for relevant game info/recipes
             print("...searching database...")
             # We get a list of matching documents strings
-            context_docs = rag_db.query_recipes(user_input, n_results=1)
+            context_docs = rag_db.query(user_input, optimize_processing=True, n_results=1)
 
             # Join the list into a single string if necessary
-            if isinstance(context_docs, list):
+            if isinstance(context_docs, dict):
+                # Convert dict to a readable context string with "key: value" lines
+                parts = []
+                for key, value in context_docs.items():
+                    if key == "guides" or key == "recipes":
+                        parts.append(f"{key}: {value}")
+                context_str = "\n".join(parts)
+            elif isinstance(context_docs, list):
                 context_str = "\n".join(context_docs)
             else:
                 context_str = str(context_docs)
