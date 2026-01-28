@@ -40,7 +40,7 @@ def run_assistant(stt_engine: SpeechToText, tts_engine: TextToSpeech, rag_db: Da
 
             print(f"\nUser: {user_input}")
 
-            if "exit" in user_input.lower() or "quit" in user_input.lower():
+            if "exit" in user_input.lower() or "quit" in user_input.lower() or "goodbye" in user_input.lower():
                 print("Shutting down game assistant. Have a nice day!")
                 tts_engine.say("Goodbye!")
                 break
