@@ -9,10 +9,11 @@ from modules.text_to_speech import TextToSpeech
 MODEL_NAME = "qwen3:4b-instruct"
 
 
-def run_assistant(stt_engine: SpeechToText, tts_engine: TextToSpeech, rag_db: Database):
+def run_assistant(stt_engine: SpeechToText, tts_engine: TextToSpeech, rag_db: Database, gui=None):
 
     # This function controls the main conversation loop.
     # It takes the initialized STT, TTS, and RAG database as arguments
+    # GUI is optional for displaying status and conversation log
 
 
     # Provide system prompt as start to the conversation history.
@@ -31,7 +32,13 @@ def run_assistant(stt_engine: SpeechToText, tts_engine: TextToSpeech, rag_db: Da
 
     while True:
         try:
+            # Check if GUI mute is enabled
+            if gui and gui.is_muted:
+                continue
+            
             # 1. Get Input (STT with automatic silence detection)
+            if gui:
+                gui.update_status("Listening...")
             user_input = stt_engine.listen_with_vad(energy_threshold=0.005)
 
             # If STT picked up nothing (silence), skip processing
@@ -39,6 +46,9 @@ def run_assistant(stt_engine: SpeechToText, tts_engine: TextToSpeech, rag_db: Da
                 continue
 
             print(f"\nUser: {user_input}")
+            if gui:
+                gui.add_message("User", user_input)
+                gui.update_status("Processing...")
 
             if "exit" in user_input.lower() or "quit" in user_input.lower() or "goodbye" in user_input.lower():
                 print("Shutting down game assistant. Have a nice day!")
@@ -48,6 +58,8 @@ def run_assistant(stt_engine: SpeechToText, tts_engine: TextToSpeech, rag_db: Da
             # 2. RAG Retrieval
             # Query the database for relevant game info/recipes
             print("...searching database...")
+            if gui:
+                gui.update_status("Searching database...")
             # We get a list of matching documents strings
             context_docs = rag_db.query(user_input, optimize_processing=True, n_results=1)
 
@@ -72,6 +84,9 @@ def run_assistant(stt_engine: SpeechToText, tts_engine: TextToSpeech, rag_db: Da
             messages.append({'role': 'user', 'content': rag_prompt})
 
             print("Assistant: ", end="", flush=True)
+            if gui:
+                gui.update_status("Generating response...")
+                gui.add_message_stream("Assistant:\n")  # Placeholder for streaming
 
             # 3. Generate Response (Streamed)
             full_assistant_response = ""
@@ -92,12 +107,23 @@ def run_assistant(stt_engine: SpeechToText, tts_engine: TextToSpeech, rag_db: Da
                     tts_engine.say(current_sentence, wait=True)
                     current_sentence = ""
 
+                # Update GUI in real-time
+                if gui:
+                    gui.add_message_stream(content)
+                    gui.update_status("Generating response...")
+
             # Flush any remaining text in the buffer
             if current_sentence.strip():
                 tts_engine.say(current_sentence, wait=True)
             
             # Ensure all audio has finished playing before listening again
             tts_engine.wait()
+            
+            # Log assistant response to GUI
+            if gui:
+                #gui.add_message("Assistant", full_assistant_response)
+                gui.add_message_stream("\n\n")  # Newline after response
+                gui.update_status("Ready")
 
             # 4. Update History
             # We overwrite the last message to just be the user prompt (removing the RAG context to save tokens)

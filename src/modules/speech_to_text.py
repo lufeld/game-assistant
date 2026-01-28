@@ -1,15 +1,20 @@
 import numpy as np
 import warnings
+from typing import List
 import sounddevice as sd
 import time
 
 warnings.filterwarnings("ignore", message="FP16 is not supported on CPU")
 
 class SpeechToText:
-    def __init__(self, model_size="base", language=None):
+    def __init__(self, model_size="base", language=None, input_device=None):
         import whisper
         self._model = whisper.load_model(model_size)
         self._language = language
+        self._input_device = input_device  # Device index or None for default
+
+    def set_input_device(self, device_index):
+        self._input_device = device_index
 
     def transcribe(self, audio):
         if isinstance(audio, np.ndarray):
@@ -41,7 +46,8 @@ class SpeechToText:
             audio_buffer.append(indata.copy())
         
         with sd.InputStream(samplerate=config_sr, channels=1, dtype='float32',
-                           blocksize=frame_size, callback=audio_callback):
+                           blocksize=frame_size, callback=audio_callback,
+                           device=self._input_device):
             
             while True:
                 if time.time() - start_time > max_duration:
