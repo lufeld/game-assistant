@@ -77,7 +77,7 @@ def run_assistant(stt_engine: SpeechToText, tts_engine: TextToSpeech, rag_db: Da
                 context_str = str(context_docs)
 
             # Construct the prompt with context
-            # We add the context temporarily to the user message for the LLM
+            # We add the RAG context temporarily to the user message for the LLM
             rag_prompt = f"Context: {context_str}\n\nQuestion: {user_input}"
 
             # Add user input to conversation history
@@ -88,7 +88,7 @@ def run_assistant(stt_engine: SpeechToText, tts_engine: TextToSpeech, rag_db: Da
                 gui.update_status("Generating response...")
                 gui.add_message_stream("Assistant:\n")  # Placeholder for streaming
 
-            # 3. Generate Response (Streamed)
+            # 3. Generate Response
             full_assistant_response = ""
             current_sentence = ""
 
@@ -101,8 +101,8 @@ def run_assistant(stt_engine: SpeechToText, tts_engine: TextToSpeech, rag_db: Da
                 full_assistant_response += content
                 current_sentence += content
 
-                # Buffer logic: Send to TTS only when we hit a punctuation mark
-                # This makes the speech sound natural instead of robotic/choppy
+                # Send to TTS only when we hit a punctuation mark
+                # This makes the speech sound more natural and answers don't take that long
                 if re.search(r'[.!?\n]', content):
                     tts_engine.say(current_sentence, wait=True)
                     current_sentence = ""
@@ -125,7 +125,6 @@ def run_assistant(stt_engine: SpeechToText, tts_engine: TextToSpeech, rag_db: Da
                 gui.add_message_stream("\n\n")  # Newline after response
                 gui.update_status("Ready")
 
-            # 4. Update History
             # We overwrite the last message to just be the user prompt (removing the RAG context to save tokens)
             messages[-1]['content'] = user_input
             messages.append({'role': 'assistant', 'content': full_assistant_response})
