@@ -29,9 +29,17 @@ The system consists of four main modules:
 Note: if the environment has been updated, export conda environment as .yml using `conda env export -n game-assistant -c conda-forge -c defaults --no-builds > environment.yml`
 
 ## Usage
-TODO
+Simply run `python main.py` to start the assistant. You can then speak your questions, and the assistant will respond with spoken answers.
+
+To stop the assistant, you have multiple options: 
++ press `Ctrl+C` in the terminal.
++ say "exit", "quit" or "goodbye" to the assistant, which will trigger a graceful shutdown.
++ close the GUI window, which will also trigger a graceful shutdown.
 
 ## Configuration
-TODO
+There are currently no user-configurable settings, but future versions may include options for customizing the assistant's behavior, voice, and more.
 
 ## Example Queries
+- "What can I do with an apple?"
+- "Where can I find wheat?"
+- "How do I craft bread?"
