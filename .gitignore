@@ -3,3 +3,6 @@ latest_communication.txt
 __pycache__
 *.pyc
 .vscode
+data/game_info/mc.jar/
+data/game_info/recipes/raw/
+
