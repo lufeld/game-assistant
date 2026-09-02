@@ -1,0 +1,454 @@
+{
+    "parse": {
+        "title": "Diamond Sword",
+        "pageid": 6858,
+        "redirects": [
+            {
+                "from": "Diamond sword",
+                "to": "Diamond Sword"
+            }
+        ],
+        "categories": [
+            {
+                "sortkey": "",
+                "category": "Renewable_resources"
+            },
+            {
+                "sortkey": "",
+                "category": "Non-stackable_resources"
+            },
+            {
+                "sortkey": "",
+                "category": "Pages_with_sound_tables",
+                "hidden": true
+            },
+            {
+                "sortkey": "",
+                "category": "Pages_with_Java_sound_tables",
+                "hidden": true
+            },
+            {
+                "sortkey": "",
+                "category": "Pages_with_Bedrock_sound_tables",
+                "hidden": true
+            },
+            {
+                "sortkey": "",
+                "category": "Pages_with_YouTube_videos",
+                "hidden": true
+            },
+            {
+                "sortkey": "",
+                "category": "Check_version",
+                "hidden": true
+            },
+            {
+                "sortkey": "",
+                "category": "Items"
+            },
+            {
+                "sortkey": "",
+                "category": "Combat"
+            }
+        ],
+        "sections": [
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "Obtaining",
+                "number": "1",
+                "index": "1",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 881,
+                "anchor": "Obtaining",
+                "linkAnchor": "Obtaining"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "Generated loot",
+                "number": "1.1",
+                "index": "2",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 897,
+                "anchor": "Generated_loot",
+                "linkAnchor": "Generated_loot"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "Crafting",
+                "number": "1.2",
+                "index": "3",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 1085,
+                "anchor": "Crafting",
+                "linkAnchor": "Crafting"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "Trading",
+                "number": "1.3",
+                "index": "4",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 1302,
+                "anchor": "Trading",
+                "linkAnchor": "Trading"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "Usage",
+                "number": "2",
+                "index": "5",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 1461,
+                "anchor": "Usage",
+                "linkAnchor": "Usage"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "Breaking",
+                "number": "2.1",
+                "index": "6",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 1473,
+                "anchor": "Breaking",
+                "linkAnchor": "Breaking"
+            },
+            {
+                "toclevel": 3,
+                "level": "4",
+                "line": "Creative mode",
+                "number": "2.1.1",
+                "index": "7",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 2190,
+                "anchor": "Creative_mode",
+                "linkAnchor": "Creative_mode"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "Attacking",
+                "number": "2.2",
+                "index": "8",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 2458,
+                "anchor": "Attacking",
+                "linkAnchor": "Attacking"
+            },
+            {
+                "toclevel": 3,
+                "level": "4",
+                "line": "Extra damage of Sharpness enchantment",
+                "number": "2.2.1",
+                "index": "9",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 2828,
+                "anchor": "Extra_damage_of_Sharpness_enchantment",
+                "linkAnchor": "Extra_damage_of_Sharpness_enchantment"
+            },
+            {
+                "toclevel": 3,
+                "level": "4",
+                "line": "Total damage of sword with Sharpness",
+                "number": "2.2.2",
+                "index": "10",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 3080,
+                "anchor": "Total_damage_of_sword_with_Sharpness",
+                "linkAnchor": "Total_damage_of_sword_with_Sharpness"
+            },
+            {
+                "toclevel": 4,
+                "level": "5",
+                "line": "<i>Java Edition</i>",
+                "number": "2.2.2.1",
+                "index": "11",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 3289,
+                "anchor": "Java_Edition",
+                "linkAnchor": "Java_Edition"
+            },
+            {
+                "toclevel": 4,
+                "level": "5",
+                "line": "<i>Bedrock Edition</i>",
+                "number": "2.2.2.2",
+                "index": "12",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 3638,
+                "anchor": "Bedrock_Edition",
+                "linkAnchor": "Bedrock_Edition"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "Repairing",
+                "number": "2.3",
+                "index": "13",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 3987,
+                "anchor": "Repairing",
+                "linkAnchor": "Repairing"
+            },
+            {
+                "toclevel": 3,
+                "level": "4",
+                "line": "Combining",
+                "number": "2.3.1",
+                "index": "14",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 4005,
+                "anchor": "Combining",
+                "linkAnchor": "Combining"
+            },
+            {
+                "toclevel": 3,
+                "level": "4",
+                "line": "Anvil repair",
+                "number": "2.3.2",
+                "index": "15",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 4487,
+                "anchor": "Anvil_repair",
+                "linkAnchor": "Anvil_repair"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "Enchantments",
+                "number": "2.4",
+                "index": "16",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 4925,
+                "anchor": "Enchantments",
+                "linkAnchor": "Enchantments"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "Upgrading",
+                "number": "2.5",
+                "index": "17",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 6647,
+                "anchor": "Upgrading",
+                "linkAnchor": "Upgrading"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "Sounds",
+                "number": "3",
+                "index": "18",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 6977,
+                "anchor": "Sounds",
+                "linkAnchor": "Sounds"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "Data values",
+                "number": "4",
+                "index": "19",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 7009,
+                "anchor": "Data_values",
+                "linkAnchor": "Data_values"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "ID",
+                "number": "4.1",
+                "index": "20",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 7027,
+                "anchor": "ID",
+                "linkAnchor": "ID"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "Achievements",
+                "number": "5",
+                "index": "21",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 7434,
+                "anchor": "Achievements",
+                "linkAnchor": "Achievements"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "Videos",
+                "number": "6",
+                "index": "22",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 7501,
+                "anchor": "Videos",
+                "linkAnchor": "Videos"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "History",
+                "number": "7",
+                "index": "23",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 7534,
+                "anchor": "History",
+                "linkAnchor": "History"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "<i>Java Edition</i>",
+                "number": "7.1",
+                "index": "24",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 7548,
+                "anchor": "Java_Edition_2",
+                "linkAnchor": "Java_Edition_2"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "<i>Bedrock Edition</i>",
+                "number": "7.2",
+                "index": "25",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 14799,
+                "anchor": "Bedrock_Edition_2",
+                "linkAnchor": "Bedrock_Edition_2"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "Legacy Console Edition",
+                "number": "7.3",
+                "index": "26",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 17201,
+                "anchor": "Legacy_Console_Edition",
+                "linkAnchor": "Legacy_Console_Edition"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "<i>New Nintendo 3DS Edition</i>",
+                "number": "7.4",
+                "index": "27",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 19308,
+                "anchor": "New_Nintendo_3DS_Edition",
+                "linkAnchor": "New_Nintendo_3DS_Edition"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "Data history",
+                "number": "7.5",
+                "index": "28",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 19519,
+                "anchor": "Data_history",
+                "linkAnchor": "Data_history"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "Issues",
+                "number": "8",
+                "index": "29",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 19706,
+                "anchor": "Issues",
+                "linkAnchor": "Issues"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "Trivia",
+                "number": "9",
+                "index": "30",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 19735,
+                "anchor": "Trivia",
+                "linkAnchor": "Trivia"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "Gallery",
+                "number": "10",
+                "index": "31",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 20489,
+                "anchor": "Gallery",
+                "linkAnchor": "Gallery"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "Renders",
+                "number": "10.1",
+                "index": "32",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 20504,
+                "anchor": "Renders",
+                "linkAnchor": "Renders"
+            },
+            {
+                "toclevel": 2,
+                "level": "3",
+                "line": "In other media",
+                "number": "10.2",
+                "index": "33",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 20594,
+                "anchor": "In_other_media",
+                "linkAnchor": "In_other_media"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "References",
+                "number": "11",
+                "index": "34",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 22259,
+                "anchor": "References",
+                "linkAnchor": "References"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "See also",
+                "number": "12",
+                "index": "35",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 22289,
+                "anchor": "See_also",
+                "linkAnchor": "See_also"
+            },
+            {
+                "toclevel": 1,
+                "level": "2",
+                "line": "Navigation",
+                "number": "13",
+                "index": "36",
+                "fromtitle": "Diamond_Sword",
+                "byteoffset": 22389,
+                "anchor": "Navigation",
+                "linkAnchor": "Navigation"
+            }
+        ],
+        "showtoc": true
+    }
+}

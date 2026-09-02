@@ -1,0 +1,22 @@
+{
+    "batchcomplete": "",
+    "query": {
+        "normalized": [
+            {
+                "from": "black monster",
+                "to": "Black monster"
+            }
+        ],
+        "pages": {
+            "-1": {
+                "ns": 0,
+                "title": "Black monster",
+                "missing": "",
+                "contentmodel": "wikitext",
+                "pagelanguage": "en",
+                "pagelanguagehtmlcode": "en",
+                "pagelanguagedir": "ltr"
+            }
+        }
+    }
+}
