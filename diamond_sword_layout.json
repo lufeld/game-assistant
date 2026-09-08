@@ -323,7 +323,7 @@
                 "number": "7.2",
                 "index": "25",
                 "fromtitle": "Diamond_Sword",
-                "byteoffset": 14799,
+                "byteoffset": 14868,
                 "anchor": "Bedrock_Edition_2",
                 "linkAnchor": "Bedrock_Edition_2"
             },
@@ -334,7 +334,7 @@
                 "number": "7.3",
                 "index": "26",
                 "fromtitle": "Diamond_Sword",
-                "byteoffset": 17201,
+                "byteoffset": 17270,
                 "anchor": "Legacy_Console_Edition",
                 "linkAnchor": "Legacy_Console_Edition"
             },
@@ -345,7 +345,7 @@
                 "number": "7.4",
                 "index": "27",
                 "fromtitle": "Diamond_Sword",
-                "byteoffset": 19308,
+                "byteoffset": 19377,
                 "anchor": "New_Nintendo_3DS_Edition",
                 "linkAnchor": "New_Nintendo_3DS_Edition"
             },
@@ -356,7 +356,7 @@
                 "number": "7.5",
                 "index": "28",
                 "fromtitle": "Diamond_Sword",
-                "byteoffset": 19519,
+                "byteoffset": 19588,
                 "anchor": "Data_history",
                 "linkAnchor": "Data_history"
             },
@@ -367,7 +367,7 @@
                 "number": "8",
                 "index": "29",
                 "fromtitle": "Diamond_Sword",
-                "byteoffset": 19706,
+                "byteoffset": 19775,
                 "anchor": "Issues",
                 "linkAnchor": "Issues"
             },
@@ -378,7 +378,7 @@
                 "number": "9",
                 "index": "30",
                 "fromtitle": "Diamond_Sword",
-                "byteoffset": 19735,
+                "byteoffset": 19804,
                 "anchor": "Trivia",
                 "linkAnchor": "Trivia"
             },
@@ -389,7 +389,7 @@
                 "number": "10",
                 "index": "31",
                 "fromtitle": "Diamond_Sword",
-                "byteoffset": 20489,
+                "byteoffset": 20558,
                 "anchor": "Gallery",
                 "linkAnchor": "Gallery"
             },
@@ -400,7 +400,7 @@
                 "number": "10.1",
                 "index": "32",
                 "fromtitle": "Diamond_Sword",
-                "byteoffset": 20504,
+                "byteoffset": 20573,
                 "anchor": "Renders",
                 "linkAnchor": "Renders"
             },
@@ -411,7 +411,7 @@
                 "number": "10.2",
                 "index": "33",
                 "fromtitle": "Diamond_Sword",
-                "byteoffset": 20594,
+                "byteoffset": 20663,
                 "anchor": "In_other_media",
                 "linkAnchor": "In_other_media"
             },
@@ -422,7 +422,7 @@
                 "number": "11",
                 "index": "34",
                 "fromtitle": "Diamond_Sword",
-                "byteoffset": 22259,
+                "byteoffset": 22328,
                 "anchor": "References",
                 "linkAnchor": "References"
             },
@@ -433,7 +433,7 @@
                 "number": "12",
                 "index": "35",
                 "fromtitle": "Diamond_Sword",
-                "byteoffset": 22289,
+                "byteoffset": 22358,
                 "anchor": "See_also",
                 "linkAnchor": "See_also"
             },
@@ -444,7 +444,7 @@
                 "number": "13",
                 "index": "36",
                 "fromtitle": "Diamond_Sword",
-                "byteoffset": 22389,
+                "byteoffset": 22458,
                 "anchor": "Navigation",
                 "linkAnchor": "Navigation"
             }

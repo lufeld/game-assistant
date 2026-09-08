@@ -23,7 +23,7 @@ from urllib.parse import quote
 import httpx
 from bs4 import BeautifulSoup
 
-from wiki_data import WikiPageInfo
+from wiki_data_collector import WikiDataCollector
 
 
 BASE_API_URL = "https://minecraft.wiki/api.php"
@@ -192,22 +192,33 @@ if __name__ == "__main__":
     
     item = "diamond sword"
 
-    #info = request_wikipage_info_many(client, [item, "strong sword"])
-    info = WikiPageInfo.from_wiki(request_wikipage_info_many(client, [item, "strong sword"]))
-    with open("diamond_sword_info.json", "w", encoding="utf-8") as f:
-        json.dump(info, f, indent=4)
+    collector = WikiDataCollector()
 
-    layout = request_wikipage_layout(client, item)
-    categories = parse_wiki_page_categories(layout)
-    sections = parse_wiki_page_sections(layout)
-    sections = group_wiki_page_sections(layout)
+    info = WikiDataCollector.try_for_wikipages(collector, [item, "strong sword", "slime farm"])
+    pprint (info)
+
+    sections = collector.get_wikipage_sections(list(info.keys())[0])
     pprint(sections)
-    with open("diamond_sword_layout.json", "w", encoding="utf-8") as f:
-        json.dump(layout, f, indent=4)
 
-    content = request_wikipage_section_content(client, item, 1)
-    with open("diamond_sword_section_1.json", "w", encoding="utf-8") as f:
-        json.dump(content, f, indent=4)
+    all_sections_content = collector.get_all_wikipage_sections_content(list(info.keys())[0])
+    with open("diamond_sword_all_sections_content.json", "w", encoding="utf-8") as f:
+        json.dump(all_sections_content, f, indent=4)
+
+    # info = request_wikipage_info_many(client, [item, "strong sword"])
+    # with open("diamond_sword_info.json", "w", encoding="utf-8") as f:
+    #     json.dump(info, f, indent=4)
+
+    # layout = request_wikipage_layout(client, item)
+    # categories = parse_wiki_page_categories(layout)
+    # sections = parse_wiki_page_sections(layout)
+    # sections = group_wiki_page_sections(layout)
+    # pprint(sections)
+    # with open("diamond_sword_layout.json", "w", encoding="utf-8") as f:
+    #     json.dump(layout, f, indent=4)
+
+    # content = request_wikipage_section_content(client, item, 1)
+    # with open("diamond_sword_section_1.json", "w", encoding="utf-8") as f:
+    #     json.dump(content, f, indent=4)
 
     # pprint(content)
 

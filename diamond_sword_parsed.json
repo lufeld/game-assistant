@@ -1,0 +1,2160 @@
+{
+    "characters": 22651,
+    "infoboxes": [
+        {
+            "arguments": {
+                "attackdamage": "{{jebe|{{hp|7}}|{{hp|8}}}}",
+                "attackrange": "3",
+                "attackspeed": "1.6",
+                "durability": "{{jebe|1561|1562}}",
+                "enchantability": "10",
+                "hitboxmargin": "0",
+                "image": "Diamond Sword.png",
+                "image2": "Enchanted Diamond Sword.gif",
+                "miningefficiencyweapon": "1.5<br/>15 (on [[cobweb]]s)<br/>30 (on [[bamboo]])",
+                "renewable": "Yes",
+                "stackable": "No",
+                "sweepdamage": "{{hp|1}}<br>[[Sweeping Edge|SE]] I: {{hp|3.5}}<br>[[Sweeping Edge|SE]] II: {{hp|4.69}}<br>[[Sweeping Edge|SE]] III: {{hp|5.25}}",
+                "title": "Diamond Sword"
+            },
+            "name": "Infobox item"
+        }
+    ],
+    "links": [
+        "Sweeping Edge",
+        "Sweeping Edge",
+        "Sweeping Edge",
+        "cobweb",
+        "bamboo",
+        "sword",
+        "diamond",
+        "tier",
+        "iron sword",
+        "netherite sword",
+        "netherite ingot",
+        "netherite upgrade",
+        "smithing table",
+        "stick",
+        "diamond",
+        "Diamond Sword",
+        "File:Weaponsmith Diamond Sword Trade.png",
+        "Silk Touch",
+        "Creative",
+        "commands",
+        "minecart",
+        "painting",
+        "item frame",
+        "armor stand",
+        "damage",
+        "Sharpness",
+        "anvil",
+        "diamond",
+        "enchantment",
+        "enchantment",
+        "Enchantment",
+        "Sharpness",
+        "Smite",
+        "undead",
+        "Bane of Arthropods",
+        "arthropod",
+        "Looting",
+        "drops",
+        "Knockback",
+        "Fire Aspect",
+        "candle",
+        "campfire",
+        "TNT",
+        "Sweeping Edge",
+        "Unbreaking",
+        "Mending",
+        "experience",
+        "Curse of Vanishing",
+        "File:Diamond Sword JE1 BE1.png",
+        "chest",
+        "starting house",
+        "craft",
+        "durability",
+        "Sword blocking",
+        "player",
+        "sneaking",
+        "enchantment table",
+        "villager",
+        "trading",
+        "emerald",
+        "damage",
+        "Creative",
+        "block",
+        "sound",
+        "villager",
+        "trading",
+        "emerald",
+        "Enchanted",
+        "end city",
+        "shield",
+        "attribute",
+        "damage",
+        "sweep attack",
+        "mob",
+        "Sharpness",
+        "mob",
+        "Sweeping Edge",
+        "File:Diamond Sword JE2 BE2.png",
+        "Jasper Boerstra",
+        "File:Diamond Sword JE2 BE2.png",
+        "bamboo",
+        "netherite sword",
+        "netherite ingot",
+        "File:Diamond Sword JE3 BE3.png",
+        "smithing table",
+        "bastion remnant",
+        "chest",
+        "netherite upgrade",
+        "damage",
+        "block",
+        "sprint",
+        "block",
+        "block",
+        "block",
+        "block",
+        "Sweeping Edge",
+        "File:Diamond Sword JE1 BE1.png",
+        "Creative inventory",
+        "damage",
+        "creative",
+        "block",
+        "sound",
+        "End city",
+        "villager",
+        "File:Diamond Sword JE2 BE2.png",
+        "Trading",
+        "File:Diamond Sword JE3 BE3.png",
+        "chest",
+        "bamboo",
+        "netherite upgrade",
+        "File:Diamond Sword JE1 BE1.png",
+        "player",
+        "villager",
+        "trading",
+        "emerald",
+        "damage",
+        "Creative",
+        "block",
+        "sound",
+        "villager",
+        "trading",
+        "emerald",
+        "enchantments",
+        "Enchanted",
+        "end city",
+        "File:Diamond Sword JE2 BE2.png",
+        "Trading",
+        "File:Diamond Sword JE1 BE1.png",
+        "1.13/Flattening",
+        "texture",
+        "Notch",
+        "Legend of the Chambered",
+        "Minecraft",
+        "wikipedia:Transformice",
+        "Alex",
+        "the Nether",
+        "chest",
+        "Super Duper Graphics Pack",
+        "Steve",
+        "snow golem",
+        "Tyler",
+        "Movie:Diamond sword",
+        "A Minecraft Movie",
+        "Dungeons:Diamond Sword",
+        "Minecraft Dungeons",
+        "Earth:Diamond Sword",
+        "Minecraft Earth",
+        "Story Mode:Diamond Sword",
+        "Minecraft: Story Mode",
+        "Category:Combat",
+        "fr:\u00c9p\u00e9e",
+        "ko:\ub2e4\uc774\uc544\ubaac\ub4dc \uac80",
+        "pt:Espada de Diamante"
+    ],
+    "sections": [
+        {
+            "level": 2,
+            "title": "Obtaining"
+        },
+        {
+            "level": 3,
+            "title": "Generated loot"
+        },
+        {
+            "level": 3,
+            "title": "Crafting"
+        },
+        {
+            "level": 3,
+            "title": "Trading"
+        },
+        {
+            "level": 2,
+            "title": "Usage"
+        },
+        {
+            "level": 3,
+            "title": "Breaking"
+        },
+        {
+            "level": 4,
+            "title": "Creative mode"
+        },
+        {
+            "level": 3,
+            "title": "Attacking"
+        },
+        {
+            "level": 4,
+            "title": "Extra damage of Sharpness enchantment"
+        },
+        {
+            "level": 4,
+            "title": "Total damage of sword with Sharpness"
+        },
+        {
+            "level": 5,
+            "title": "''Java Edition''"
+        },
+        {
+            "level": 5,
+            "title": "''Bedrock Edition''"
+        },
+        {
+            "level": 3,
+            "title": "Repairing"
+        },
+        {
+            "level": 4,
+            "title": "Combining"
+        },
+        {
+            "level": 4,
+            "title": "Anvil repair"
+        },
+        {
+            "level": 3,
+            "title": "Enchantments"
+        },
+        {
+            "level": 3,
+            "title": "Upgrading"
+        },
+        {
+            "level": 2,
+            "title": "Sounds"
+        },
+        {
+            "level": 2,
+            "title": "Data values"
+        },
+        {
+            "level": 3,
+            "title": "ID"
+        },
+        {
+            "level": 2,
+            "title": "Achievements"
+        },
+        {
+            "level": 2,
+            "title": "Videos"
+        },
+        {
+            "level": 2,
+            "title": "History"
+        },
+        {
+            "level": 3,
+            "title": "''Java Edition''"
+        },
+        {
+            "level": 3,
+            "title": "''Bedrock Edition''"
+        },
+        {
+            "level": 3,
+            "title": "Legacy Console Edition"
+        },
+        {
+            "level": 3,
+            "title": "''New Nintendo 3DS Edition''"
+        },
+        {
+            "level": 3,
+            "title": "Data history"
+        },
+        {
+            "level": 2,
+            "title": "Issues"
+        },
+        {
+            "level": 2,
+            "title": "Trivia"
+        },
+        {
+            "level": 2,
+            "title": "Gallery"
+        },
+        {
+            "level": 3,
+            "title": "Renders"
+        },
+        {
+            "level": 3,
+            "title": "In other media"
+        },
+        {
+            "level": 2,
+            "title": "References"
+        },
+        {
+            "level": 2,
+            "title": "See also"
+        },
+        {
+            "level": 2,
+            "title": "Navigation"
+        }
+    ],
+    "source": "C:\\Users\\lukas\\Documents\\GitHub\\game-assistant\\diamond_sword.wikitext",
+    "tables": [
+        [
+            [
+                "Edition",
+                "I",
+                "II",
+                "III",
+                "IV",
+                "V"
+            ],
+            [
+                "{{JE}}",
+                "{{hp|1}}",
+                "{{hp|1.5}}",
+                "{{hp|2}}",
+                "{{hp|2.5}}",
+                "{{hp|3}}"
+            ],
+            [
+                "{{BE}}",
+                "{{hp|1}}",
+                "{{hp|2}}",
+                "{{hp|3}}",
+                "{{hp|5}}",
+                "{{hp|6}}"
+            ]
+        ],
+        [
+            [
+                "Attack type",
+                "Base damage",
+                "Sharpness I",
+                "Sharpness II",
+                "Sharpness III",
+                "Sharpness IV",
+                "Sharpness V"
+            ],
+            [
+                "Normal",
+                "{{hp|7}}",
+                "{{hp|8}}",
+                "{{hp|8.5}}",
+                "{{hp|9}}",
+                "{{hp|9.5}}",
+                "{{hp|10}}"
+            ],
+            [
+                "Critical",
+                "{{hp|10.5}}",
+                "{{hp|11.5}}",
+                "{{hp|12}}",
+                "{{hp|12.5}}",
+                "{{hp|13}}",
+                "{{hp|13.5}}"
+            ]
+        ],
+        [
+            [
+                "Attack type",
+                "Base damage",
+                "Sharpness I",
+                "Sharpness II",
+                "Sharpness III",
+                "Sharpness IV",
+                "Sharpness V"
+            ],
+            [
+                "Normal",
+                "{{hp|8}}",
+                "{{hp|9}}",
+                "{{hp|10}}",
+                "{{hp|11}}",
+                "{{hp|13}}",
+                "{{hp|14}}"
+            ],
+            [
+                "Critical",
+                "{{hp|12}}",
+                "{{hp|13.5}}",
+                "{{hp|15}}",
+                "{{hp|16.5}}",
+                "{{hp|19.5}}",
+                "{{hp|21}}"
+            ]
+        ],
+        [
+            [
+                "Name",
+                "Description",
+                "Max level",
+                "[[Enchantment#Obtaining|Method]]",
+                "Weight"
+            ],
+            [
+                "[[Sharpness]]<ref group=note name=note1>Sharpness, Smite, and Bane of Arthropods are mutually exclusive.</ref>",
+                "Increases the damage dealt.",
+                "V",
+                "{{BlockLink|Enchanting Table}}<br/>{{BlockLink|Anvil}}",
+                "10"
+            ],
+            [
+                "[[Smite]]<ref group=note name=note1/>",
+                "Increases the damage dealt to [[undead]].",
+                "V",
+                "{{BlockLink|Enchanting Table}}<br/>{{BlockLink|Anvil}}",
+                "5"
+            ],
+            [
+                "[[Bane of Arthropods]]<ref group=\\\"note\\\" name=note1/>",
+                "Increases the damage dealt to [[arthropod]]s.",
+                "V",
+                "{{BlockLink|Enchanting Table}}<br/>{{BlockLink|Anvil}}",
+                "5"
+            ],
+            [
+                "[[Looting]]",
+                "Increases the amount of [[drops]] when killing an entity with the sword.",
+                "III",
+                "{{BlockLink|Enchanting Table}}<br/>{{BlockLink|Anvil}}",
+                "2"
+            ],
+            [
+                "[[Knockback]]",
+                "Increases the knockback dealt.",
+                "II",
+                "{{BlockLink|Enchanting Table}}<br/>{{BlockLink|Anvil}}",
+                "5"
+            ],
+            [
+                "[[Fire Aspect]]",
+                "Ignites any targets hit by the sword. {{IN|bedrock}}, it also lights unlit [[candle]]s, [[campfire]]s, and [[TNT|blocks of TNT]] when used.",
+                "II",
+                "{{BlockLink|Enchanting Table}}<br/>{{BlockLink|Anvil}}",
+                "2"
+            ],
+            [
+                "[[Sweeping Edge]]{{Only|java|short=1}}",
+                "Increases the sweeping damage dealt.",
+                "III",
+                "{{BlockLink|Enchanting Table}}<br/>{{BlockLink|Anvil}}",
+                "2"
+            ],
+            [
+                "[[Unbreaking]]",
+                "Grants a chance to negate durability consumption.",
+                "III",
+                "{{BlockLink|Enchanting Table}}<br/>{{BlockLink|Anvil}}",
+                "5"
+            ],
+            [
+                "[[Mending]]",
+                "Repairs the sword when obtaining [[experience]].",
+                "I",
+                "{{BlockLink|Anvil}}",
+                "2"
+            ],
+            [
+                "[[Curse of Vanishing]]",
+                "The sword vanishes on death, not dropping as an item.",
+                "I",
+                "{{BlockLink|Anvil}}",
+                "1"
+            ]
+        ]
+    ],
+    "templates": [
+        {
+            "arguments": {
+                "1": "",
+                "2": "Sword (disambiguation)"
+            },
+            "name": "for"
+        },
+        {
+            "arguments": {
+                "attackdamage": "{{jebe|{{hp|7}}|{{hp|8}}}}",
+                "attackrange": "3",
+                "attackspeed": "1.6",
+                "durability": "{{jebe|1561|1562}}",
+                "enchantability": "10",
+                "hitboxmargin": "0",
+                "image": "Diamond Sword.png",
+                "image2": "Enchanted Diamond Sword.gif",
+                "miningefficiencyweapon": "1.5<br/>15 (on [[cobweb]]s)<br/>30 (on [[bamboo]])",
+                "renewable": "Yes",
+                "stackable": "No",
+                "sweepdamage": "{{hp|1}}<br>[[Sweeping Edge|SE]] I: {{hp|3.5}}<br>[[Sweeping Edge|SE]] II: {{hp|4.69}}<br>[[Sweeping Edge|SE]] III: {{hp|5.25}}",
+                "title": "Diamond Sword"
+            },
+            "name": "Infobox item"
+        },
+        {
+            "arguments": {
+                "1": "{{hp|7}}",
+                "2": "{{hp|8}}"
+            },
+            "name": "jebe"
+        },
+        {
+            "arguments": {
+                "1": "7"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "8"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "1"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "3.5"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "4.69"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "5.25"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "1561",
+                "2": "1562"
+            },
+            "name": "jebe"
+        },
+        {
+            "arguments": {
+                "1": "diamond-sword,damaged-diamond-sword,level-enchanted-diamond-sword,damaged-random-enchanted-diamond-sword,damaged-random-enchanted-diamond-sword-2"
+            },
+            "name": "LootChestItem"
+        },
+        {
+            "arguments": {
+                "B1": "Diamond",
+                "B2": "Diamond",
+                "B3": "Stick",
+                "name": "[[Diamond Sword]]",
+                "Output": "Diamond Sword",
+                "showname": "0",
+                "type": "Combat"
+            },
+            "name": "Crafting"
+        },
+        {
+            "arguments": {
+                "1": "Enchanted Diamond Sword"
+            },
+            "name": "Trade sources"
+        },
+        {
+            "arguments": {
+                "1": "Sword#Breaking"
+            },
+            "name": "main"
+        },
+        {
+            "arguments": {
+                "1": "MC-195168",
+                "2": "",
+                "3": "Swords consume double durability than they normally would when destroying bamboo saplings, bamboo, or cobwebs"
+            },
+            "name": "bug"
+        },
+        {
+            "arguments": {
+                "1": "java"
+            },
+            "name": "only"
+        },
+        {
+            "arguments": {
+                "1": "MC-27140"
+            },
+            "name": "bug"
+        },
+        {
+            "arguments": {
+                "1": "MC-18463"
+            },
+            "name": "bug"
+        },
+        {
+            "arguments": {
+                "1": "Sword#Attacking"
+            },
+            "name": "main"
+        },
+        {
+            "arguments": {
+                "1": "attacking"
+            },
+            "name": "control"
+        },
+        {
+            "arguments": {
+                "1": "7"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "je"
+            },
+            "name": "in"
+        },
+        {
+            "arguments": {
+                "1": "8"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "be"
+            },
+            "name": "in"
+        },
+        {
+            "arguments": {},
+            "name": "JE"
+        },
+        {
+            "arguments": {
+                "1": "1"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "1.5"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "2"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "2.5"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "3"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {},
+            "name": "BE"
+        },
+        {
+            "arguments": {
+                "1": "1"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "2"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "3"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "5"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "6"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "java"
+            },
+            "name": "only"
+        },
+        {
+            "arguments": {
+                "1": "7"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "8"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "8.5"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "9"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "9.5"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "10"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "10.5"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "11.5"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "12"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "12.5"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "13"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "13.5"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "8"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "9"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "10"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "11"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "13"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "14"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "12"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "13.5"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "15"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "16.5"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "19.5"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "21"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "Damaged Diamond Sword",
+                "2": "Damaged Diamond Sword",
+                "description": "The durability of the two swords is added together, plus an extra 5% of durability.",
+                "ignoreusage": "1",
+                "Output": "Diamond Sword",
+                "showdescription": "1",
+                "type": "Tool"
+            },
+            "name": "Crafting"
+        },
+        {
+            "arguments": {
+                "1": "Damaged Diamond Sword",
+                "2": "Damaged Diamond Sword",
+                "3": "Diamond Sword",
+                "description": "The durability of the two swords is added together, plus an extra 5% of durability.",
+                "ingredients": "2x Damaged Diamond Sword",
+                "showdescription": "1"
+            },
+            "name": "Grinding"
+        },
+        {
+            "arguments": {
+                "1": "Anvil mechanics#Unit repair"
+            },
+            "name": "main"
+        },
+        {
+            "arguments": {
+                "1": "Damaged Diamond Sword",
+                "2": "Damaged Diamond Sword; Diamond",
+                "3": "Diamond Sword",
+                "head": "1",
+                "tail": "1"
+            },
+            "name": "Repairing"
+        },
+        {
+            "arguments": {
+                "1": "Enchanting Table"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Anvil"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Enchanting Table"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Anvil"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Enchanting Table"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Anvil"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Enchanting Table"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Anvil"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Enchanting Table"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Anvil"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "bedrock"
+            },
+            "name": "IN"
+        },
+        {
+            "arguments": {
+                "1": "Enchanting Table"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Anvil"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "java",
+                "short": "1"
+            },
+            "name": "Only"
+        },
+        {
+            "arguments": {
+                "1": "Enchanting Table"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Anvil"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Enchanting Table"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Anvil"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Anvil"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {
+                "1": "Anvil"
+            },
+            "name": "BlockLink"
+        },
+        {
+            "arguments": {},
+            "name": "Notelist"
+        },
+        {
+            "arguments": {
+                "1": "Netherite Upgrade",
+                "2": "Diamond Sword",
+                "3": "Netherite Ingot",
+                "4": "Netherite Sword",
+                "description": "",
+                "head": "1",
+                "tail": "1"
+            },
+            "name": "Smithing"
+        },
+        {
+            "arguments": {},
+            "name": ":Sword/Sounds"
+        },
+        {
+            "arguments": {
+                "1": "java"
+            },
+            "name": "edition"
+        },
+        {
+            "arguments": {
+                "displayname": "Diamond Sword",
+                "edition": "java",
+                "foot": "1",
+                "form": "item",
+                "generatetranslationkeys": "y",
+                "nameid": "diamond_sword",
+                "showforms": "y",
+                "spritetype": "item"
+            },
+            "name": "ID table"
+        },
+        {
+            "arguments": {
+                "1": "bedrock"
+            },
+            "name": "edition"
+        },
+        {
+            "arguments": {
+                "displayname": "Diamond Sword",
+                "edition": "bedrock",
+                "foot": "1",
+                "form": "item",
+                "generatetranslationkeys": "y",
+                "id": "316",
+                "nameid": "diamond_sword",
+                "notshowbeitemforms": "y",
+                "showforms": "y",
+                "shownumericids": "y",
+                "spritetype": "item"
+            },
+            "name": "ID table"
+        },
+        {
+            "arguments": {
+                "1": "Time to Strike!;Overkill"
+            },
+            "name": "load achievements"
+        },
+        {
+            "arguments": {
+                "1": "0BqdotT5G7g"
+            },
+            "name": "yt"
+        },
+        {
+            "arguments": {
+                "1": "{{HistoryLine|java indev}}",
+                "10": "{{HistoryLine||v1.0.3|Diamond swords' durability has been increased to 1025.}}",
+                "11": "{{HistoryLine|java beta}}",
+                "12": "{{HistoryLine||1.2|Diamond swords' durability has been increased to 1561.}}",
+                "13": "{{HistoryLine||1.5|Diamond swords' attack damage has increased by 1 because the player's barehand damage is buffed from {{hp|1}} to {{hp|2}}. They now deal {{hp|11}} damage per hit.}}",
+                "14": "{{HistoryLine||1.8|dev=Pre-release|Added the ability to [[Sword blocking|block]] with a diamond sword, giving the [[player]] more options in combat. Blocking deflects 50% of incoming melee damage, non-magical projectiles like arrows and explosion damage, and a bit of knockback. The diamond sword is held in front of the player and its durability is not reduced by blocking. The player moves at a slower rate than [[sneaking]] when blocking with a diamond sword.\n|As barehand damage has been reduced from {{hp|2}} to {{hp|1}}, the damage of diamond swords have been reduced to their pre-Beta 1.5 values.}}",
+                "15": "{{HistoryLine|java}}",
+                "16": "{{HistoryLine||1.0.0|dev=Beta 1.9 Prerelease 3|Diamond sword damage has been nerfed to keep enchanting balanced. Reduced the damage from {{hp|10}} to {{hp|7}}.}}",
+                "17": "{{HistoryLine|||dev=Beta 1.9 Prerelease 4|Diamond swords can now be enchanted using the [[enchantment table]].}}",
+                "18": "{{HistoryLine||1.3.1|dev=12w21a|Blacksmith [[villager]]s now [[trading|sell]] diamond swords for 12\u201313 [[emerald]]s.\n|Diamond swords are now renewable because other renewable items can be sold for emeralds, and they can then be used to buy diamond swords.}}\n<!--\nThis is a bug, right?\n\n{{History||1.4.2|dev=12w34a|If a [[player]] has dyed leather armor equipped and selected a diamond sword, it appears in the color of the dye applied to the armor, when switching to second or third person view.}\n-->",
+                "19": "{{HistoryLine||1.6.1|dev=13w21a|Instead of replacing the barehanded [[damage]] ({{hp|1}}), diamond swords now add their damage onto the barehanded damage, therefore buffing the attack damage by {{hp|1}}.}}",
+                "2": "{{HistoryLine||0.31|dev=20100128-2200|[[File:Diamond Sword JE1 BE1.png|32px]] Added emerald swords.\n|Emerald swords cannot be crafted yet, but have been added to the item [[chest]] in the [[starting house]].}}",
+                "20": "{{HistoryLine|||dev=13w25b|In [[Creative]] mode, diamond swords are no longer able to break [[block]]s, and no [[sound]] plays when they're hit with one.<ref>{{bug|MC-18368}}</ref>}}",
+                "21": "{{HistoryLine||1.8|dev=14w02a|Weaponsmith [[villager]]s now [[trading|sell]] enchanted diamond swords for 12\u201315 [[emerald]]s. Unenchanted diamond swords are no longer sold.}}",
+                "22": "{{HistoryLine|||dev=14w25a|Blocking immediately after attacking no longer continues the swing animation.<ref>{{bug|MC-201394}}</ref>}}",
+                "23": "{{HistoryLine|||dev=14w30a|Diamond sword holding position have been tweaked, and the blocking animation has changed. Blocking while mining was made impossible.}}",
+                "24": "{{HistoryLine||1.9|dev=15w31a|[[Enchanted]] diamond swords can now be found in [[end city]] chests.}}",
+                "25": "{{HistoryLine|||dev=15w33c|Diamond swords no longer block attacks. Instead, [[shield]]s are used.}}",
+                "26": "{{HistoryLine|||dev=15w34b|Diamond swords now use the attack speed [[attribute]]. The attack speed of a sword is 1.25 or 0.8 seconds.}}",
+                "27": "{{HistoryLine|||dev=15w34c|Nerfed diamond swords as they now do {{hp|7}} attack [[damage]]. However, their attack speed has been increased to 1.45, or 0.69 seconds.\n|Diamond swords can now do a [[sweep attack]] when moving at walking speed or slower, which knock back [[mob]]s near the one hit. The attack speed meter must be filled for it to work.}}",
+                "28": "{{HistoryLine|||dev=15w36a|Each [[Sharpness]] level now adds {{hp|1}} damage to the base damage at level I and an additional {{hp|0.5}} for each additional level instead of a flat {{hp|1.25}} per level.}}",
+                "29": "{{HistoryLine|||dev=15w37a|Diamond swords now have an attack speed of 1.6, or 0.6 seconds.}}",
+                "3": "{{HistoryLine|||dev=20100129-1447|Emerald swords can now be [[craft]]ed.}}",
+                "30": "{{HistoryLine|||dev=15w49a|The sweep attack of diamond swords now does {{hp|1}} damage to affected [[mob]]s and players.}}",
+                "31": "{{HistoryLine||1.11.1|dev=16w50a|Added [[Sweeping Edge]] enchantment, which can be applied on diamond swords.}}",
+                "32": "{{HistoryLine||1.13.1|dev=18w30b|The durability of diamond swords has been reduced from 1562 to 1561 due to the fix of a bug.<ref>{{bug|MC-120664||Tool durability is off by one|Fixed}}</ref>}}",
+                "33": "{{HistoryLine||September 10, 2018|link={{tweet|JasperBoerstra|1039167196801458176}}\n|[[File:Diamond Sword JE2 BE2.png|32px]] [[Jasper Boerstra]] tweets an image of the updated texture of diamond swords.}}",
+                "34": "{{HistoryLine||1.14|dev=18w43a|[[File:Diamond Sword JE2 BE2.png|32px]] The texture of diamond swords have been changed.\n|Diamond swords now break [[bamboo]] instantly.}}",
+                "35": "{{HistoryLine||1.16|dev=20w06a|Diamond swords are now used to craft a [[netherite sword]] along with a [[netherite ingot]]}}",
+                "36": "{{HistoryLine|||dev=20w09a|[[File:Diamond Sword JE3 BE3.png|32px]] The texture of diamond swords has been changed.}}",
+                "37": "{{HistoryLine|||dev=20w10a|Diamond swords can now be used to upgrade into a netherite sword using a [[smithing table]].}}",
+                "38": "{{HistoryLine|||dev=20w17a|Diamonds swords now generate in place of netherite swords in [[bastion remnant]] [[chest]]s.}}",
+                "39": "{{HistoryLine||1.19.4|exp=Update 1.20|dev=23w04a|Upgrading diamond swords to netherite swords now requires the [[netherite upgrade]] smithing template.}}",
+                "4": "{{HistoryLine|||dev=20100129-2332|Emerald swords are now called diamond swords.}}",
+                "40": "{{HistoryLine|combat java}}",
+                "41": "{{HistoryLine||1.14.3|The attack speed of diamond swords has been increased to 3.\n|The base [[damage]] is now {{Hp|2}}, meaning that diamond swords now do {{Hp|1}} more damage than before.\n|The attack reach of diamond swords has been increased to 3.5 [[block]]s.}}",
+                "42": "{{HistoryLine||2|The attack speed of diamond swords has been decreased to 2.5.}}",
+                "43": "{{HistoryLine||3|The attack speed of diamond swords has been reverted back to 3.0.\n|The {{control|attack}} key can now again be held down to automatically attack when the attack meter is full.\n|When the attack key is held, the attacks now happen only when the diamond sword is at 120% charge, which is slower than if attacks were timed.}}",
+                "44": "{{HistoryLine||4|Diamond swords can now perform critical or knockback ([[sprint]]) hits on 100% charge.\n|Diamond sword now have a 3 [[block]]s reach again.}}",
+                "45": "{{HistoryLine||5|Weapons have been nerfed. Diamond swords now do {{Hp|6}} points of damage.}}",
+                "46": "{{HistoryLine||6|The attack reach of diamond sword have been buffed by 0.5 [[block]].\n|Diamond swords now always do sweep attack, even in the air.}}",
+                "47": "{{HistoryLine||7c|All weapons' attack reach have been nerfed by 0.5 [[block]]. The diamond sword's attack reach is now 3 [[block]]s again.\n|Diamond swords no longer sweep without [[Sweeping Edge]] and 200% charge.}}",
+                "5": "{{HistoryLine|||dev=20100131-2156|Diamond swords now have [[durability]] which is 257 points. \n|Diamond swords now cost 1 durability per hit, and 2 points per block broken.\n|Now diamond swords deal {{hp|16}} damage.}}",
+                "6": "{{HistoryLine|||dev=20100202|Diamond swords have been nerfed and now deal {{hp|10}} damage.}}",
+                "7": "{{HistoryLine|java infdev}}",
+                "8": "{{HistoryLine||20100313|Diamond swords' durability has been increased to 513.}}",
+                "9": "{{HistoryLine|java alpha}}"
+            },
+            "name": "HistoryTable"
+        },
+        {
+            "arguments": {
+                "1": "java indev"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "0.31",
+                "3": "[[File:Diamond Sword JE1 BE1.png|32px]] Added emerald swords.",
+                "4": "Emerald swords cannot be crafted yet, but have been added to the item [[chest]] in the [[starting house]].",
+                "dev": "20100128-2200"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Emerald swords can now be [[craft]]ed.",
+                "dev": "20100129-1447"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Emerald swords are now called diamond swords.",
+                "dev": "20100129-2332"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Diamond swords now have [[durability]] which is 257 points.",
+                "4": "Diamond swords now cost 1 durability per hit, and 2 points per block broken.",
+                "5": "Now diamond swords deal {{hp|16}} damage.",
+                "dev": "20100131-2156"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "16"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Diamond swords have been nerfed and now deal {{hp|10}} damage.",
+                "dev": "20100202"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "10"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "java infdev"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "20100313",
+                "3": "Diamond swords' durability has been increased to 513."
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "java alpha"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "v1.0.3",
+                "3": "Diamond swords' durability has been increased to 1025."
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "java beta"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.2",
+                "3": "Diamond swords' durability has been increased to 1561."
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.5",
+                "3": "Diamond swords' attack damage has increased by 1 because the player's barehand damage is buffed from {{hp|1}} to {{hp|2}}. They now deal {{hp|11}} damage per hit."
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "1"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "2"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "11"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.8",
+                "3": "Added the ability to [[Sword blocking|block]] with a diamond sword, giving the [[player]] more options in combat. Blocking deflects 50% of incoming melee damage, non-magical projectiles like arrows and explosion damage, and a bit of knockback. The diamond sword is held in front of the player and its durability is not reduced by blocking. The player moves at a slower rate than [[sneaking]] when blocking with a diamond sword.",
+                "4": "As barehand damage has been reduced from {{hp|2}} to {{hp|1}}, the damage of diamond swords have been reduced to their pre-Beta 1.5 values.",
+                "dev": "Pre-release"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "2"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "1"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "java"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.0.0",
+                "3": "Diamond sword damage has been nerfed to keep enchanting balanced. Reduced the damage from {{hp|10}} to {{hp|7}}.",
+                "dev": "Beta 1.9 Prerelease 3"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "10"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "7"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Diamond swords can now be enchanted using the [[enchantment table]].",
+                "dev": "Beta 1.9 Prerelease 4"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.3.1",
+                "3": "Blacksmith [[villager]]s now [[trading|sell]] diamond swords for 12\u201313 [[emerald]]s.",
+                "4": "Diamond swords are now renewable because other renewable items can be sold for emeralds, and they can then be used to buy diamond swords.",
+                "dev": "12w21a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.6.1",
+                "3": "Instead of replacing the barehanded [[damage]] ({{hp|1}}), diamond swords now add their damage onto the barehanded damage, therefore buffing the attack damage by {{hp|1}}.",
+                "dev": "13w21a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "1"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "1"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "In [[Creative]] mode, diamond swords are no longer able to break [[block]]s, and no [[sound]] plays when they're hit with one.<ref>{{bug|MC-18368}}</ref>",
+                "dev": "13w25b"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "MC-18368"
+            },
+            "name": "bug"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.8",
+                "3": "Weaponsmith [[villager]]s now [[trading|sell]] enchanted diamond swords for 12\u201315 [[emerald]]s. Unenchanted diamond swords are no longer sold.",
+                "dev": "14w02a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Blocking immediately after attacking no longer continues the swing animation.<ref>{{bug|MC-201394}}</ref>",
+                "dev": "14w25a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "MC-201394"
+            },
+            "name": "bug"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Diamond sword holding position have been tweaked, and the blocking animation has changed. Blocking while mining was made impossible.",
+                "dev": "14w30a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.9",
+                "3": "[[Enchanted]] diamond swords can now be found in [[end city]] chests.",
+                "dev": "15w31a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Diamond swords no longer block attacks. Instead, [[shield]]s are used.",
+                "dev": "15w33c"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Diamond swords now use the attack speed [[attribute]]. The attack speed of a sword is 1.25 or 0.8 seconds.",
+                "dev": "15w34b"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Nerfed diamond swords as they now do {{hp|7}} attack [[damage]]. However, their attack speed has been increased to 1.45, or 0.69 seconds.",
+                "4": "Diamond swords can now do a [[sweep attack]] when moving at walking speed or slower, which knock back [[mob]]s near the one hit. The attack speed meter must be filled for it to work.",
+                "dev": "15w34c"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "7"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Each [[Sharpness]] level now adds {{hp|1}} damage to the base damage at level I and an additional {{hp|0.5}} for each additional level instead of a flat {{hp|1.25}} per level.",
+                "dev": "15w36a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "1"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "0.5"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "1.25"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Diamond swords now have an attack speed of 1.6, or 0.6 seconds.",
+                "dev": "15w37a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "The sweep attack of diamond swords now does {{hp|1}} damage to affected [[mob]]s and players.",
+                "dev": "15w49a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "1"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.11.1",
+                "3": "Added [[Sweeping Edge]] enchantment, which can be applied on diamond swords.",
+                "dev": "16w50a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.13.1",
+                "3": "The durability of diamond swords has been reduced from 1562 to 1561 due to the fix of a bug.<ref>{{bug|MC-120664||Tool durability is off by one|Fixed}}</ref>",
+                "dev": "18w30b"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "MC-120664",
+                "2": "",
+                "3": "Tool durability is off by one",
+                "4": "Fixed"
+            },
+            "name": "bug"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "September 10, 2018",
+                "3": "[[File:Diamond Sword JE2 BE2.png|32px]] [[Jasper Boerstra]] tweets an image of the updated texture of diamond swords.",
+                "link": "{{tweet|JasperBoerstra|1039167196801458176}}"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "JasperBoerstra",
+                "2": "1039167196801458176"
+            },
+            "name": "tweet"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.14",
+                "3": "[[File:Diamond Sword JE2 BE2.png|32px]] The texture of diamond swords have been changed.",
+                "4": "Diamond swords now break [[bamboo]] instantly.",
+                "dev": "18w43a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.16",
+                "3": "Diamond swords are now used to craft a [[netherite sword]] along with a [[netherite ingot]]",
+                "dev": "20w06a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "[[File:Diamond Sword JE3 BE3.png|32px]] The texture of diamond swords has been changed.",
+                "dev": "20w09a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Diamond swords can now be used to upgrade into a netherite sword using a [[smithing table]].",
+                "dev": "20w10a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Diamonds swords now generate in place of netherite swords in [[bastion remnant]] [[chest]]s.",
+                "dev": "20w17a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.19.4",
+                "3": "Upgrading diamond swords to netherite swords now requires the [[netherite upgrade]] smithing template.",
+                "dev": "23w04a",
+                "exp": "Update 1.20"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "combat java"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.14.3",
+                "3": "The attack speed of diamond swords has been increased to 3.",
+                "4": "The base [[damage]] is now {{Hp|2}}, meaning that diamond swords now do {{Hp|1}} more damage than before.",
+                "5": "The attack reach of diamond swords has been increased to 3.5 [[block]]s."
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "2"
+            },
+            "name": "Hp"
+        },
+        {
+            "arguments": {
+                "1": "1"
+            },
+            "name": "Hp"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "2",
+                "3": "The attack speed of diamond swords has been decreased to 2.5."
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "3",
+                "3": "The attack speed of diamond swords has been reverted back to 3.0.",
+                "4": "The {{control|attack}} key can now again be held down to automatically attack when the attack meter is full.",
+                "5": "When the attack key is held, the attacks now happen only when the diamond sword is at 120% charge, which is slower than if attacks were timed."
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "attack"
+            },
+            "name": "control"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "4",
+                "3": "Diamond swords can now perform critical or knockback ([[sprint]]) hits on 100% charge.",
+                "4": "Diamond sword now have a 3 [[block]]s reach again."
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "5",
+                "3": "Weapons have been nerfed. Diamond swords now do {{Hp|6}} points of damage."
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "6"
+            },
+            "name": "Hp"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "6",
+                "3": "The attack reach of diamond sword have been buffed by 0.5 [[block]].",
+                "4": "Diamond swords now always do sweep attack, even in the air."
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "7c",
+                "3": "All weapons' attack reach have been nerfed by 0.5 [[block]]. The diamond sword's attack reach is now 3 [[block]]s again.",
+                "4": "Diamond swords no longer sweep without [[Sweeping Edge]] and 200% charge."
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "{{HistoryLine|pocket alpha}}",
+                "10": "{{HistoryLine||1.0.0|dev=alpha 0.17.0.1|Enchanted diamond swords can now be found in [[End city]] chests.}}",
+                "11": "{{HistoryLine||1.0.4|dev=alpha 1.0.4.0|Enchanted diamond swords are now sold by weaponsmith [[villager]]s.}}",
+                "12": "{{HistoryLine|bedrock}}",
+                "13": "{{HistoryLine||1.10.0|dev=beta 1.10.0.3|[[File:Diamond Sword JE2 BE2.png|32px]] The texture of diamond swords have been changed.}}",
+                "14": "{{HistoryLine||1.11.0|dev=beta 1.11.0.4|[[Trading]] has been changed. Diamond swords now cost 8 emeralds as part of their fourth tier trades.}}",
+                "15": "{{HistoryLine||1.16.0|dev=beta 1.16.0.51|[[File:Diamond Sword JE3 BE3.png|32px]] The texture of diamond swords has been changed.}} <!-- Should I add the information of netherite swords? It is not relevant to diamond swords, but diamond swords are used to create them, and as you see on the Stick page, new crafting recipes sometimes go in the History section. -->",
+                "16": "{{HistoryLine|||dev=beta 1.16.0.63|Diamonds swords now generate in place of netherite swords in bastion remnant [[chest]]s.}}",
+                "17": "{{HistoryLine||1.17.30|dev=beta 1.17.20.20|Diamond swords now break [[bamboo]] instantly.}}",
+                "18": "{{HistoryLine||1.19.80|exp=Next Major Update|dev=Preview 1.19.80.21|Upgrading diamond swords to netherite swords now requires the [[netherite upgrade]] smithing template.}}",
+                "2": "{{HistoryLine||v0.2.0|[[File:Diamond Sword JE1 BE1.png|32px]] Added diamond swords. They actually function as a weapon despite being unobtainable by normal means.}}",
+                "3": "{{HistoryLine||v0.3.2|Diamond swords can now be crafted with diamonds and sticks.}}",
+                "4": "{{HistoryLine||v0.11.0|dev=build 11|Diamond swords are now available in the [[Creative inventory]].}}",
+                "5": "{{HistoryLine||v0.11.0|dev=build 12|Diamond swords have been removed from Creative.}}",
+                "6": "{{HistoryLine||v0.11.0|dev=build 13|Diamond swords are available in Creative mode again.}}",
+                "7": "{{HistoryLine||v0.12.1|dev=build 1|Instead of replacing the barehanded [[damage]] ({{hp|1}}), diamond swords now add their damage onto the barehanded damage, which results in them doing {{hp|1}} more damage than before.\n|In [[creative]] mode, swords are no longer able to break [[block]]s, and no [[sound]] plays when they're hit with one.{{check version}}}}",
+                "8": "{{HistoryLine|||dev=build 11|Blocks can no longer be broken while holding a diamond sword in Creative mode.{{check version}}}}",
+                "9": "{{HistoryLine|pocket}}"
+            },
+            "name": "HistoryTable"
+        },
+        {
+            "arguments": {
+                "1": "pocket alpha"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "v0.2.0",
+                "3": "[[File:Diamond Sword JE1 BE1.png|32px]] Added diamond swords. They actually function as a weapon despite being unobtainable by normal means."
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "v0.3.2",
+                "3": "Diamond swords can now be crafted with diamonds and sticks."
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "v0.11.0",
+                "3": "Diamond swords are now available in the [[Creative inventory]].",
+                "dev": "build 11"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "v0.11.0",
+                "3": "Diamond swords have been removed from Creative.",
+                "dev": "build 12"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "v0.11.0",
+                "3": "Diamond swords are available in Creative mode again.",
+                "dev": "build 13"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "v0.12.1",
+                "3": "Instead of replacing the barehanded [[damage]] ({{hp|1}}), diamond swords now add their damage onto the barehanded damage, which results in them doing {{hp|1}} more damage than before.",
+                "4": "In [[creative]] mode, swords are no longer able to break [[block]]s, and no [[sound]] plays when they're hit with one.{{check version}}",
+                "dev": "build 1"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "1"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "1"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {},
+            "name": "check version"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Blocks can no longer be broken while holding a diamond sword in Creative mode.{{check version}}",
+                "dev": "build 11"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {},
+            "name": "check version"
+        },
+        {
+            "arguments": {
+                "1": "pocket"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.0.0",
+                "3": "Enchanted diamond swords can now be found in [[End city]] chests.",
+                "dev": "alpha 0.17.0.1"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.0.4",
+                "3": "Enchanted diamond swords are now sold by weaponsmith [[villager]]s.",
+                "dev": "alpha 1.0.4.0"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "bedrock"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.10.0",
+                "3": "[[File:Diamond Sword JE2 BE2.png|32px]] The texture of diamond swords have been changed.",
+                "dev": "beta 1.10.0.3"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.11.0",
+                "3": "[[Trading]] has been changed. Diamond swords now cost 8 emeralds as part of their fourth tier trades.",
+                "dev": "beta 1.11.0.4"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.16.0",
+                "3": "[[File:Diamond Sword JE3 BE3.png|32px]] The texture of diamond swords has been changed.",
+                "dev": "beta 1.16.0.51"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "",
+                "3": "Diamonds swords now generate in place of netherite swords in bastion remnant [[chest]]s.",
+                "dev": "beta 1.16.0.63"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.17.30",
+                "3": "Diamond swords now break [[bamboo]] instantly.",
+                "dev": "beta 1.17.20.20"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.19.80",
+                "3": "Upgrading diamond swords to netherite swords now requires the [[netherite upgrade]] smithing template.",
+                "dev": "Preview 1.19.80.21",
+                "exp": "Next Major Update"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "{{HistoryLine|console}}",
+                "10": "{{HistoryLine||xbox=none|xbone=none|ps3=none|psvita=none|ps4=1.91|wiiu=none|switch=none|[[Trading]] has been changed. Enchanted diamond swords sold by weaponsmiths now cost 8 emeralds as part of their fourth tier trades.|The ability to block with diamond swords has been removed.}}",
+                "2": "{{HistoryLine||xbox=TU1|xbone=CU1|ps3=1.00|psvita=1.00|ps4=1.00|wiiu=Patch 1|switch=1.0.1|[[File:Diamond Sword JE1 BE1.png|32px]] Added diamond swords.}}",
+                "3": "{{HistoryLine||xbox=TU5|The ability to block with diamond swords has been added, giving the [[player]] more options in combat.}}",
+                "4": "{{HistoryLine||xbox=TU14|xbone=CU1|ps3=1.04|psvita=1.00|ps4=1.00|wiiu=Patch 1|switch=1.0.1|Blacksmith [[villager]]s now [[trading|sell]] diamond swords for 12\u201313 [[emerald]]s.}}",
+                "5": "{{HistoryLine||xbox=TU19|xbone=CU7|ps3=1.12|psvita=1.12|ps4=1.12|wiiu=Patch 1|switch=1.0.1|Instead of replacing the barehanded [[damage]] ({{hp|1}}), diamond swords now add their damage onto the barehanded damage, therefore buffing the attack damage by {{hp|1}}.\n|In [[Creative]] mode, diamond swords are no longer able to break [[block]]s, and no [[sound]] plays when they're hit with one.}}",
+                "6": "{{HistoryLine||xbox=TU31|xbone=CU19|ps3=1.22|psvita=1.22|ps4=1.22|wiiu=Patch 3|switch=1.0.1|Weaponsmith [[villager]]s now [[trading|sell]] enchanted diamond swords for 12\u201315 [[emerald]]s. Unenchanted diamond swords are no longer sold.|Blocking immediately after attacking no longer continues the swing animation.}}",
+                "7": "{{HistoryLine||xbox=TU36|xbone=CU25|ps3=1.28|psvita=1.28|ps4=1.28|wiiu=Patch 7|switch=1.0.1|The attack damage of diamond swords is now shown above the hotbar when switching to it if the sword has less than 3 [[enchantments]].}}",
+                "8": "{{HistoryLine||xbox=TU46|xbone=CU36|ps3=1.38|psvita=1.38|ps4=1.38|wiiu=Patch 15|switch=1.0.1|[[Enchanted]] diamond swords can now be found in [[end city]] chests.}}",
+                "9": "{{HistoryLine||xbox=none|xbone=none|ps3=none|psvita=none|ps4=1.90|wiiu=none|switch=none|[[File:Diamond Sword JE2 BE2.png|32px]] The texture of diamond swords have been changed.}}"
+            },
+            "name": "HistoryTable"
+        },
+        {
+            "arguments": {
+                "1": "console"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "[[File:Diamond Sword JE1 BE1.png|32px]] Added diamond swords.",
+                "ps3": "1.00",
+                "ps4": "1.00",
+                "psvita": "1.00",
+                "switch": "1.0.1",
+                "wiiu": "Patch 1",
+                "xbone": "CU1",
+                "xbox": "TU1"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "The ability to block with diamond swords has been added, giving the [[player]] more options in combat.",
+                "xbox": "TU5"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "Blacksmith [[villager]]s now [[trading|sell]] diamond swords for 12\u201313 [[emerald]]s.",
+                "ps3": "1.04",
+                "ps4": "1.00",
+                "psvita": "1.00",
+                "switch": "1.0.1",
+                "wiiu": "Patch 1",
+                "xbone": "CU1",
+                "xbox": "TU14"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "Instead of replacing the barehanded [[damage]] ({{hp|1}}), diamond swords now add their damage onto the barehanded damage, therefore buffing the attack damage by {{hp|1}}.",
+                "3": "In [[Creative]] mode, diamond swords are no longer able to break [[block]]s, and no [[sound]] plays when they're hit with one.",
+                "ps3": "1.12",
+                "ps4": "1.12",
+                "psvita": "1.12",
+                "switch": "1.0.1",
+                "wiiu": "Patch 1",
+                "xbone": "CU7",
+                "xbox": "TU19"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "1"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "1"
+            },
+            "name": "hp"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "Weaponsmith [[villager]]s now [[trading|sell]] enchanted diamond swords for 12\u201315 [[emerald]]s. Unenchanted diamond swords are no longer sold.",
+                "3": "Blocking immediately after attacking no longer continues the swing animation.",
+                "ps3": "1.22",
+                "ps4": "1.22",
+                "psvita": "1.22",
+                "switch": "1.0.1",
+                "wiiu": "Patch 3",
+                "xbone": "CU19",
+                "xbox": "TU31"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "The attack damage of diamond swords is now shown above the hotbar when switching to it if the sword has less than 3 [[enchantments]].",
+                "ps3": "1.28",
+                "ps4": "1.28",
+                "psvita": "1.28",
+                "switch": "1.0.1",
+                "wiiu": "Patch 7",
+                "xbone": "CU25",
+                "xbox": "TU36"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "[[Enchanted]] diamond swords can now be found in [[end city]] chests.",
+                "ps3": "1.38",
+                "ps4": "1.38",
+                "psvita": "1.38",
+                "switch": "1.0.1",
+                "wiiu": "Patch 15",
+                "xbone": "CU36",
+                "xbox": "TU46"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "[[File:Diamond Sword JE2 BE2.png|32px]] The texture of diamond swords have been changed.",
+                "ps3": "none",
+                "ps4": "1.90",
+                "psvita": "none",
+                "switch": "none",
+                "wiiu": "none",
+                "xbone": "none",
+                "xbox": "none"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "[[Trading]] has been changed. Enchanted diamond swords sold by weaponsmiths now cost 8 emeralds as part of their fourth tier trades.",
+                "3": "The ability to block with diamond swords has been removed.",
+                "ps3": "none",
+                "ps4": "1.91",
+                "psvita": "none",
+                "switch": "none",
+                "wiiu": "none",
+                "xbone": "none",
+                "xbox": "none"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "{{HistoryLine|New Nintendo 3DS Edition}}",
+                "2": "{{HistoryLine||0.1.0|[[File:Diamond Sword JE1 BE1.png|32px]] Added diamond swords. They cannot block attacks.}}"
+            },
+            "name": "HistoryTable"
+        },
+        {
+            "arguments": {
+                "1": "New Nintendo 3DS Edition"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "0.1.0",
+                "3": "[[File:Diamond Sword JE1 BE1.png|32px]] Added diamond swords. They cannot block attacks."
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "{{HistoryLine|java}}",
+                "2": "{{HistoryLine||1.13|dev=17w47a|Prior to [[1.13/Flattening|''The Flattening'']], diamond swords had a numerical ID of 276.}}"
+            },
+            "name": "HistoryTable"
+        },
+        {
+            "arguments": {
+                "1": "java"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {
+                "1": "",
+                "2": "1.13",
+                "3": "Prior to [[1.13/Flattening|''The Flattening'']], diamond swords had a numerical ID of 276.",
+                "dev": "17w47a"
+            },
+            "name": "HistoryLine"
+        },
+        {
+            "arguments": {},
+            "name": "issue list"
+        },
+        {
+            "arguments": {},
+            "name": "reflist"
+        },
+        {
+            "arguments": {
+                "1": "Stone Sword"
+            },
+            "name": "ItemLink"
+        },
+        {
+            "arguments": {
+                "1": "Iron Sword"
+            },
+            "name": "ItemLink"
+        },
+        {
+            "arguments": {
+                "1": "Netherite Sword"
+            },
+            "name": "ItemLink"
+        },
+        {
+            "arguments": {},
+            "name": "Navbox weapons"
+        },
+        {
+            "arguments": {},
+            "name": "Navbox diamond"
+        },
+        {
+            "arguments": {
+                "1": "Tools"
+            },
+            "name": "Navbox items"
+        },
+        {
+            "arguments": {
+                "1": "melee"
+            },
+            "name": "Navbox combat"
+        }
+    ]
+}

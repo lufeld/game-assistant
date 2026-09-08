@@ -1,3 +1,44 @@
 {
-    "Diamond Sword": 6858
+    "batchcomplete": "",
+    "query": {
+        "normalized": [
+            {
+                "from": "diamond sword",
+                "to": "Diamond sword"
+            },
+            {
+                "from": "strong sword",
+                "to": "Strong sword"
+            }
+        ],
+        "redirects": [
+            {
+                "from": "Diamond sword",
+                "to": "Diamond Sword"
+            }
+        ],
+        "pages": {
+            "-1": {
+                "ns": 0,
+                "title": "Strong sword",
+                "missing": "",
+                "contentmodel": "wikitext",
+                "pagelanguage": "en",
+                "pagelanguagehtmlcode": "en",
+                "pagelanguagedir": "ltr"
+            },
+            "6858": {
+                "pageid": 6858,
+                "ns": 0,
+                "title": "Diamond Sword",
+                "contentmodel": "wikitext",
+                "pagelanguage": "en",
+                "pagelanguagehtmlcode": "en",
+                "pagelanguagedir": "ltr",
+                "touched": "2026-09-08T01:11:21Z",
+                "lastrevid": 3759733,
+                "length": 22663
+            }
+        }
+    }
 }
