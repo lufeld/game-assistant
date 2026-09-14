@@ -1,4 +1,6 @@
 /data/chroma_db
+/data/wiki_cache
+/data/game_db.sqlite3
 latest_communication.txt
 __pycache__
 *.pyc

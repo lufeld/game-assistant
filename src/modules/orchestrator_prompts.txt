@@ -1,0 +1,44 @@
+# Test prompts for orchestrator.py - one question per line, blank lines and
+# '#' comments are ignored. Run with:
+#   python orchestrator.py --batch orchestrator_prompts.txt --show-routing
+#
+# Add your own below as you find interesting cases - this is for reading
+# output by eye, not automated pass/fail (see src/modules/wiki/tests/ for that).
+
+# --- obtaining / crafting ---
+How do I make a beacon?
+What do I need to craft a diamond sword?
+
+# --- usage / mechanics ---
+How much damage does a diamond sword do?
+What is a creeper afraid of?
+How can I repair my sword?
+Can I repair my sword somehow?
+It just started to rain. Why does this happen? How long until it stops raining?
+
+# --- drops ---
+What does a wither skeleton drop when I kill it?
+
+# --- mob / biome info ---
+Where do cows spawn?
+What mobs can spawn in a cold ocean?
+Can you tell me some things about the nether?
+How can I go to the nether?
+Can I heal a zombie?
+
+# --- player state (no Player DB yet - should hit the stub, not hallucinate) ---
+How many diamonds do I have right now?
+Where did I put my extra torches?
+
+# --- chitchat (no entity, no player state) ---
+Hey, how's it going?
+
+# --- multi-entity (does it merge context from more than one page?) ---
+What do I need to make a diamond sword and a beacon?
+
+# --- known-hard: colloquial/ambiguous phrasing (see resolve.py's "black
+# monster" -> "Minicraft" finding earlier this session) ---
+What does the black monster in the nether drop?
+How do I farm slimes?
+Can you help me with my slime farm?
+Why do no slimes spawn in my slime farm?
