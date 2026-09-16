@@ -1,0 +1,14 @@
+{"kind": "vitals", "health": 18.0, "hunger": 15, "saturation": 3.0, "xp_level": 12, "xp_progress": 0.4, "game_mode": "survival"}
+{"kind": "position", "dim": "minecraft:overworld", "pos": [123.5, 64.0, -58.2], "biome": "minecraft:plains"}
+{"kind": "game_time", "day_time": 14500, "day_count": 7}
+{"kind": "structure_visit", "structure_kind": "minecraft:village_plains", "dim": "minecraft:overworld", "pos": [90, 70, -40]}
+{"kind": "equipment", "slots": {"mainhand": "minecraft:diamond_sword", "offhand": "minecraft:shield", "head": "minecraft:iron_helmet", "chest": "minecraft:iron_chestplate", "legs": "minecraft:iron_leggings", "feet": "minecraft:iron_boots"}}
+{"kind": "effects", "effects": [{"id": "minecraft:speed", "amplifier": 1, "duration": 200}]}
+{"kind": "inventory", "slots": [{"slot": 0, "item": "minecraft:diamond", "count": 12}, {"slot": 1, "item": "minecraft:iron_ingot", "count": 34}, {"slot": 2, "item": "minecraft:torch", "count": 47}, {"slot": 3, "item": "minecraft:cooked_beef", "count": 9}]}
+{"kind": "placement", "dim": "minecraft:overworld", "pos": [120, 65, -58], "item": "minecraft:torch", "action": "place"}
+{"kind": "placement", "dim": "minecraft:overworld", "pos": [121, 65, -58], "item": "minecraft:torch", "action": "place"}
+{"kind": "placement", "dim": "minecraft:overworld", "pos": [122, 65, -58], "item": "minecraft:red_bed", "action": "place"}
+{"kind": "placement", "dim": "minecraft:overworld", "pos": [130, 65, -60], "item": "minecraft:stone", "action": "place"}
+{"kind": "container", "dim": "minecraft:overworld", "pos": [-212, 64, 88], "container_kind": "minecraft:chest", "items": [{"item": "minecraft:diamond", "count": 40}, {"item": "minecraft:emerald", "count": 18}]}
+{"kind": "spawn_point", "dim": "minecraft:overworld", "pos": [122, 65, -58]}
+{"kind": "death", "dim": "minecraft:the_nether", "pos": [40.0, 70.0, -12.0], "cause": "minecraft:lava"}

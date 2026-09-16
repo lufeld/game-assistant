@@ -1,0 +1,37 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+}
+
+repositories {
+	// Loom adds the Minecraft/Fabric maven repositories automatically.
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	// No explicit mappings dependency - Yarn is discontinued as of Minecraft
+	// 26.1+ (Mojang ships the game unobfuscated now), and Loom 1.17 uses
+	// Mojang's official mappings by default with nothing to opt into.
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": version
+	}
+}
+
+// Minecraft 26.2 requires Java 25 - confirmed via FabricMC/fabric-example-mod's
+// own "26.2" branch and its fabric.mod.json "depends" block ("java": ">=25").
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+}
+
+java {
+	withSourcesJar()
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}

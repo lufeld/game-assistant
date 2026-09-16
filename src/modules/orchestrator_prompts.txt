@@ -26,9 +26,24 @@ Can you tell me some things about the nether?
 How can I go to the nether?
 Can I heal a zombie?
 
-# --- player state (no Player DB yet - should hit the stub, not hallucinate) ---
+# --- player state (player_db.py backed - run player_simulate.py first so
+# there's real data to answer from) ---
 How many diamonds do I have right now?
 Where did I put my extra torches?
+What's in my inventory?
+What am I wearing right now?
+Do I have any potion effects active?
+How much health do I have left?
+Where am I right now?
+Where's my bed?
+Where did I last die?
+Is it nighttime right now?
+Have I found a village yet?
+Where's the chest with my emeralds?
+
+# --- player state edge case: category we don't track at all (weather) -
+# should say it doesn't know, not confidently answer wrong ---
+What is the weather like today?
 
 # --- chitchat (no entity, no player state) ---
 Hey, how's it going?

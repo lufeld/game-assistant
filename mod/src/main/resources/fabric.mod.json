@@ -1,0 +1,23 @@
+{
+	"schemaVersion": 1,
+	"id": "gameassistant",
+	"version": "${version}",
+	"name": "Game Assistant Bridge",
+	"description": "Streams the player's own state (inventory, position, vitals, deaths, ...) to a local WebSocket server for the Game Assistant voice assistant. Does not modify gameplay.",
+	"authors": [
+		"Lukas Feldgrill"
+	],
+	"license": "MIT",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"com.gameassistant.GameAssistantModClient"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

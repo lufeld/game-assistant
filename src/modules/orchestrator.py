@@ -20,9 +20,13 @@ wiki/ modules (call it with text, read what comes back):
                and this session's own testing showed raw natural-phrasing
                queries already land the right chunk within a small top-k.
 
-need_player_state is threaded through now so the router is already asking
-the right question, but there's no Player DB yet - _player_state_context()
-is a stub, not a placeholder that will need restructuring once one exists.
+player_info replaces an earlier bare need_player_state boolean - the router
+now names *which* category of the player's own state a question needs
+(inventory, position, deaths, ...), the same way entities already names
+which wiki pages it needs, plus an optional player_target (an item or
+structure-kind name) for the categories that search rather than just
+snapshot. _player_state_context() dispatches that decision straight to the
+matching player_db read function.
 
 Deliberately synchronous, not the asyncio audio_in/dialog/game_ingest/
 audio_out task design from the original blueprint - that's for wrapping
@@ -38,6 +42,7 @@ from pathlib import Path
 import ollama
 
 try:
+    from modules import player_db
     from modules.wiki.fetch import get_page, peek_cached_revid
     from modules.wiki.parse import parse_page
     from modules.wiki.resolve import PageNotFound, ResolvedTitle, resolve_title
@@ -46,6 +51,7 @@ except ImportError:
     import sys
 
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+    from modules import player_db
     from modules.wiki.fetch import get_page, peek_cached_revid
     from modules.wiki.parse import parse_page
     from modules.wiki.resolve import PageNotFound, ResolvedTitle, resolve_title
@@ -54,38 +60,78 @@ except ImportError:
 MODEL_NAME = "qwen3:4b-instruct"
 N_RESULTS = 5
 
+_PLAYER_INFO_CATEGORIES = [
+    "none", "inventory", "equipment", "effects", "vitals", "position",
+    "spawn_point", "deaths", "game_time", "containers", "placements", "structures",
+]
+
 ROUTE_SCHEMA = {
     "type": "object",
     "properties": {
         "entities": {"type": "array", "items": {"type": "string"}},
-        "need_player_state": {"type": "boolean"},
+        "player_info": {"type": "string", "enum": _PLAYER_INFO_CATEGORIES},
+        "player_target": {"type": ["string", "null"]},
     },
-    "required": ["entities", "need_player_state"],
+    "required": ["entities", "player_info", "player_target"],
 }
 
 # Few-shot, not zero-shot: a bare instruction misclassified "How do I make a
 # beacon?" as needing player state with no entity extracted at all (verified
-# against qwen3:4b-instruct before this was added). These five examples
-# fixed that and a similar general-knowledge-vs-"I"/"my" case.
+# against qwen3:4b-instruct before this was added, back when this was just a
+# need_player_state boolean). One example per player_info category below,
+# not verified in isolation yet - see the batch prompts file for the real check.
 ROUTE_SYSTEM_PROMPT = """You are a routing step for a Minecraft voice assistant. Given the player's question, extract:
 - entities: Minecraft item/block/mob/mechanic names being asked about, as they'd appear as a wiki page title (e.g. "Diamond Sword", "Beacon"). Empty list if none.
-- need_player_state: true ONLY if answering requires this specific player's own current inventory, position, or world state - not general game knowledge, even if phrased with "I"/"my".
+- player_info: which category of the PLAYER's own current state answering needs - not general game knowledge, even if phrased with "I"/"my". One of:
+  "none" (most questions), "inventory", "equipment", "effects", "vitals" (health/hunger/XP/game mode), "position",
+  "spawn_point", "deaths", "game_time", "containers" (where an item is stored), "placements" (where an item was placed, e.g. torches), "structures" (discovered villages/fortresses/etc.)
+- player_target: the specific item or structure name being asked about, only for inventory/containers/placements/structures when one is named - otherwise null.
 
 Examples:
 Q: How do I make a beacon?
-A: {"entities": ["Beacon"], "need_player_state": false}
+A: {"entities": ["Beacon"], "player_info": "none", "player_target": null}
 
 Q: How many diamonds do I have?
-A: {"entities": [], "need_player_state": true}
+A: {"entities": [], "player_info": "inventory", "player_target": "diamond"}
+
+Q: What's in my inventory?
+A: {"entities": [], "player_info": "inventory", "player_target": null}
 
 Q: Where did I put my torches?
-A: {"entities": [], "need_player_state": true}
+A: {"entities": [], "player_info": "placements", "player_target": "torch"}
+
+Q: Where's my chest with the emeralds?
+A: {"entities": [], "player_info": "containers", "player_target": "emerald"}
+
+Q: What am I wearing?
+A: {"entities": [], "player_info": "equipment", "player_target": null}
+
+Q: Do I have any potion effects active?
+A: {"entities": [], "player_info": "effects", "player_target": null}
+
+Q: How much health do I have left?
+A: {"entities": [], "player_info": "vitals", "player_target": null}
+
+Q: Where am I right now?
+A: {"entities": [], "player_info": "position", "player_target": null}
+
+Q: Where's my bed?
+A: {"entities": [], "player_info": "spawn_point", "player_target": null}
+
+Q: Where did I last die?
+A: {"entities": [], "player_info": "deaths", "player_target": null}
+
+Q: Is it nighttime?
+A: {"entities": [], "player_info": "game_time", "player_target": null}
+
+Q: Have I found a village yet?
+A: {"entities": [], "player_info": "structures", "player_target": "village"}
 
 Q: What does a wither skeleton drop?
-A: {"entities": ["Wither Skeleton"], "need_player_state": false}
+A: {"entities": ["Wither Skeleton"], "player_info": "none", "player_target": null}
 
 Q: Hey how is it going?
-A: {"entities": [], "need_player_state": false}
+A: {"entities": [], "player_info": "none", "player_target": null}
 """
 
 ANSWER_SYSTEM_PROMPT = (
@@ -131,9 +177,127 @@ def ensure_page(term: str) -> ResolvedTitle | None:
     return resolved
 
 
-def _player_state_context() -> str | None:
-    """Stub - no Player DB exists yet. A real seam, not a TODO to restructure later."""
-    return "Player state is not available yet."
+def _player_state_context(routed: dict) -> str | None:
+    """Turn a routed player_info decision into a short text summary, straight
+    from player_db - no LLM involved, these are exact lookups, not retrieval.
+
+    None whenever there's nothing to say (category is "none", or player_db
+    has no data yet, or a lookup fails) rather than raising - a missing
+    Player DB fact should degrade the turn, not sink it, the same spirit as
+    ensure_page() skipping an entity that fails to resolve.
+    """
+    info = routed.get("player_info", "none")
+    target = routed.get("player_target")
+
+    try:
+        if info == "none":
+            return None
+
+        if info == "inventory" and not target:
+            items = player_db.get_inventory()
+            if not items:
+                return "The player's inventory is empty."
+            return "Inventory: " + ", ".join(f"{i['count']}x {i['item']}" for i in items)
+
+        if info == "inventory":
+            # "Do I have X" means "is X available to me at all" - carried OR
+            # stored - not narrowly "in my hotbar/inventory right now". Checking
+            # only find_item() was reporting "you have none" for an item that
+            # was sitting untouched in a chest (confirmed: 0 carried, 40 stored).
+            carried = player_db.find_item(target)
+            stored = player_db.find_container(target)
+
+            parts = [f"carrying {i['count']}x {i['item']}" for i in carried]
+            for container in stored:
+                for match in container["items"]:
+                    if target.lower() in match["item"].lower():
+                        parts.append(
+                            f"{match['count']}x {match['item']} stored in a {container['kind']} at "
+                            f"{container['x']:.0f}, {container['y']:.0f}, {container['z']:.0f}"
+                        )
+
+            if not parts:
+                return f"The player has no {target}, carried or stored."
+            return "The player has: " + "; ".join(parts) + "."
+
+        if info == "equipment":
+            equipment = player_db.get_equipment()
+            if not equipment:
+                return "The player has no equipment data available."
+            return "Equipped: " + ", ".join(f"{slot}: {item}" for slot, item in equipment.items())
+
+        if info == "effects":
+            effects = player_db.get_effects()
+            if not effects:
+                return "The player has no active potion effects."
+            return "Active effects: " + ", ".join(f"{e['effect']} (level {e['amplifier'] + 1})" for e in effects)
+
+        if info == "vitals":
+            vitals = player_db.get_vitals()
+            if not vitals:
+                return "No vitals data available yet."
+            return (
+                f"Health: {vitals['health']}/20, Hunger: {vitals['hunger']}/20, "
+                f"XP level: {vitals['xp_level']}, Game mode: {vitals['game_mode']}."
+            )
+
+        if info == "position":
+            position = player_db.get_position()
+            if not position:
+                return "No position data available yet."
+            biome = f" in {position['biome']}" if position.get("biome") else ""
+            return f"Player is at {position['x']:.0f}, {position['y']:.0f}, {position['z']:.0f} in {position['dim']}{biome}."
+
+        if info == "spawn_point":
+            spawn = player_db.get_spawn_point()
+            if not spawn:
+                return "The player has no spawn point set."
+            return f"Spawn point: {spawn['x']:.0f}, {spawn['y']:.0f}, {spawn['z']:.0f} in {spawn['dim']}."
+
+        if info == "deaths":
+            last = player_db.get_last_death()
+            if not last:
+                return "The player has not died yet."
+            cause = f" (cause: {last['cause']})" if last.get("cause") else ""
+            return f"Last death: {last['x']:.0f}, {last['y']:.0f}, {last['z']:.0f} in {last['dim']}{cause}."
+
+        if info == "game_time":
+            game_time = player_db.get_game_time()
+            if not game_time:
+                return "No game time data available yet."
+            time_of_day = "night" if game_time["is_night"] else "day"
+            return f"It is currently {time_of_day} (day {game_time['day_count']})."
+
+        if info == "containers":
+            if not target:
+                return None
+            found = player_db.find_container(target)
+            if not found:
+                return f"No known container with {target} was found."
+            locations = "; ".join(f"{c['x']:.0f}, {c['y']:.0f}, {c['z']:.0f} ({c['kind']})" for c in found)
+            return f"Containers with {target}: {locations}"
+
+        if info == "placements":
+            if not target:
+                return None
+            found = player_db.find_placements(target)
+            if not found:
+                return f"No recorded placements of {target} were found."
+            locations = "; ".join(f"{p['x']}, {p['y']}, {p['z']}" for p in found)
+            return f"{target} placed at: {locations}"
+
+        if info == "structures":
+            found = player_db.get_visited_structures(target)
+            if not found:
+                return f"No {target + ' ' if target else ''}structures have been discovered yet."
+            locations = "; ".join(f"{s['kind']} at {s['x']}, {s['y']}, {s['z']}" for s in found)
+            return f"Discovered structures: {locations}"
+
+    except Exception as exc:  # noqa: BLE001 - player_db unreachable/unexpected shape shouldn't sink the turn
+        print(f"orchestrator: player_db lookup failed for {info!r}: {exc}")
+        return None
+
+    return None
 
 
 def gather_context(question: str, routed: dict, *, n_results: int = N_RESULTS) -> list[str]:
@@ -150,10 +314,9 @@ def gather_context(question: str, routed: dict, *, n_results: int = N_RESULTS) -
             continue
         chunks.extend(query_prose(resolved.title, question, n_results=n_results))
 
-    if routed.get("need_player_state"):
-        player_context = _player_state_context()
-        if player_context:
-            chunks.append(player_context)
+    player_context = _player_state_context(routed)
+    if player_context:
+        chunks.append(player_context)
 
     return chunks
 
