@@ -10,6 +10,9 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.biome.Biome;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,8 +89,8 @@ public class GameAssistantModClient implements ClientModInitializer {
 		// would otherwise produce "123,5" here and break the JSON.
 		String json = String.format(
 				Locale.ROOT,
-				"{\"kind\":\"position\",\"dim\":\"%s\",\"pos\":[%f,%f,%f]}",
-				dimensionId(player), player.getX(), player.getY(), player.getZ()
+				"{\"kind\":\"position\",\"dim\":\"%s\",\"pos\":[%f,%f,%f],\"biome\":\"%s\"}",
+				dimensionId(player), player.getX(), player.getY(), player.getZ(), biomeId(player)
 		);
 		socket.sendText(json, true);
 	}
@@ -98,6 +101,15 @@ public class GameAssistantModClient implements ClientModInitializer {
 		// real compile failure against this exact line, then verified via
 		// search - not guessed twice).
 		return player.level().dimension().identifier().toString();
+	}
+
+	private String biomeId(LocalPlayer player) {
+		// Level#getBiomeManager() + BiomeManager#getBiome(BlockPos) -> Holder<Biome>,
+		// confirmed by decompiling the actual deobfuscated 26.2 game jar from Loom's
+		// own cache (~/.gradle/caches/fabric-loom/minecraftMaven/.../minecraft-merged
+		// -deobf-26.2.jar) with javap, not guessed from mixed-version search results.
+		Holder<Biome> biome = player.level().getBiomeManager().getBiome(player.blockPosition());
+		return biome.unwrapKey().map(ResourceKey::identifier).map(Object::toString).orElse("unknown");
 	}
 
 	private static class IngestListener implements WebSocket.Listener {
