@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS vitals (
     hunger INTEGER NOT NULL,
     saturation REAL NOT NULL,
     xp_level INTEGER NOT NULL,
-    xp_progress REAL NOT NULL,
+    xp_progress INTEGER NOT NULL,  -- percent to next level (0-100), not the raw 0.0-1.0 fraction
     game_mode TEXT NOT NULL
 );
 
@@ -227,7 +227,7 @@ def write_vitals(
     hunger: int,
     saturation: float,
     xp_level: int,
-    xp_progress: float,
+    xp_progress: int,  # percent to next level (0-100)
     game_mode: str,
     db_path: Path = DEFAULT_DB_PATH,
 ) -> None:

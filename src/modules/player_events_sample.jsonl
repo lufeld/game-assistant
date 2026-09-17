@@ -1,5 +1,5 @@
-{"kind": "vitals", "health": 18.0, "hunger": 15, "saturation": 3.0, "xp_level": 12, "xp_progress": 0.4, "game_mode": "survival"}
-{"kind": "position", "dim": "minecraft:overworld", "pos": [123.5, 64.0, -58.2], "biome": "minecraft:plains"}
+{"kind": "vitals", "health": 18.0, "hunger": 15, "saturation": 3.0, "xp_level": 12, "xp_progress": 40, "game_mode": "survival"}
+{"kind": "position", "dim": "minecraft:overworld", "pos": [123, 64, -58], "biome": "minecraft:plains"}
 {"kind": "game_time", "day_time": 14500, "day_count": 7}
 {"kind": "structure_visit", "structure_kind": "minecraft:village_plains", "dim": "minecraft:overworld", "pos": [90, 70, -40]}
 {"kind": "equipment", "slots": {"mainhand": "minecraft:diamond_sword", "offhand": "minecraft:shield", "head": "minecraft:iron_helmet", "chest": "minecraft:iron_chestplate", "legs": "minecraft:iron_leggings", "feet": "minecraft:iron_boots"}}

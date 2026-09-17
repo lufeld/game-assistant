@@ -65,7 +65,7 @@ def test_effects_round_trip_and_expiry_by_absence(tmp_path):
 def test_vitals_round_trip(tmp_path):
     db_path = tmp_path / "player.sqlite3"
     player_db.write_vitals(
-        health=18.0, hunger=15, saturation=3.0, xp_level=12, xp_progress=0.4, game_mode="survival",
+        health=18.0, hunger=15, saturation=3.0, xp_level=12, xp_progress=40, game_mode="survival",
         db_path=db_path,
     )
     vitals = player_db.get_vitals(db_path=db_path)
