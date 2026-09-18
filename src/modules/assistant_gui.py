@@ -74,20 +74,29 @@ class AssistantGUI:
             self.update_status("Microphone active")
     
     def update_status(self, message: str):
-        """Update the status text box."""
+        """Update the status text box. Safe to call from any thread - the
+        voice loop runs in a background thread, and Tkinter widgets may only
+        be touched from the main thread, so the actual update is marshalled
+        onto the Tk event loop via root.after() rather than applied here directly."""
+        self.root.after(0, self._set_status, message)
+
+    def _set_status(self, message: str):
         self.status_text.config(state=tk.NORMAL)
         self.status_text.delete("1.0", tk.END)
         self.status_text.insert("1.0", message)
         self.status_text.config(state=tk.DISABLED)
-    
+
     def add_message(self, role: str, message: str):
-        """Add a message to the communication log."""
-        self.comm_text.insert(tk.END, f"{role}: {message}\n\n")
-        self.comm_text.see(tk.END)  # Auto-scroll to bottom
+        """Add a message to the communication log. Safe to call from any thread."""
+        self.root.after(0, self._append_text, f"{role}: {message}\n\n")
 
     def add_message_stream(self, message_chunk: str):
-        """Add a chunk of message to the communication log (for streaming)."""
-        self.comm_text.insert(tk.END, message_chunk)
+        """Add a chunk of message to the communication log (for streaming).
+        Safe to call from any thread."""
+        self.root.after(0, self._append_text, message_chunk)
+
+    def _append_text(self, text: str):
+        self.comm_text.insert(tk.END, text)
         self.comm_text.see(tk.END)  # Auto-scroll to bottom
     
     def get_input_device(self) -> str:
@@ -101,6 +110,13 @@ class AssistantGUI:
     def run(self):
         """Start the GUI event loop."""
         self.root.mainloop()
+
+    def close(self):
+        """Close the window, ending run()'s mainloop. Safe to call from any
+        thread - the voice loop runs in a background thread, and breaking
+        out of its own while-loop doesn't affect the GUI's mainloop on the
+        main thread at all unless something explicitly tells it to stop."""
+        self.root.after(0, self.root.destroy)
 
 
 # Example usage

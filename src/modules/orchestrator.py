@@ -144,6 +144,14 @@ ANSWER_SYSTEM_PROMPT = (
 )
 
 
+def warm_up_model(*, model: str = MODEL_NAME) -> None:
+    """Force Ollama to load the model now rather than on the first real
+    question - a cold model load can take a long time, and paying that cost
+    during startup (while the user is likely not talking yet) is better
+    than paying it on their first question."""
+    ollama.chat(model=model, messages=[{"role": "user", "content": "hi"}], options={"num_predict": 1})
+
+
 def route(question: str, *, model: str = MODEL_NAME) -> dict:
     """One constrained-JSON call: which entities, does this need player state."""
     response = ollama.chat(
@@ -365,20 +373,30 @@ def gather_context(question: str, routed: dict, *, n_results: int = N_RESULTS) -
     return chunks
 
 
+def _answer_messages(question: str, chunks: list[str]) -> list[dict]:
+    context = "\n\n---\n\n".join(chunks) if chunks else "No specific game information was found for this question."
+    return [
+        {"role": "system", "content": ANSWER_SYSTEM_PROMPT},
+        {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {question}"},
+    ]
+
+
 def ask(question: str, *, model: str = MODEL_NAME, n_results: int = N_RESULTS) -> str:
     """Route, ensure, retrieve, answer - the whole synchronous pipeline for one turn."""
     routed = route(question, model=model)
     chunks = gather_context(question, routed, n_results=n_results)
-    context = "\n\n---\n\n".join(chunks) if chunks else "No specific game information was found for this question."
-
-    response = ollama.chat(
-        model=model,
-        messages=[
-            {"role": "system", "content": ANSWER_SYSTEM_PROMPT},
-            {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {question}"},
-        ],
-    )
+    response = ollama.chat(model=model, messages=_answer_messages(question, chunks))
     return response["message"]["content"]
+
+
+def ask_stream(question: str, *, model: str = MODEL_NAME, n_results: int = N_RESULTS):
+    """Same pipeline as ask(), but yields the answer as it's generated instead
+    of returning it all at once - lets a voice pipeline start speaking the
+    first sentence while later ones are still being generated."""
+    routed = route(question, model=model)
+    chunks = gather_context(question, routed, n_results=n_results)
+    for part in ollama.chat(model=model, messages=_answer_messages(question, chunks), stream=True):
+        yield part["message"]["content"]
 
 
 def _load_prompts(path: Path) -> list[str]:
@@ -394,14 +412,7 @@ def _run_one(question: str, *, show_routing: bool) -> None:
     chunks = gather_context(question, routed)
     print(f"retrieved {len(chunks)} chunk(s)")
 
-    context = "\n\n---\n\n".join(chunks) if chunks else "No specific game information was found for this question."
-    response = ollama.chat(
-        model=MODEL_NAME,
-        messages=[
-            {"role": "system", "content": ANSWER_SYSTEM_PROMPT},
-            {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {question}"},
-        ],
-    )
+    response = ollama.chat(model=MODEL_NAME, messages=_answer_messages(question, chunks))
     print(f"\n{response['message']['content']}")
 
 
