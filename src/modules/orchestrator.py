@@ -131,6 +131,9 @@ A: {"entities": [], "player_info": "structures", "player_target": "village"}
 Q: What does a wither skeleton drop?
 A: {"entities": ["Wither Skeleton"], "player_info": "none", "player_target": null}
 
+Q: Where do I get gold?
+A: {"entities": ["Gold"], "player_info": "none", "player_target": null}
+
 Q: Hey how is it going?
 A: {"entities": [], "player_info": "none", "player_target": null}
 """
@@ -140,6 +143,11 @@ ANSWER_SYSTEM_PROMPT = (
     "If the context does not cover the question, say you don't know rather than guessing. "
     "Keep answers short, concise, and spoken-friendly. Only use Java Edition mechanics and names, not Bedrock Edition. "
     "Omit any unnecessary text or numerical values unless they are directly relevant to the question. "
+    "This answer is read aloud by text-to-speech, not displayed as text - never use lists, bullet points, "
+    "line breaks, or markdown formatting; respond in plain spoken sentences only. "
+    "When describing a crafting grid's shape, describe it the way a person would say it out loud "
+    '("a torch in the middle with iron nuggets around it", "three wheat in a row", "stacked in a column") '
+    "rather than reading out each grid cell one by one. "
     "Do not use emoji."
 )
 
@@ -374,7 +382,15 @@ def gather_context(question: str, routed: dict, *, n_results: int = N_RESULTS) -
 
 
 def _answer_messages(question: str, chunks: list[str]) -> list[dict]:
-    context = "\n\n---\n\n".join(chunks) if chunks else "No specific game information was found for this question."
+    context = (
+        "\n\n---\n\n".join(chunks) if chunks
+        # Explicit that this is a retrieval gap, not evidence the thing
+        # doesn't exist - a real failure mode without this: asked "where do
+        # I get gold?" with empty context, the model answered "you don't
+        # get gold in Minecraft" instead of saying it didn't know.
+        else "Nothing was retrieved for this question. This does not mean the answer is no or that the "
+             "thing doesn't exist - it means no matching information was found. Say you don't know."
+    )
     return [
         {"role": "system", "content": ANSWER_SYSTEM_PROMPT},
         {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {question}"},
