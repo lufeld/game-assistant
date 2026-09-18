@@ -37,6 +37,7 @@ needed, not for solving routing and concurrency at the same time.
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 
 import ollama
@@ -177,6 +178,34 @@ def ensure_page(term: str) -> ResolvedTitle | None:
     return resolved
 
 
+_COMPASS_DIRECTIONS = [
+    "north", "northeast", "east", "southeast", "south", "southwest", "west", "northwest",
+]
+
+
+def _bearing(from_x: float, from_z: float, to_x: float, to_z: float) -> tuple[str, float]:
+    """8-way compass direction and horizontal (X/Z) distance from one point to
+    another. North is -Z and east is +X, matching Minecraft's own axes -
+    verified against the F3 debug screen's own facing readout, not assumed."""
+    dx = to_x - from_x
+    dz = to_z - from_z
+    angle = math.degrees(math.atan2(dx, -dz)) % 360
+    direction = _COMPASS_DIRECTIONS[round(angle / 45) % 8]
+    distance = math.hypot(dx, dz)
+    return direction, distance
+
+
+def _location_text(loc: dict, position: dict | None) -> str:
+    """"12, 65, -80 (northeast, about 40 blocks away)" if the player's current
+    position is known and in the same dimension as loc, else just the
+    coordinates and dimension name."""
+    coords = f"{loc['x']:.0f}, {loc['y']:.0f}, {loc['z']:.0f}"
+    if position and position["dim"] == loc["dim"]:
+        direction, distance = _bearing(position["x"], position["z"], loc["x"], loc["z"])
+        return f"{coords} ({direction}, about {distance:.0f} blocks away)"
+    return f"{coords} in {loc['dim']}"
+
+
 def _player_state_context(routed: dict) -> str | None:
     """Turn a routed player_info decision into a short text summary, straight
     from player_db - no LLM involved, these are exact lookups, not retrieval.
@@ -203,7 +232,7 @@ def _player_state_context(routed: dict) -> str | None:
             # "Do I have X" means "is X available to me at all" - carried OR
             # stored - not narrowly "in my hotbar/inventory right now". Checking
             # only find_item() was reporting "you have none" for an item that
-            # was sitting untouched in a chest (confirmed: 0 carried, 40 stored).
+            # was sitting untouched in a chest
             carried = player_db.find_item(target)
             stored = player_db.find_container(target)
 
@@ -252,14 +281,26 @@ def _player_state_context(routed: dict) -> str | None:
             spawn = player_db.get_spawn_point()
             if not spawn:
                 return "The player has no spawn point set."
-            return f"Spawn point: {spawn['x']:.0f}, {spawn['y']:.0f}, {spawn['z']:.0f} in {spawn['dim']}."
+            base = f"Spawn point: {spawn['x']:.0f}, {spawn['y']:.0f}, {spawn['z']:.0f} in {spawn['dim']}."
+
+            position = player_db.get_position()
+            if not position:
+                return base
+            if position["dim"] != spawn["dim"]:
+                return (
+                    f"{base} The player is currently in {position['dim']}, a different "
+                    "dimension, so a walking direction can't be given from here."
+                )
+            direction, distance = _bearing(position["x"], position["z"], spawn["x"], spawn["z"])
+            return f"{base} It is {direction} of the player's current position, about {distance:.0f} blocks away."
 
         if info == "deaths":
             last = player_db.get_last_death()
             if not last:
                 return "The player has not died yet."
             cause = f" (cause: {last['cause']})" if last.get("cause") else ""
-            return f"Last death: {last['x']:.0f}, {last['y']:.0f}, {last['z']:.0f} in {last['dim']}{cause}."
+            position = player_db.get_position()
+            return f"Last death: {_location_text(last, position)}{cause}."
 
         if info == "game_time":
             game_time = player_db.get_game_time()
@@ -274,7 +315,8 @@ def _player_state_context(routed: dict) -> str | None:
             found = player_db.find_container(target)
             if not found:
                 return f"No known container with {target} was found."
-            locations = "; ".join(f"{c['x']:.0f}, {c['y']:.0f}, {c['z']:.0f} ({c['kind']})" for c in found)
+            position = player_db.get_position()
+            locations = "; ".join(f"{_location_text(c, position)} ({c['kind']})" for c in found)
             return f"Containers with {target}: {locations}"
 
         if info == "placements":
@@ -283,17 +325,19 @@ def _player_state_context(routed: dict) -> str | None:
             found = player_db.find_placements(target)
             if not found:
                 return f"No recorded placements of {target} were found."
-            locations = "; ".join(f"{p['x']}, {p['y']}, {p['z']}" for p in found)
+            position = player_db.get_position()
+            locations = "; ".join(_location_text(p, position) for p in found)
             return f"{target} placed at: {locations}"
 
         if info == "structures":
             found = player_db.get_visited_structures(target)
             if not found:
                 return f"No {target + ' ' if target else ''}structures have been discovered yet."
-            locations = "; ".join(f"{s['kind']} at {s['x']}, {s['y']}, {s['z']}" for s in found)
+            position = player_db.get_position()
+            locations = "; ".join(f"{s['kind']} at {_location_text(s, position)}" for s in found)
             return f"Discovered structures: {locations}"
 
-    except Exception as exc:  # noqa: BLE001 - player_db unreachable/unexpected shape shouldn't sink the turn
+    except Exception as exc:  # player_db unreachable/unexpected shape
         print(f"orchestrator: player_db lookup failed for {info!r}: {exc}")
         return None
 
@@ -307,7 +351,7 @@ def gather_context(question: str, routed: dict, *, n_results: int = N_RESULTS) -
     for term in routed.get("entities", []):
         try:
             resolved = ensure_page(term)
-        except Exception as exc:  # noqa: BLE001 - one bad entity (network hiccup, etc.)
+        except Exception as exc:
             print(f"orchestrator: couldn't resolve/ingest {term!r}: {exc}")  # shouldn't sink the whole turn
             continue
         if resolved is None:
@@ -365,10 +409,8 @@ if __name__ == "__main__":
     import argparse
     import sys
 
-    # Windows consoles often aren't UTF-8 by default; a model response with
-    # any non-ASCII character (an emoji, despite the system prompt saying
-    # not to use one - confirmed happens) would otherwise crash print()
-    # entirely instead of just looking slightly off.
+    # in case the console is set to a non-UTF-8 code page
+    # (LLM output might have emoji or other non-ASCII characters), avoid a UnicodeEncodeError
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
     parser = argparse.ArgumentParser(description="Ask the wiki-backed assistant one question, or a batch from a file")
@@ -383,7 +425,7 @@ if __name__ == "__main__":
             print(f"\n{'=' * 70}\n[{i}/{len(prompts)}] {question}\n{'=' * 70}")
             try:
                 _run_one(question, show_routing=args.show_routing)
-            except Exception as exc:  # noqa: BLE001 - one bad prompt shouldn't kill the batch
+            except Exception as exc:  # bad prompt shouldn't kill the batch
                 print(f"ERROR: {exc}")
     elif args.question:
         _run_one(args.question, show_routing=args.show_routing)
