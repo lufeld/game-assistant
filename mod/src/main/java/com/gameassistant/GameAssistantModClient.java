@@ -3,29 +3,69 @@ package com.gameassistant;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
+import java.util.Collection;
 import java.util.Locale;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
+import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
+import net.fabricmc.fabric.api.event.client.player.ClientPlayerBlockBreakEvents;
+import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.BarrelBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * Client-side mod that runs in the Minecraft client and collects player state information.
  * Connects to a local player_ingest.py process over WebSocket and pushes the player's
  * information and actions for ingestion into a SQLite database.
+ * 
+ * TODOs: visited structures, more containers (furnace, smoker, etc.), ender chest
+ * 
+ * Information fetched:
+ * - Player position, dimension, and biome
+ * - Player vitals: health, hunger, saturation, XP level and progress, game mode
+ * - Game time: day time and day count
+ * - Player inventory: hotbar and main slots
+ * - Player equipment: main hand, off hand, armor slots
+ * - Active effects: potion effects with ID, amplifier, and duration
+ * - Player death events: position, dimension, and cause
+ * - Container interactions: chest, barrel, shulker box, etc.
+ * - Block placements and breaks: position, dimension, item ID, and action (place/break)
+ * - Player respawn point changes: position and dimension
  */
 public class GameAssistantModClient implements ClientModInitializer {
 	public static final String MOD_ID = "gameassistant";
@@ -37,14 +77,40 @@ public class GameAssistantModClient implements ClientModInitializer {
 	// (20 ticks per second, so 100 ticks = 5 seconds)
 	private static final int STATE_PUSH_INTERVAL_TICKS = 100;
 
+	// Translation key of the vanilla "Respawn point set" message - matched by
+	// key, not rendered text, so it works regardless of game language.
+	private static final String SET_SPAWN_MESSAGE_KEY = "block.minecraft.set_spawn";
+
 	private HttpClient httpClient;
 	private WebSocket socket;
 	private int tickCounter = 0;
+	private boolean wasDead = false;
+
+	// Set by onUseBlock() when the player right-clicks a chest/barrel/shulker
+	// box, consumed by onScreenOpen() when the resulting screen appears - the
+	// two have to be correlated this way because neither the screen-open
+	// packet nor the container menu itself carries a block position at all.
+	private BlockPos lastContainerPos;
+	private String lastContainerDim;
+	private String lastContainerKind;
+
+	// Set by onUseBlock() when the player right-clicks with a block item in
+	// hand, consumed one tick later by checkPendingPlacement() - there's no
+	// "block was placed" event anywhere in Fabric API, so this is confirmed
+	// by checking whether the expected block actually appeared.
+	private BlockPos pendingPlacementPos;
+	private String pendingPlacementDim;
+	private String pendingPlacementItemId;
+	private Block pendingPlacementBlock;
 
 	@Override
 	public void onInitializeClient() {
 		connect();
 		ClientTickEvents.END_CLIENT_TICK.register(this::onEndClientTick);
+		ClientReceiveMessageEvents.GAME.register(this::onGameMessage);
+		UseBlockCallback.EVENT.register(this::onUseBlock);
+		ScreenEvents.AFTER_INIT.register(this::onScreenOpen);
+		ClientPlayerBlockBreakEvents.AFTER.register(this::onBlockBroken);
 	}
 
 	private void connect() {
@@ -64,22 +130,208 @@ public class GameAssistantModClient implements ClientModInitializer {
 	}
 
 	private void onEndClientTick(Minecraft client) {
+		LocalPlayer player = client.player;
+		if (player == null || socket == null) {
+			wasDead = false;
+			return;
+		}
+
+		// Checked every tick
+		checkDeath(player);
+		checkPendingPlacement(player);
+
 		// Send player state to the ingest process every STATE_PUSH_INTERVAL_TICKS ticks.
 		if (++tickCounter < STATE_PUSH_INTERVAL_TICKS) {
 			return;
 		}
 		tickCounter = 0;
 
-		LocalPlayer player = client.player;
-		if (player == null || socket == null) {
-			return;
-		}
-
 		sendPosition(player);
 		sendVitals(client, player);
 		sendGameTime(player);
 		sendInventory(player);
 		sendEquipment(player);
+		sendEffects(player);
+	}
+
+	private void onGameMessage(Component message, boolean overlay) {
+		// "Respawn point set" - sent by the server through the single shared
+		// ServerPlayer#setRespawnPosition() path, for a bed click, a
+		// successful night's sleep, or a respawn anchor charge alike, only
+		// when the position actually changed.
+		if (!(message.getContents() instanceof TranslatableContents translatable)
+				|| !SET_SPAWN_MESSAGE_KEY.equals(translatable.getKey())) {
+			return;
+		}
+		LocalPlayer player = Minecraft.getInstance().player;
+		if (player == null || socket == null) {
+			return;
+		}
+		sendSpawnPoint(player);
+	}
+
+	private void sendSpawnPoint(LocalPlayer player) {
+		// {"kind":"spawn_point","dim":"minecraft:overworld","pos":[123,64,-79]}
+		// Not exposed to the client - using the player's own position
+		BlockPos pos = player.blockPosition();
+		String json = String.format(
+				Locale.ROOT,
+				"{\"kind\":\"spawn_point\",\"dim\":\"%s\",\"pos\":[%d,%d,%d]}",
+				dimensionId(player.level()), pos.getX(), pos.getY(), pos.getZ()
+		);
+		socket.sendText(json, true);
+	}
+
+	private InteractionResult onUseBlock(Player player, Level level, InteractionHand hand, BlockHitResult hitResult) {
+		// only observes the click
+		BlockPos pos = hitResult.getBlockPos();
+		Block block = level.getBlockState(pos).getBlock();
+		if (block instanceof ChestBlock || block instanceof BarrelBlock || block instanceof ShulkerBoxBlock) {
+			lastContainerPos = pos;
+			lastContainerDim = dimensionId(level);
+			lastContainerKind = BuiltInRegistries.BLOCK.getKey(block).toString();
+		}
+
+		// A right-click with a block item in hand is a placement attempt -
+		// BlockPlaceContext resolves the exact target position the same way
+		// vanilla itself does (including the "replace grass/snow/water
+		// instead of the adjacent face" case), so it's reused here rather
+		// than reimplemented.
+		ItemStack heldStack = player.getItemInHand(hand);
+		if (heldStack.getItem() instanceof BlockItem blockItem) {
+			BlockPlaceContext placeContext = new BlockPlaceContext(player, hand, heldStack, hitResult);
+			pendingPlacementPos = placeContext.getClickedPos();
+			pendingPlacementDim = dimensionId(level);
+			pendingPlacementItemId = BuiltInRegistries.ITEM.getKey(blockItem).toString();
+			pendingPlacementBlock = blockItem.getBlock();
+		}
+
+		return InteractionResult.PASS;
+	}
+
+	private void checkPendingPlacement(LocalPlayer player) {
+		if (pendingPlacementPos == null) {
+			return;
+		}
+		BlockPos pos = pendingPlacementPos;
+		String dim = pendingPlacementDim;
+		String itemId = pendingPlacementItemId;
+		Block expectedBlock = pendingPlacementBlock;
+		pendingPlacementPos = null;
+		pendingPlacementDim = null;
+		pendingPlacementItemId = null;
+		pendingPlacementBlock = null;
+
+		if (player.level().getBlockState(pos).getBlock() == expectedBlock) {
+			sendPlacement(dim, pos, itemId, "place");
+		}
+	}
+
+	private void onBlockBroken(ClientLevel level, LocalPlayer player, BlockPos pos, BlockState state) {
+		String itemId = BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString();
+		sendPlacement(dimensionId(level), pos, itemId, "break");
+	}
+
+	private void sendPlacement(String dim, BlockPos pos, String itemId, String action) {
+		// {"kind":"placement","dim":"...","pos":[x,y,z],"item":"minecraft:torch","action":"place"}
+		// Sent for every place/break unfiltered - player_db.write_placement()
+		// already applies its own is_notable_placement() allowlist, so
+		// duplicating that filter here would just be maintaining it twice.
+		// Guarded here (not just by callers) since onBlockBroken() can fire
+		// before the ingest connection is up.
+		if (socket == null) {
+			return;
+		}
+		String json = String.format(
+				Locale.ROOT,
+				"{\"kind\":\"placement\",\"dim\":\"%s\",\"pos\":[%d,%d,%d],\"item\":\"%s\",\"action\":\"%s\"}",
+				dim, pos.getX(), pos.getY(), pos.getZ(), itemId, action
+		);
+		socket.sendText(json, true);
+	}
+
+	private void onScreenOpen(Minecraft client, Screen screen, int scaledWidth, int scaledHeight) {
+		// Consumed on every screen open, not just container ones - otherwise a
+		// stale remembered click could get wrongly attached to some unrelated
+		// container screen (e.g. a crafting table) opened much later.
+		BlockPos pos = lastContainerPos;
+		String dim = lastContainerDim;
+		String containerKind = lastContainerKind;
+		lastContainerPos = null;
+		lastContainerDim = null;
+		lastContainerKind = null;
+
+		if (pos == null || !(screen instanceof AbstractContainerScreen<?> containerScreen)) {
+			return;
+		}
+
+		// Sent when the screen closes, not now - the player can still add or
+		// remove items while it's open, and what matters is what they leave
+		// behind, not a snapshot from the instant they opened it. (This was
+		// the bug behind newly-placed items not showing up: the old code
+		// sent the snapshot right here, before the player had touched
+		// anything.) The same AbstractContainerMenu object is reused - its
+		// slots are mutated in place by sync packets while the screen is
+		// open, so reading it again at close time reflects the real result.
+		ScreenEvents.remove(screen).register(closedScreen -> sendContainer(containerScreen.getMenu(), dim, pos, containerKind));
+	}
+
+	private void sendContainer(AbstractContainerMenu menu, String dim, BlockPos pos, String containerKind) {
+		// {"kind":"container","dim":"...","pos":[x,y,z],"container_kind":"minecraft:chest","items":[...]}
+		// menu.slots always lists the container's own slots first, followed by
+		// the player's 36 hotbar+main slots - true for chests, barrels and
+		// shulker boxes alike, confirmed by decompiling their menu classes.
+		if (socket == null) {
+			return;
+		}
+		int containerSlotCount = menu.slots.size() - 36;
+		StringBuilder items = new StringBuilder();
+		for (int i = 0; i < containerSlotCount; i++) {
+			ItemStack stack = menu.getSlot(i).getItem();
+			if (stack.isEmpty()) {
+				continue;
+			}
+			if (!items.isEmpty()) {
+				items.append(',');
+			}
+			items.append(String.format(Locale.ROOT, "{\"item\":\"%s\",\"count\":%d}", itemId(stack), stack.getCount()));
+		}
+		String json = String.format(
+				Locale.ROOT,
+				"{\"kind\":\"container\",\"dim\":\"%s\",\"pos\":[%d,%d,%d],\"container_kind\":\"%s\",\"items\":[%s]}",
+				dim, pos.getX(), pos.getY(), pos.getZ(), containerKind, items
+		);
+		socket.sendText(json, true);
+	}
+
+	private void checkDeath(LocalPlayer player) {
+		boolean isDead = player.isDeadOrDying();
+		if (isDead && !wasDead) {
+			sendDeath(player);
+		}
+		wasDead = isDead;
+	}
+
+	private void sendDeath(LocalPlayer player) {
+		// {"kind":"death","dim":"minecraft:the_nether","pos":[40,70,-12],"cause":"minecraft:lava"}
+		BlockPos pos = player.blockPosition();
+		String json = String.format(
+				Locale.ROOT,
+				"{\"kind\":\"death\",\"dim\":\"%s\",\"pos\":[%d,%d,%d],\"cause\":%s}",
+				dimensionId(player.level()), pos.getX(), pos.getY(), pos.getZ(), jsonDeathCause(player)
+		);
+		socket.sendText(json, true);
+	}
+
+	private String jsonDeathCause(LocalPlayer player) {
+		DamageSource source = player.getLastDamageSource();
+		if (source == null) {
+			return "null";
+		}
+		return source.typeHolder().unwrapKey()
+				.map(ResourceKey::identifier)
+				.map(id -> "\"" + id + "\"")
+				.orElse("null");
 	}
 
 	private void sendPosition(LocalPlayer player) {
@@ -90,7 +342,7 @@ public class GameAssistantModClient implements ClientModInitializer {
 		String json = String.format(
 				Locale.ROOT,
 				"{\"kind\":\"position\",\"dim\":\"%s\",\"pos\":[%d,%d,%d],\"biome\":\"%s\"}",
-				dimensionId(player), pos.getX(), pos.getY(), pos.getZ(), biomeId(player, pos)
+				dimensionId(player.level()), pos.getX(), pos.getY(), pos.getZ(), biomeId(player, pos)
 		);
 		socket.sendText(json, true);
 	}
@@ -166,9 +418,30 @@ public class GameAssistantModClient implements ClientModInitializer {
 		return BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();
 	}
 
-	private String dimensionId(LocalPlayer player) {
+	private void sendEffects(LocalPlayer player) {
+		// {"kind":"effects","effects":[{"id":"minecraft:speed","amplifier":1,"duration":200}, ...]}
+		Collection<MobEffectInstance> activeEffects = player.getActiveEffects();
+		StringBuilder effects = new StringBuilder();
+		for (MobEffectInstance effect : activeEffects) {
+			if (!effects.isEmpty()) {
+				effects.append(',');
+			}
+			effects.append(String.format(
+					Locale.ROOT,
+					"{\"id\":\"%s\",\"amplifier\":%d,\"duration\":%d}",
+					effectId(effect), effect.getAmplifier(), effect.getDuration()
+			));
+		}
+		socket.sendText("{\"kind\":\"effects\",\"effects\":[" + effects + "]}", true);
+	}
+
+	private String effectId(MobEffectInstance effect) {
+		return effect.getEffect().unwrapKey().map(ResourceKey::identifier).map(Object::toString).orElse("unknown");
+	}
+
+	private String dimensionId(Level level) {
 		// Overworld, Nether or End
-		return player.level().dimension().identifier().toString();
+		return level.dimension().identifier().toString();
 	}
 
 	private String biomeId(LocalPlayer player, BlockPos pos) {
