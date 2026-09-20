@@ -20,18 +20,14 @@ wiki/ modules (call it with text, read what comes back):
                and this session's own testing showed raw natural-phrasing
                queries already land the right chunk within a small top-k.
 
-player_info replaces an earlier bare need_player_state boolean - the router
-now names *which* category of the player's own state a question needs
-(inventory, position, deaths, ...), the same way entities already names
-which wiki pages it needs, plus an optional player_target (an item or
-structure-kind name) for the categories that search rather than just
-snapshot. _player_state_context() dispatches that decision straight to the
+ The router names *which* category of the player's own state a question needs
+(inventory, position, deaths, ...), the same way entities names which
+wiki pages it needs, plus an optional player_target (an item or
+structure-type name) for the categories that search.
+_player_state_context() dispatches that decision straight to the
 matching player_db read function.
 
-Deliberately synchronous, not the asyncio audio_in/dialog/game_ingest/
-audio_out task design from the original blueprint - that's for wrapping
-real concurrency (always-on STT, the Fabric mod) around this once it's
-needed, not for solving routing and concurrency at the same time.
+Deliberately synchronous for now - think about async handling later...
 """
 
 from __future__ import annotations
@@ -43,7 +39,7 @@ from pathlib import Path
 import ollama
 
 try:
-    from modules import player_db
+    from modules.player import player_db
     from modules.wiki.fetch import get_page, peek_cached_revid
     from modules.wiki.parse import parse_page
     from modules.wiki.resolve import PageNotFound, ResolvedTitle, resolve_title
@@ -52,7 +48,7 @@ except ImportError:
     import sys
 
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    from modules import player_db
+    from modules.player import player_db
     from modules.wiki.fetch import get_page, peek_cached_revid
     from modules.wiki.parse import parse_page
     from modules.wiki.resolve import PageNotFound, ResolvedTitle, resolve_title
@@ -153,15 +149,12 @@ ANSWER_SYSTEM_PROMPT = (
 
 
 def warm_up_model(*, model: str = MODEL_NAME) -> None:
-    """Force Ollama to load the model now rather than on the first real
-    question - a cold model load can take a long time, and paying that cost
-    during startup (while the user is likely not talking yet) is better
-    than paying it on their first question."""
+    """Force Ollama to load the model now rather than on the first real question"""
     ollama.chat(model=model, messages=[{"role": "user", "content": "hi"}], options={"num_predict": 1})
 
 
 def route(question: str, *, model: str = MODEL_NAME) -> dict:
-    """One constrained-JSON call: which entities, does this need player state."""
+    """One constrained-JSON call: which entities? does this need player state?"""
     response = ollama.chat(
         model=model,
         messages=[
@@ -201,8 +194,7 @@ _COMPASS_DIRECTIONS = [
 
 def _bearing(from_x: float, from_z: float, to_x: float, to_z: float) -> tuple[str, float]:
     """8-way compass direction and horizontal (X/Z) distance from one point to
-    another. North is -Z and east is +X, matching Minecraft's own axes -
-    verified against the F3 debug screen's own facing readout, not assumed."""
+    another. North is -Z and east is +X, matching Minecraft's own axes."""
     dx = to_x - from_x
     dz = to_z - from_z
     angle = math.degrees(math.atan2(dx, -dz)) % 360
@@ -224,13 +216,10 @@ def _location_text(loc: dict, position: dict | None) -> str:
 
 def _player_state_context(routed: dict) -> str | None:
     """Turn a routed player_info decision into a short text summary, straight
-    from player_db - no LLM involved, these are exact lookups, not retrieval.
+    from player_db - no LLM involved, these are deterministic lookups, not retrieval.
 
     None whenever there's nothing to say (category is "none", or player_db
-    has no data yet, or a lookup fails) rather than raising - a missing
-    Player DB fact should degrade the turn, not sink it, the same spirit as
-    ensure_page() skipping an entity that fails to resolve.
-    """
+    has no data yet, or a lookup fails) rather than failing."""
     info = routed.get("player_info", "none")
     target = routed.get("player_target")
 

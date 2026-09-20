@@ -33,7 +33,7 @@ from contextlib import closing
 from datetime import datetime, timezone
 from pathlib import Path
 
-DEFAULT_DB_PATH = Path(__file__).resolve().parents[2] / "data" / "player_db.sqlite3"
+DEFAULT_DB_PATH = Path(__file__).resolve().parents[3] / "data" / "player_db.sqlite3"
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS events (

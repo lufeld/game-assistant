@@ -1,21 +1,14 @@
 """The live voice loop: STT -> orchestrator -> TTS.
 
-Replaces the old llm_processor.py, which drove the now-deleted rag_database
-pipeline directly. Routing, retrieval and answering are all orchestrator's
-job now - this module is just the mic-in/speaker-out glue and GUI wiring
-around it.
+This module is just the mic-in/speaker-out loop and GUI wiring.
 
 Each turn's answer is streamed straight into TTS sentence-by-sentence via
-orchestrator.ask_stream(), the same "speak what's ready, don't wait for the
-whole answer" trick the old pipeline used - it lets the player hear the
+orchestrator.ask_stream(), it lets the player hear the
 first sentence while later ones are still being generated.
 
 Stateless per turn, matching orchestrator's own single-turn design - there
 is no conversation memory across turns (the router and answer step only
-ever see the current question). Adding that would be a real design
-decision (what goes into the router's context, how history is bounded,
-...), not a small addition, so it's left for later rather than bolted on
-here.
+ever see the current question).
 """
 
 from __future__ import annotations
@@ -37,7 +30,7 @@ _SENTENCE_BOUNDARY = re.compile(r"[.!?\n]")
 
 
 def run_assistant(stt_engine, tts_engine, gui=None) -> None:
-    """Listen, route+answer via orchestrator, speak - forever, until an exit phrase."""
+    """Listen, route+answer via orchestrator, speak forever until exit phrase."""
     print(f"Starting Local LLM ({orchestrator.MODEL_NAME})... Say 'exit' to quit.")
 
     while True:
