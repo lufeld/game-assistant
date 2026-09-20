@@ -57,6 +57,14 @@ except ImportError:
 MODEL_NAME = "qwen3:4b-instruct"
 N_RESULTS = 5
 
+# Lower than the model's default (unset, likely 0.7+) - the answer step is
+# meant to read retrieved context back faithfully, not write creatively, and
+# a lower temperature makes it follow ANSWER_SYSTEM_PROMPT's formatting
+# rules (no line breaks, "you" not "I", ...) more consistently. Not as low
+# as route()'s 0.1, which prioritizes strict JSON-schema compliance over
+# anything else - some natural phrasing variety is still fine for spoken answers.
+ANSWER_TEMPERATURE = 0.3
+
 _PLAYER_INFO_CATEGORIES = [
     "none", "inventory", "equipment", "effects", "vitals", "position",
     "spawn_point", "deaths", "game_time", "containers", "placements", "structures",
@@ -130,20 +138,38 @@ A: {"entities": ["Wither Skeleton"], "player_info": "none", "player_target": nul
 Q: Where do I get gold?
 A: {"entities": ["Gold"], "player_info": "none", "player_target": null}
 
+Q: Why is it raining?
+A: {"entities": ["Rain"], "player_info": "none", "player_target": null}
+
+Q: What is the best food to fill me up and saturate me the longest?
+A: {"entities": ["Food"], "player_info": "none", "player_target": null}
+
+Q: How can I go to the nether?
+A: {"entities": ["Nether"], "player_info": "none", "player_target": null}
+
 Q: Hey how is it going?
 A: {"entities": [], "player_info": "none", "player_target": null}
 """
 
 ANSWER_SYSTEM_PROMPT = (
     "You are a helpful Minecraft assistant. Answer using ONLY the provided context. "
-    "If the context does not cover the question, say you don't know rather than guessing. "
+    "If the question asks about Minecraft and the context does not cover it, respond in the first "
+    "person: say \"I don't know\" rather than guessing - a missing or empty context is a retrieval gap, "
+    "not evidence that the answer is no or that the thing doesn't exist (e.g. if asked where to get "
+    "gold and given no context, say you don't know, don't say gold doesn't exist). This does not apply "
+    "to small talk or greetings with no factual question in them (e.g. \"hey, how's it going?\") - "
+    "respond to those naturally and briefly, even though no context was retrieved for them, instead of "
+    "refusing. "
     "Keep answers short, concise, and spoken-friendly. Only use Java Edition mechanics and names, not Bedrock Edition. "
     "Omit any unnecessary text or numerical values unless they are directly relevant to the question. "
     "This answer is read aloud by text-to-speech, not displayed as text - never use lists, bullet points, "
     "line breaks, or markdown formatting; respond in plain spoken sentences only. "
-    "When describing a crafting grid's shape, describe it the way a person would say it out loud "
-    '("a torch in the middle with iron nuggets around it", "three wheat in a row", "stacked in a column") '
-    "rather than reading out each grid cell one by one. "
+    "The context describes the PLAYER's own state (inventory, position, health, ...), not yours - when "
+    "relaying it, address the player directly as \"you\" (\"you have\", \"you are at\"), never as \"I\". "
+    "This does not apply to your own uncertainty: not knowing something is about you, the assistant, not "
+    "the player, so it stays first person (\"I don't know\", never \"you don't know\"). "
+    "When relaying a specific measurement or technical figure from the context, briefly say what it refers "
+    'to rather than stating it bare (e.g. "the space a large slime itself takes up" rather than just "2.08 blocks"). '
     "Do not use emoji."
 )
 
@@ -284,11 +310,23 @@ def _player_state_context(routed: dict) -> str | None:
 
         if info == "spawn_point":
             spawn = player_db.get_spawn_point()
-            if not spawn:
-                return "The player has no spawn point set."
-            base = f"Spawn point: {spawn['x']:.0f}, {spawn['y']:.0f}, {spawn['z']:.0f} in {spawn['dim']}."
-
             position = player_db.get_position()
+
+            if not spawn:
+                # No bed slept in / respawn anchor activated yet, so the
+                # spawn point itself is unset - a placed-but-unused bed is
+                # still a reasonable answer to "where's my bed", even though
+                # it hasn't actually set the spawn point.
+                beds = player_db.find_placements("bed")
+                if not beds:
+                    return "The player has no spawn point set, and no bed has been placed."
+                return f"No spawn point is set yet, but a bed was placed at {_location_text(beds[0], position)}."
+
+            base = (
+                f"Spawn point (where the player's bed or respawn anchor was last set): "
+                f"{spawn['x']:.0f}, {spawn['y']:.0f}, {spawn['z']:.0f} in {spawn['dim']}."
+            )
+
             if not position:
                 return base
             if position["dim"] != spawn["dim"]:
@@ -327,12 +365,26 @@ def _player_state_context(routed: dict) -> str | None:
         if info == "placements":
             if not target:
                 return None
-            found = player_db.find_placements(target)
-            if not found:
-                return f"No recorded placements of {target} were found."
+            # "Where did I put X" is ambiguous between placed-in-the-world
+            # and stored-in-a-container - same reasoning as the inventory
+            # branch above checking both carried and stored: only checking
+            # placements missed a chest that had the item too.
+            placed = player_db.find_placements(target)
+            stored = player_db.find_container(target)
             position = player_db.get_position()
-            locations = "; ".join(_location_text(p, position) for p in found)
-            return f"{target} placed at: {locations}"
+
+            parts = [_location_text(p, position) for p in placed]
+            for container in stored:
+                for match in container["items"]:
+                    if target.lower() in match["item"].lower():
+                        parts.append(
+                            f"{match['count']}x {match['item']} stored in a {container['kind']} at "
+                            f"{_location_text(container, position)}"
+                        )
+
+            if not parts:
+                return f"No recorded placements or storage of {target} were found."
+            return f"{target}: " + "; ".join(parts) + "."
 
         if info == "structures":
             found = player_db.get_visited_structures(target)
@@ -373,12 +425,17 @@ def gather_context(question: str, routed: dict, *, n_results: int = N_RESULTS) -
 def _answer_messages(question: str, chunks: list[str]) -> list[dict]:
     context = (
         "\n\n---\n\n".join(chunks) if chunks
-        # Explicit that this is a retrieval gap, not evidence the thing
-        # doesn't exist - a real failure mode without this: asked "where do
-        # I get gold?" with empty context, the model answered "you don't
-        # get gold in Minecraft" instead of saying it didn't know.
-        else "Nothing was retrieved for this question. This does not mean the answer is no or that the "
-             "thing doesn't exist - it means no matching information was found. Say you don't know."
+        # Descriptive, not a command: an imperative like "say you don't know"
+        # here was followed too literally, even for pure chitchat with no
+        # factual question at all (empty chunks also happens then, since
+        # there's nothing to look up) - "Hey, how's it going?" got answered
+        # "I don't know". The instruction for what to actually do with a
+        # retrieval gap belongs in ANSWER_SYSTEM_PROMPT, with proper scoping,
+        # not repeated here as a command. This still needs to state that a
+        # gap isn't evidence of "no" - that was a real failure mode: asked
+        # "where do I get gold?" with empty context, the model answered "you
+        # don't get gold in Minecraft" instead of saying it didn't know.
+        else "No matching information was found for this question."
     )
     return [
         {"role": "system", "content": ANSWER_SYSTEM_PROMPT},
@@ -390,7 +447,9 @@ def ask(question: str, *, model: str = MODEL_NAME, n_results: int = N_RESULTS) -
     """Route, ensure, retrieve, answer - the whole synchronous pipeline for one turn."""
     routed = route(question, model=model)
     chunks = gather_context(question, routed, n_results=n_results)
-    response = ollama.chat(model=model, messages=_answer_messages(question, chunks))
+    response = ollama.chat(
+        model=model, messages=_answer_messages(question, chunks), options={"temperature": ANSWER_TEMPERATURE},
+    )
     return response["message"]["content"]
 
 
@@ -400,7 +459,11 @@ def ask_stream(question: str, *, model: str = MODEL_NAME, n_results: int = N_RES
     first sentence while later ones are still being generated."""
     routed = route(question, model=model)
     chunks = gather_context(question, routed, n_results=n_results)
-    for part in ollama.chat(model=model, messages=_answer_messages(question, chunks), stream=True):
+    stream = ollama.chat(
+        model=model, messages=_answer_messages(question, chunks),
+        options={"temperature": ANSWER_TEMPERATURE}, stream=True,
+    )
+    for part in stream:
         yield part["message"]["content"]
 
 
@@ -417,7 +480,9 @@ def _run_one(question: str, *, show_routing: bool) -> None:
     chunks = gather_context(question, routed)
     print(f"retrieved {len(chunks)} chunk(s)")
 
-    response = ollama.chat(model=MODEL_NAME, messages=_answer_messages(question, chunks))
+    response = ollama.chat(
+        model=MODEL_NAME, messages=_answer_messages(question, chunks), options={"temperature": ANSWER_TEMPERATURE},
+    )
     print(f"\n{response['message']['content']}")
 
 

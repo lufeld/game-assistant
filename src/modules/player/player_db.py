@@ -473,12 +473,29 @@ def find_container(name_substring: str, db_path: Path = DEFAULT_DB_PATH, limit: 
 
 
 def find_placements(name_substring: str, db_path: Path = DEFAULT_DB_PATH, limit: int = 5) -> list[dict]:
-    """Most recent place events (not breaks) for this item. Doesn't check whether it
-    was later broken again - good enough for "where did I put X", not exact inventory."""
+    """Most recent place events (not breaks) for this item, one entry per
+    distinct location. Doesn't check whether it was later broken again -
+    good enough for "where did I put X", not exact inventory.
+
+    Deduped by (dim, x, y, z): the same spot can show up more than once in
+    the raw log, which looks like the mod double-firing its placement event.
+    Keeps the most recent row per location (rows already come back in ts DESC order).
+    """
     with closing(_connect(db_path)) as conn:
         rows = conn.execute(
             "SELECT ts, dim, x, y, z, item FROM placements WHERE action = 'place' AND item LIKE ? "
             "ORDER BY ts DESC LIMIT ?",
-            (f"%{name_substring}%", limit),
+            (f"%{name_substring}%", limit * 4),  # extra headroom to absorb duplicate rows before deduping
         ).fetchall()
-    return [{"ts": r[0], "dim": r[1], "x": r[2], "y": r[3], "z": r[4], "item": r[5]} for r in rows]
+
+    seen: set[tuple] = set()
+    results = []
+    for r in rows:
+        location = (r[1], r[2], r[3], r[4])
+        if location in seen:
+            continue
+        seen.add(location)
+        results.append({"ts": r[0], "dim": r[1], "x": r[2], "y": r[3], "z": r[4], "item": r[5]})
+        if len(results) >= limit:
+            break
+    return results

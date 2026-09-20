@@ -8,6 +8,7 @@
 # --- obtaining / crafting ---
 How do I make a beacon?
 What do I need to craft a diamond sword?
+What flowers exist in the game?
 
 # --- usage / mechanics ---
 How much damage does a diamond sword do?
@@ -15,6 +16,8 @@ What is a creeper afraid of?
 How can I repair my sword?
 Can I repair my sword somehow?
 It just started to rain. Why does this happen? How long until it stops raining?
+Does sun and rain affect the growth of my crops?
+What is the best food to fill me up and saturate me the longest?
 
 # --- drops ---
 What does a wither skeleton drop when I kill it?
@@ -29,6 +32,7 @@ Can I heal a zombie?
 # --- player state (modules/player/player_db.py backed - run
 # modules/player/player_simulate.py first so there's real data to answer from) ---
 How many diamonds do I have right now?
+Tell me the way back home.
 Where did I put my extra torches?
 What's in my inventory?
 What am I wearing right now?
@@ -40,6 +44,8 @@ Where did I last die?
 Is it nighttime right now?
 Have I found a village yet?
 Where's the chest with my emeralds?
+I am hungry, do I have anything I could eat.
+Do I have food items I can consume safely?
 
 # --- player state edge case: category we don't track at all (weather) -
 # should say it doesn't know, not confidently answer wrong ---
