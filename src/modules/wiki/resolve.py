@@ -14,6 +14,7 @@ same term.
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -25,6 +26,13 @@ except ImportError:
     from fetch import BASE_API_URL, DEFAULT_CACHE_DIR, make_client
 
 ALIASES_FILENAME = "aliases.json"
+
+# Filter out search results that are off-target edition/version pages, which
+# are often ranked higher than the real page for a term. The regex is used to
+# identify pages that have "Edition" followed by non-digit characters and then a digit.
+# Example: "Xbox One Edition CU19"
+_VERSION_AFTER_EDITION = re.compile(r"Edition\b[^\d]*\d", re.IGNORECASE)
+_OFF_TARGET_EDITIONS = ("Bedrock Edition", "Pocket Edition", "Education Edition")
 
 
 class PageNotFound(Exception):
@@ -76,6 +84,48 @@ def _lookup_info(client: httpx.Client, title: str) -> dict | None:
     return None if page.get("missing") else page
 
 
+# Real-world/franchise content (conventions, merchandise, movies, the
+# unrelated "Minicraft" prototype game, ...) sometimes outranks the real
+# gameplay page on plain keyword overlap alone - e.g. "flying monster" put
+# "MINECON Earth 2017" first, "slime farm" put "LEGO Minecraft" high up.
+# Checked via each candidate's real categories (below), not CirrusSearch's
+# incategory: search filter - tried that first, but it changes which pages
+# match at all, not just which ones get excluded (verified: even a filter
+# for the unrelated "MINECON" category alone made an actual gameplay page,
+# "Slime", disappear from "slime farm" results entirely).
+_OFF_TARGET_CATEGORIES = ("Minecraft (franchise)", "MINECON")
+
+
+def _is_off_target_edition_page(title: str) -> bool:
+    if any(name.lower() in title.lower() for name in _OFF_TARGET_EDITIONS):
+        return True
+    return bool(_VERSION_AFTER_EDITION.search(title))
+
+
+def _fetch_categories(client: httpx.Client, titles: list[str]) -> dict[str, list[str]]:
+    """One batched lookup for all titles' categories (pipe-joined - MediaWiki's
+    normal multi-title syntax), not one call per title."""
+    if not titles:
+        return {}
+    params = {
+        "action": "query",
+        "titles": "|".join(titles),
+        "prop": "categories",
+        "cllimit": 500,
+        "format": "json",
+        "formatversion": 2,
+    }
+    response = client.get(BASE_API_URL, params=params)
+    response.raise_for_status()
+    pages = response.json()["query"]["pages"]
+    return {p["title"]: [c["title"] for c in p.get("categories", [])] for p in pages if "title" in p}
+
+
+def _is_off_target_franchise_page(title: str, categories_by_title: dict[str, list[str]]) -> bool:
+    categories = categories_by_title.get(title, [])
+    return any(off_target in cat for off_target in _OFF_TARGET_CATEGORIES for cat in categories)
+
+
 def _search_candidates(client: httpx.Client, term: str, limit: int = 3) -> list[str]:
     """Full-text search fallback for terms MediaWiki can't redirect on its own.
 
@@ -86,14 +136,22 @@ def _search_candidates(client: httpx.Client, term: str, limit: int = 3) -> list[
         "action": "query",
         "list": "search",
         "srsearch": term,
-        "srlimit": limit,
+        # Extra headroom to still land `limit` real candidates after
+        # off-target pages (edition/version, real-world/franchise) are
+        # filtered out below - observed up to 7 ranked ahead of the real
+        # page for one real term.
+        "srlimit": min(limit * 5, 20),
         "format": "json",
         "formatversion": 2,
     }
     response = client.get(BASE_API_URL, params=params)
     response.raise_for_status()
     results = response.json()["query"]["search"]
-    return [r["title"] for r in results]
+    titles = [r["title"] for r in results]
+
+    edition_filtered = [t for t in titles if not _is_off_target_edition_page(t)]
+    categories_by_title = _fetch_categories(client, edition_filtered)
+    return [t for t in edition_filtered if not _is_off_target_franchise_page(t, categories_by_title)][:limit]
 
 
 def resolve_title(
