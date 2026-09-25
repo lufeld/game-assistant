@@ -154,6 +154,20 @@ def _search_candidates(client: httpx.Client, term: str, limit: int = 3) -> list[
     return [t for t in edition_filtered if not _is_off_target_franchise_page(t, categories_by_title)][:limit]
 
 
+def search_candidates(term: str, limit: int = 5, *, client: httpx.Client | None = None) -> list[str]:
+    """Public entry point for full-text search, for callers that want to see
+    multiple ranked candidates and choose themselves, rather than
+    resolve_title()'s single auto-picked match. Does not write to the alias
+    cache - browsing candidates isn't a confirmed resolution."""
+    owns_client = client is None
+    client = client or make_client()
+    try:
+        return _search_candidates(client, term, limit=limit)
+    finally:
+        if owns_client:
+            client.close()
+
+
 def resolve_title(
     term: str,
     *,

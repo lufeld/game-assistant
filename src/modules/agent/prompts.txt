@@ -1,0 +1,31 @@
+# Test prompts for agent/orchestrator.py - one question per line, blank
+# lines and '#' comments are ignored. Run with:
+#   python orchestrator.py --batch prompts.txt --show-trace
+#
+# Each run is independent (no memory) - for exercising multi-turn memory,
+# use the REPL instead. These lean toward questions that need chaining wiki
+# knowledge with player state, which is the whole point of this loop over
+# the router's single-pass design - see modules/orchestrator_prompts.txt for
+# the router's own comparison set.
+
+# --- the worked example this design was built around ---
+I am hungry, do I have any food left?
+
+# --- crafting chains (may need skill_crafting_chain) ---
+Can I make a diamond sword right now with what I have?
+Do I have everything I need to build a beacon?
+
+# --- cross-referencing wiki knowledge with inventory/containers ---
+What's the most valuable item I'm currently carrying?
+Which of my potion effects will run out soonest?
+
+# --- navigation (may need skill_player_navigation) ---
+How do I get back to where I died last?
+Which of the structures I've found is closest to me right now?
+
+# --- vague/colloquial wiki lookups (may need skill_wiki_search_strategy) ---
+What does the black monster in the nether drop?
+How do I deal with the flying monster that shoots fireballs?
+
+# --- broad "what exists" questions (may read a seed page) ---
+What food items are there and which is best for me right now?

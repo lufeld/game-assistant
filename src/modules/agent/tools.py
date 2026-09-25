@@ -1,0 +1,171 @@
+"""LLM-facing tools for the agent's reactive tool-calling loop.
+
+Thin wrappers around existing wiki/ and player/ primitives - the underlying
+resolve/fetch/parse/store and player_db functions are reused as-is, not
+duplicated or modified (see src/modules/wiki/resolve.py's search_candidates,
+the one new addition those modules needed). Each wrapper's docstring is what
+Ollama's tool-schema generator reads to decide when the model should call
+it, so these are written for the model, not for a developer.
+
+No wrapper exposes a path parameter (db_path/cache_dir/chroma_dir) - always
+the default - so nothing in the model-visible schema lets a hallucinated
+argument redirect a read at an arbitrary path.
+"""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+try:
+    from modules import orchestrator
+    from modules.agent import skills
+    from modules.player import player_db
+    from modules.wiki import fetch, parse, resolve, store
+except ImportError:
+    import sys
+
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+    from modules import orchestrator
+    from modules.agent import skills
+    from modules.player import player_db
+    from modules.wiki import fetch, parse, resolve, store
+
+
+# --- wiki tools -------------------------------------------------------
+
+def wiki_search_candidates(term: str, limit: int = 5) -> list[str]:
+    """Search the Minecraft Wiki for pages related to `term`. Returns
+    ranked candidate titles - the top result is NOT guaranteed to be the
+    right one (ranked by keyword overlap, not concept match). Use your own
+    judgment to pick the best match, checking one with wiki_page_overview
+    first if it's not obvious from the title alone. Use this when you don't
+    already know the exact page title.
+    """
+    return resolve.search_candidates(term, limit=limit)
+
+
+def wiki_page_overview(title: str) -> str:
+    """Get a short summary and section headings for a Minecraft Wiki page.
+    Use this to check a page looks right, or see what topics/items it
+    mentions, before searching it for specific facts. `title` should be an
+    exact or near-exact page title - use wiki_search_candidates first if
+    you're not sure.
+    """
+    resolved = orchestrator.ensure_page(title)
+    if resolved is None:
+        return f"No page found for {title!r}."
+    raw = fetch.get_page(resolved.title)
+    parsed = parse.parse_page(raw.wikitext)
+    return parsed.summary + "\n\nSections: " + ", ".join(s.title for s in parsed.sections)
+
+
+_MAX_WIKI_RESULTS = 3  # see wiki_page_search - capped regardless of what's requested
+
+
+def wiki_page_search(title: str, query: str, n_results: int = _MAX_WIKI_RESULTS) -> list[str]:
+    """Search within ONE already-identified Minecraft Wiki page for passages
+    relevant to `query` - e.g. crafting ingredients, stats, spawn conditions,
+    or what items/things a list-like page mentions. Keep queries specific
+    and call again with a different query if you need more, rather than
+    requesting many results at once - most pages don't have many distinct
+    chunks anyway, and a large result tends to derail into summarizing
+    everything just read instead of continuing the actual task. Can be
+    called multiple times with different pages or queries in the same turn.
+    """
+    resolved = orchestrator.ensure_page(title)
+    if resolved is None:
+        return [f"No page found for {title!r}."]
+    # Capped, not just defaulted low - observed live: qwen3:14b explicitly
+    # requested n_results=10 for a broad query and got a large result full
+    # of tables, then never got back to the player-state check it still
+    # needed to do, answering with a generic info-dump instead. A smaller
+    # default alone wouldn't have helped since the model overrode it anyway.
+    return store.query_prose(resolved.title, query, n_results=min(n_results, _MAX_WIKI_RESULTS))
+
+
+# --- player tools -------------------------------------------------------
+
+def player_inventory() -> list[dict]:
+    """Everything currently in the player's inventory/hotbar, with counts."""
+    return player_db.get_inventory()
+
+
+def player_find_item(name_substring: str) -> list[dict]:
+    """Check if the player is CARRYING an item matching this name (partial
+    match). Does NOT check chests - use player_find_in_containers for that.
+    """
+    return player_db.find_item(name_substring)
+
+
+def player_find_in_containers(name_substring: str) -> list[dict]:
+    """Check the player's known chests/barrels for an item matching this
+    name, stored (not carried). Each result includes its world location.
+    """
+    return player_db.find_container(name_substring)
+
+
+def player_equipment() -> dict[str, str]:
+    """What the player is currently wearing/holding, by slot (mainhand,
+    offhand, head, chest, legs, feet)."""
+    return player_db.get_equipment()
+
+
+def player_effects() -> list[dict]:
+    """The player's currently active potion/status effects."""
+    return player_db.get_effects()
+
+
+def player_vitals() -> dict | None:
+    """The player's health, hunger, saturation, XP, and game mode."""
+    return player_db.get_vitals()
+
+
+def player_position() -> dict | None:
+    """The player's current coordinates, dimension, and biome."""
+    return player_db.get_position()
+
+
+def player_spawn_point() -> dict | None:
+    """Where the player's bed or respawn anchor was last set."""
+    return player_db.get_spawn_point()
+
+
+def player_deaths(limit: int = 5) -> list[dict]:
+    """The player's most recent deaths, with location and cause."""
+    return player_db.get_deaths(limit=limit)
+
+
+def player_find_placements(name_substring: str) -> list[dict]:
+    """Where a functional block (torch, furnace, bed, ...) matching this
+    name was placed in the world - not the same as player_find_in_containers
+    (stored, not placed).
+    """
+    return player_db.find_placements(name_substring)
+
+
+def player_visited_structures(kind_substring: str | None = None) -> list[dict]:
+    """Structures (village, fortress, ...) the player has discovered. Pass
+    no argument to list all of them, or a partial name to filter.
+    """
+    return player_db.get_visited_structures(kind_substring)
+
+
+# --- seed pages -----------------------------------------------------------
+
+# Starting points for broad "what X exist" questions, surfaced in
+# AGENT_SYSTEM_PROMPT text - NOT special-cased in code; the model decides
+# whether/when to read one via wiki_page_search.
+# NOT YET VERIFIED against the live wiki - confirm exact titles before
+# relying on this (e.g. `python src/modules/wiki/resolve.py "Item"`).
+SEED_PAGES = ["Food", "Item", "Mob", "Biome"]
+
+
+TOOLS = [
+    wiki_search_candidates, wiki_page_overview, wiki_page_search,
+    player_inventory, player_find_item, player_find_in_containers,
+    player_equipment, player_effects, player_vitals, player_position,
+    player_spawn_point, player_deaths, player_find_placements,
+    player_visited_structures,
+    *skills.SKILLS,
+]
+TOOL_MAP = {fn.__name__: fn for fn in TOOLS}
