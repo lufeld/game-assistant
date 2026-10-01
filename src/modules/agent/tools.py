@@ -33,15 +33,24 @@ except ImportError:
 
 # --- wiki tools -------------------------------------------------------
 
-def wiki_search_candidates(term: str, limit: int = 5) -> list[str]:
+_DEFAULT_SEARCH_LIMIT = 5
+
+
+def wiki_search_candidates(term: str, limit: int | None = None) -> list[str]:
     """Search the Minecraft Wiki for pages related to `term`. Returns
     ranked candidate titles - the top result is NOT guaranteed to be the
     right one (ranked by keyword overlap, not concept match). Use your own
     judgment to pick the best match, checking one with wiki_page_overview
     first if it's not obvious from the title alone. Use this when you don't
     already know the exact page title.
+
+    Args:
+        term: Plain-language search term or best guess at the topic, e.g.
+            "pickaxe", "slime block" or "repair sword".
+        limit: Maximum number of candidate titles to return. Omit this
+            argument entirely to use a sensible default.
     """
-    return resolve.search_candidates(term, limit=limit)
+    return resolve.search_candidates(term, limit=limit if limit is not None else _DEFAULT_SEARCH_LIMIT)
 
 
 def wiki_page_overview(title: str) -> str:
@@ -50,6 +59,10 @@ def wiki_page_overview(title: str) -> str:
     mentions, before searching it for specific facts. `title` should be an
     exact or near-exact page title - use wiki_search_candidates first if
     you're not sure.
+
+    Args:
+        title: The exact or near-exact wiki page title, e.g. "Bread" or
+            "Wither Skeleton".
     """
     resolved = orchestrator.ensure_page(title)
     if resolved is None:
@@ -71,6 +84,16 @@ def wiki_page_search(title: str, query: str, n_results: int = _MAX_WIKI_RESULTS)
     chunks anyway, and a large result tends to derail into summarizing
     everything just read instead of continuing the actual task. Can be
     called multiple times with different pages or queries in the same turn.
+
+    Args:
+        title: The already-identified wiki page to search within.
+        query: What you want to know about that page, in plain language -
+            keep it narrow and specific, e.g. "crafting recipe" rather than
+            "everything about this item".
+        n_results: How many passages to return. There's an internal cap you
+            cannot exceed - a larger value will not return more passages, so
+            leave this at the default and issue a second, differently-worded
+            call instead if you need more.
     """
     resolved = orchestrator.ensure_page(title)
     if resolved is None:
@@ -93,6 +116,11 @@ def player_inventory() -> list[dict]:
 def player_find_item(name_substring: str) -> list[dict]:
     """Check if the player is CARRYING an item matching this name (partial
     match). Does NOT check chests - use player_find_in_containers for that.
+
+    Args:
+        name_substring: Partial or full item name to search for, e.g. "iron"
+            or "torch" - NOT a category word like "food" or "tools", real
+            item names rarely contain those.
     """
     return player_db.find_item(name_substring)
 
@@ -100,6 +128,12 @@ def player_find_item(name_substring: str) -> list[dict]:
 def player_find_in_containers(name_substring: str) -> list[dict]:
     """Check the player's known chests/barrels for an item matching this
     name, stored (not carried). Each result includes its world location.
+    Ensure the substring is specific enough to match a real item name, not a category!
+
+    Args:
+        name_substring: Partial or full item name to search for, e.g. "iron"
+            or "torch" - NOT a category word like "food" or "tools", real
+            item names rarely contain those.
     """
     return player_db.find_container(name_substring)
 
@@ -130,15 +164,27 @@ def player_spawn_point() -> dict | None:
     return player_db.get_spawn_point()
 
 
-def player_deaths(limit: int = 5) -> list[dict]:
-    """The player's most recent deaths, with location and cause."""
-    return player_db.get_deaths(limit=limit)
+_DEFAULT_DEATHS_LIMIT = 5
+
+
+def player_deaths(limit: int | None = None) -> list[dict]:
+    """The player's most recent deaths, with location and cause.
+
+    Args:
+        limit: Maximum number of recent deaths to return, most recent first.
+            Omit this argument entirely to use a sensible default.
+    """
+    return player_db.get_deaths(limit=limit if limit is not None else _DEFAULT_DEATHS_LIMIT)
 
 
 def player_find_placements(name_substring: str) -> list[dict]:
     """Where a functional block (torch, furnace, bed, ...) matching this
     name was placed in the world - not the same as player_find_in_containers
     (stored, not placed).
+
+    Args:
+        name_substring: Partial or full block name to search for, e.g.
+            "torch" or "bed".
     """
     return player_db.find_placements(name_substring)
 
@@ -146,18 +192,19 @@ def player_find_placements(name_substring: str) -> list[dict]:
 def player_visited_structures(kind_substring: str | None = None) -> list[dict]:
     """Structures (village, fortress, ...) the player has discovered. Pass
     no argument to list all of them, or a partial name to filter.
+
+    Args:
+        kind_substring: Partial structure type name to filter by, e.g.
+            "village" - omit this argument entirely to list all of them.
     """
     return player_db.get_visited_structures(kind_substring)
 
 
 # --- seed pages -----------------------------------------------------------
 
-# Starting points for broad "what X exist" questions, surfaced in
-# AGENT_SYSTEM_PROMPT text - NOT special-cased in code; the model decides
-# whether/when to read one via wiki_page_search.
-# NOT YET VERIFIED against the live wiki - confirm exact titles before
-# relying on this (e.g. `python src/modules/wiki/resolve.py "Item"`).
-SEED_PAGES = ["Food", "Item", "Mob", "Biome"]
+# General starting points for broad "what X exist" questions - the model
+# can call wiki_page_search on one of these to get a list of specific information
+SEED_PAGES = ["Food", "Items", "Mob", "Biomes", "Brewing", "Blocks", "Structures"]
 
 
 TOOLS = [

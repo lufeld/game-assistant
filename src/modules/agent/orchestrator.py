@@ -31,31 +31,24 @@ except ImportError:
 
 AGENT_MODEL = "qwen3:14b"
 
-# Roughly double the minimum-path cost of the worked "food" example (search/
-# read the Food page -> check inventory -> check a container for the one
-# missing item -> look up what an owned raw ingredient crafts into = ~4
-# hops), as slack for an imperfect planner - a hard stop, not "keep
-# exploring." Trivially tuned down later; nothing about the loop's structure
-# depends on this exact number.
-MAX_HOPS = 8
+MAX_HOPS = 10
 
-MEMORY_TURNS = 5
+MEMORY_TURNS = 3
 
 AGENT_SYSTEM_PROMPT = (
-    "You are a Minecraft assistant that can call tools, more than once if "
-    "needed, to gather what you need before answering. Look things up rather "
-    "than guessing - call wiki tools for game mechanics/knowledge questions "
-    "and player tools for questions about the player's own current state "
-    "(inventory, position, health, ...). For a broad 'what X exist' "
-    "question, reading a wiki overview page such as "
+    "You are a Minecraft (game) assistant. Do not guess, but ground your answers."
+    "Use the available tools to find the information you need. "
+    "You can call tools, more than once if needed, to gather information before answering. "
+    "Use available skills to guide your search and reasoning. "
+    "Call wiki tools for game mechanics/knowledge questions, this is also useful before or after calling player tools. "
+    "Call player tools for questions about the player's own current state (inventory, position, health, ...). "
+    "For a broad 'what X exist' question, reading a wiki overview page such as "
     f"{', '.join(tools.SEED_PAGES)} is often a good first step. "
-    "Several skill_* tools are available describing strategies for specific "
-    "kinds of questions (crafting chains, giving directions, resolving "
-    "vague wiki terms) - consult one when its description matches what "
-    "you're doing. "
-    "Once you have enough to answer, answer directly in plain spoken "
-    "sentences, without calling another tool. Keep answers concise, and say "
-    "plainly when something is still unknown rather than guessing."
+    "Several skill_* tools are available describing strategies for specific kinds of questions (crafting chains, giving directions, resolving "
+    "vague wiki terms) - consult one when its description matches what you're doing. "
+    "Once you have enough to answer, answer directly in plain spoken sentences, without calling another tool. "
+    "Do not provide any additional context or explanation beyond the answer itself. "
+    "Keep answers short, concise, and say plainly when something is still unknown rather than guessing."
 )
 
 _BUDGET_EXHAUSTED_NUDGE = (
@@ -96,7 +89,7 @@ def run_agent(
         offer_tools = hops < max_hops
         response = chat_fn(
             model=model, messages=messages, tools=tools.TOOLS if offer_tools else None,
-            think=True, options={"temperature": temperature},
+            think='high', options={"temperature": temperature},
         )
         message = response.message
         messages.append(message)
@@ -114,14 +107,6 @@ def run_agent(
             else:
                 try:
                     fn = tools.TOOL_MAP[name]
-                    # Models sometimes pass an argument a tool doesn't
-                    # declare (observed: qwen3:14b called the zero-argument
-                    # skill_wiki_search_strategy with a 'term' kwarg, likely
-                    # pattern-matched from the neighboring
-                    # wiki_search_candidates(term, ...) tool) - a real
-                    # TypeError there wastes the whole hop on a tool that
-                    # would otherwise have succeeded. Drop anything the
-                    # tool's own signature doesn't accept rather than fail.
                     valid_params = set(inspect.signature(fn).parameters)
                     result = fn(**{k: v for k, v in arguments.items() if k in valid_params})
                     result_text = json.dumps(result, default=str)
@@ -129,10 +114,6 @@ def run_agent(
                     result_text = f"error: {exc}"
                 hops += 1
 
-            # message.thinking is the reasoning behind this whole round, not
-            # just this one call - attached to every call in the round
-            # (redundant when a round makes several calls at once, but
-            # simpler than restructuring trace into per-round groups).
             trace.append({"tool": name, "arguments": dict(arguments), "result": result_text, "thinking": message.thinking})
             messages.append({"role": "tool", "tool_name": name, "content": result_text})
 

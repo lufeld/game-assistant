@@ -17,7 +17,8 @@ Do I have everything I need to build a beacon?
 
 # --- cross-referencing wiki knowledge with inventory/containers ---
 What's the most valuable item I'm currently carrying?
-Which of my potion effects will run out soonest?
+What can I do with the items from my inventory?
+Do I have any potion effects? If yes, what does it do and when does it run out?
 
 # --- navigation (may need skill_player_navigation) ---
 How do I get back to where I died last?
