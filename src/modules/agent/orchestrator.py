@@ -84,6 +84,7 @@ def run_agent(
 
     trace: list[dict] = []
     hops = 0
+    empty_content_retried = False
 
     while True:
         offer_tools = hops < max_hops
@@ -96,7 +97,21 @@ def run_agent(
 
         tool_calls = message.tool_calls
         if not tool_calls:
-            return AgentResult(answer=message.content, hops_used=hops, trace=trace, final_thinking=message.thinking)
+            if message.content and message.content.strip():
+                return AgentResult(answer=message.content, hops_used=hops, trace=trace, final_thinking=message.thinking)
+            # Hybrid-thinking models sometimes put everything into
+            # `thinking` and leave `content` empty even when "done" - that
+            # reads as no reply at all rather than a low-quality one. Nudge
+            # once for visible answer text (free - not a tool call, doesn't
+            # cost a hop) before giving up with an explicit placeholder
+            # instead of silently returning empty content.
+            if empty_content_retried:
+                return AgentResult(
+                    answer="(no answer text was produced)", hops_used=hops, trace=trace, final_thinking=message.thinking,
+                )
+            empty_content_retried = True
+            messages.append({"role": "user", "content": "Your last response had no visible answer text. Answer now in your response content."})
+            continue
 
         for call in tool_calls:
             name = call.function.name

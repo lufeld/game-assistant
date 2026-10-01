@@ -17,6 +17,36 @@ def _tool_call(name, arguments):
     return SimpleNamespace(function=SimpleNamespace(name=name, arguments=arguments))
 
 
+def test_empty_content_with_no_tool_calls_is_retried_once():
+    # Hybrid-thinking models can put everything into `thinking` and leave
+    # `content` empty even when "done" - that reads as no reply at all
+    # rather than a low-quality one, so it gets one free (non-hop) retry
+    # before giving up with an explicit placeholder.
+    call_count = 0
+
+    def chat_fn(**kwargs):
+        nonlocal call_count
+        call_count += 1
+        if call_count == 1:
+            return _response(content="")
+        return _response(content="a real answer the second time")
+
+    result = orchestrator.run_agent("q", chat_fn=chat_fn)
+
+    assert result.answer == "a real answer the second time"
+    assert result.hops_used == 0  # the retry isn't a tool call, doesn't cost a hop
+    assert call_count == 2
+
+
+def test_empty_content_twice_in_a_row_gives_an_explicit_placeholder_not_silence():
+    def chat_fn(**kwargs):
+        return _response(content="")
+
+    result = orchestrator.run_agent("q", chat_fn=chat_fn)
+
+    assert result.answer == "(no answer text was produced)"
+
+
 def test_loop_returns_immediately_when_no_tool_calls():
     def chat_fn(**kwargs):
         return _response(content="a plain answer")
