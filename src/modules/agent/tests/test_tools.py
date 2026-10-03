@@ -64,3 +64,34 @@ def test_wiki_page_search_caps_n_results_regardless_of_what_is_requested(monkeyp
     tools.wiki_page_search("Food", "a query", n_results=10)
 
     assert captured["n_results"] == tools._MAX_WIKI_RESULTS
+
+
+def test_player_find_items_checks_both_inventory_and_every_container(monkeypatch):
+    # Replaces the old player_find_item/player_find_in_containers pair - the
+    # agent kept checking only one source, or one name at a time. This
+    # checks every requested name against both sources in a single call.
+    monkeypatch.setattr(
+        tools.player_db, "get_inventory",
+        lambda: [{"slot": 0, "item": "minecraft:iron_sword", "count": 1}],
+    )
+    monkeypatch.setattr(
+        tools.player_db, "find_container",
+        lambda name_substring, limit: [
+            {
+                "dim": "minecraft:overworld", "x": 1, "y": 2, "z": 3, "kind": "minecraft:chest",
+                "items": [{"item": "minecraft:rabbit", "count": 1}, {"item": "minecraft:stick", "count": 8}],
+                "last_seen": "t",
+            },
+        ],
+    )
+
+    result = tools.player_find_items(["rabbit", "iron_sword", "diamond"])
+
+    assert result["rabbit"] == [
+        {"location": "container", "kind": "minecraft:chest", "dim": "minecraft:overworld",
+         "x": 1, "y": 2, "z": 3, "item": "minecraft:rabbit", "count": 1},
+    ]
+    assert result["iron_sword"] == [
+        {"location": "inventory", "slot": 0, "item": "minecraft:iron_sword", "count": 1},
+    ]
+    assert result["diamond"] == []  # present in neither source

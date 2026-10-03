@@ -43,6 +43,8 @@ def wiki_search_candidates(term: str, limit: int | None = None) -> list[str]:
     judgment to pick the best match, checking one with wiki_page_overview
     first if it's not obvious from the title alone. Use this when you don't
     already know the exact page title.
+    IMPORTANT: follow up with wiki_page_search on the chosen title to find
+    the specific information you need!
 
     Args:
         term: Plain-language search term or best guess at the topic, e.g.
@@ -109,33 +111,52 @@ def wiki_page_search(title: str, query: str, n_results: int = _MAX_WIKI_RESULTS)
 # --- player tools -------------------------------------------------------
 
 def player_inventory() -> list[dict]:
-    """Everything currently in the player's inventory/hotbar, with counts."""
+    """Everything currently in the player's inventory/hotbar, with counts.
+    The result does NOT include items in chests/barrels or other containers - use
+    player_find_items() to check those too. Use this when you need to know
+what the player has on them, but not when you need to check for a specific
+item in the player's OVERALL possession - player_find_items() is more efficient for that,
+    """
     return player_db.get_inventory()
 
 
-def player_find_item(name_substring: str) -> list[dict]:
-    """Check if the player is CARRYING an item matching this name (partial
-    match). Does NOT check chests - use player_find_in_containers for that.
+_ALL_CONTAINERS_LIMIT = 50  # generous - this is "check everywhere", not a narrow lookup
+
+
+def player_find_items(names: list[str]) -> dict[str, list[dict]]:
+    """Check BOTH the player's inventory AND every known chest/barrel for
+    EACH of these item names, all in one call - use this instead of
+    checking one item or one location at a time, especially when you have
+    several candidate item names to check (e.g. multiple food item names
+    found from a wiki page). Returns a dict keyed by each name you passed
+    in, each with a list of matches (empty list if that name wasn't found
+    anywhere).
 
     Args:
-        name_substring: Partial or full item name to search for, e.g. "iron"
-            or "torch" - NOT a category word like "food" or "tools", real
-            item names rarely contain those.
+        names: Item name substrings to search for, e.g. ["bread", "rabbit",
+            "cooked_beef"] - NOT category words like "food" or "tools",
+            real item names rarely contain those.
     """
-    return player_db.find_item(name_substring)
+    inventory = player_db.get_inventory()
+    containers = player_db.find_container("", limit=_ALL_CONTAINERS_LIMIT)
 
-
-def player_find_in_containers(name_substring: str) -> list[dict]:
-    """Check the player's known chests/barrels for an item matching this
-    name, stored (not carried). Each result includes its world location.
-    Ensure the substring is specific enough to match a real item name, not a category!
-
-    Args:
-        name_substring: Partial or full item name to search for, e.g. "iron"
-            or "torch" - NOT a category word like "food" or "tools", real
-            item names rarely contain those.
-    """
-    return player_db.find_container(name_substring)
+    results: dict[str, list[dict]] = {}
+    for name in names:
+        needle = name.lower()
+        matches: list[dict] = []
+        for slot in inventory:
+            if needle in slot["item"].lower():
+                matches.append({"location": "inventory", "slot": slot["slot"], "item": slot["item"], "count": slot["count"]})
+        for container in containers:
+            for item in container["items"]:
+                if needle in item["item"].lower():
+                    matches.append({
+                        "location": "container", "kind": container["kind"],
+                        "dim": container["dim"], "x": container["x"], "y": container["y"], "z": container["z"],
+                        "item": item["item"], "count": item["count"],
+                    })
+        results[name] = matches
+    return results
 
 
 def player_equipment() -> dict[str, str]:
@@ -179,8 +200,8 @@ def player_deaths(limit: int | None = None) -> list[dict]:
 
 def player_find_placements(name_substring: str) -> list[dict]:
     """Where a functional block (torch, furnace, bed, ...) matching this
-    name was placed in the world - not the same as player_find_in_containers
-    (stored, not placed).
+    name was placed in the world - not the same as player_find_items
+    (stored/carried items, not world placements).
 
     Args:
         name_substring: Partial or full block name to search for, e.g.
@@ -209,7 +230,7 @@ SEED_PAGES = ["Food", "Items", "Mob", "Biomes", "Brewing", "Blocks", "Structures
 
 TOOLS = [
     wiki_search_candidates, wiki_page_overview, wiki_page_search,
-    player_inventory, player_find_item, player_find_in_containers,
+    player_inventory, player_find_items,
     player_equipment, player_effects, player_vitals, player_position,
     player_spawn_point, player_deaths, player_find_placements,
     player_visited_structures,

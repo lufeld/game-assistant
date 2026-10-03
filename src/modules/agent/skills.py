@@ -16,8 +16,8 @@ def skill_crafting_chain() -> str:
     return (
         "To resolve a crafting-chain question: (1) find the target item's "
         "recipe via wiki_page_search(target, 'crafting recipe ingredients'); "
-        "(2) for each ingredient, check player_find_item and "
-        "player_find_in_containers; (3) for any ingredient not found, check "
+        "(2) check ALL ingredients at once with one player_find_items(names) "
+        "call, not one at a time; (3) for any ingredient not found, check "
         "whether THAT ingredient itself has a recipe (repeat step 1 on it) "
         "before concluding the player can't make it - a missing ingredient "
         "might itself be craftable from things the player already has."
@@ -45,17 +45,18 @@ def skill_category_lookup() -> str:
     item - e.g. "do I have any food left?". Returns strategy guidance, not
     game data."""
     return (
-        "Don't search player_find_item/player_find_in_containers for the "
-        "category word itself (e.g. 'food') - real item names rarely "
-        "contain it (a carried rabbit is food, but its item name doesn't "
-        "contain the word 'food'). Two required steps, in order: (1) find "
-        "specific item names in that category with a NARROW wiki_page_search "
-        "query, e.g. wiki_page_search('Food', 'list of food item names') - "
-        "keep it narrow so you get names back, not a full mechanics writeup; "
-        "(2) check player_inventory() and player_find_in_containers for "
-        "those specific names. Do not answer after step (1) alone - a list "
-        "of what belongs to the category is not an answer to whether the "
-        "player HAS one; step (2) is required before answering."
+        "Don't search player_find_items for the category word itself (e.g. "
+        "'food') - real item names rarely contain it (a carried rabbit is "
+        "food, but its item name doesn't contain the word 'food'). Two "
+        "required steps, in order: (1) find specific item names in that "
+        "category with a NARROW wiki_page_search query, e.g. "
+        "wiki_page_search('Food', 'list of food item names') - keep it "
+        "narrow so you get names back, not a full mechanics writeup; (2) "
+        "pass ALL those specific names to ONE player_find_items(names) call "
+        "- it already checks both inventory and every known container. Do "
+        "not answer after step (1) alone - a list of what belongs to the "
+        "category is not an answer to whether the player HAS one; step (2) "
+        "is required before answering."
     )
 
 
