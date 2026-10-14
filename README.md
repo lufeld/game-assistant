@@ -109,6 +109,13 @@ Note that `player_ingest.py` (bottom-left of the second diagram) is a
 separate process from the voice assistant - **it does not start
 automatically**, see [Running it](#running-it) below.
 
+A separate, second orchestrator in [`src/modules/agent/`](src/modules/agent/README.md)
+explores a different architecture for the same job - a bigger model
+reactively calling tools multiple times per turn instead of one fixed
+routing + retrieval pass - as a comparison, not a replacement. It's not
+wired into the voice loop; see its own README for the architecture,
+what's been learned from testing it, and how to run it.
+
 ## Setup
 
 1. **Python 3.10+**, then install dependencies:
@@ -157,12 +164,17 @@ python src/modules/player/player_simulate.py   # sends src/modules/player/player
 pytest
 ```
 
-73 tests as of this writing, covering the wiki pipeline (`src/modules/wiki/tests/`)
-and the player-state pipeline (`src/modules/player/tests/`) against real I/O
-(a tmp SQLite DB, an actual WebSocket connection) rather than mocks.
-`orchestrator.py` and the voice loop are exercised manually - see
-`src/modules/orchestrator_prompts.txt` for a batch of test questions
+89 tests as of this writing, covering the wiki pipeline (`src/modules/wiki/tests/`),
+the player-state pipeline (`src/modules/player/tests/`), and the agent
+orchestrator's loop control-flow (`src/modules/agent/tests/`) - the first two
+against real I/O (a tmp SQLite DB, an actual WebSocket connection) rather
+than mocks, the agent tests via a real injected `chat_fn` standing in for
+the Ollama network boundary. `orchestrator.py` and the voice loop are
+exercised manually - see `src/modules/orchestrator_prompts.txt` for a batch
+of test questions
 (`python src/modules/orchestrator.py --batch src/modules/orchestrator_prompts.txt`).
+The agent orchestrator has its own batch file and README - see
+[`src/modules/agent/README.md`](src/modules/agent/README.md).
 
 ## Project layout
 
@@ -178,6 +190,7 @@ src/
     text_to_speech.py         pyttsx3 wrapper
     wiki/                     lazy wiki ingestion (resolve/fetch/parse/store) + Chroma
     player/                   player state: player_db.py, player_ingest.py, player_simulate.py
+    agent/                    comparison POC: reactive tool-calling orchestrator - see agent/README.md
 mod/                          the Fabric mod (separate Gradle/Java project - see mod/README.md)
 data/                         created at runtime: player_db.sqlite3, game_db.sqlite3,
                               chroma_db/, wiki_cache/ - all gitignored, all rebuildable
