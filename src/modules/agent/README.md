@@ -211,6 +211,24 @@ independent cases to be worth stating plainly:
   whole list against both inventory and every container in a single call -
   verified live to produce comprehensive, correct multi-name,
   multi-source checks where the two-tool version hadn't.
+- Even with the fix above, a specific live run still answered "no food"
+  incorrectly - it had checked `["Bread", "Cookie", "Cake", "Rabbit Stew",
+  ...]` against containers holding raw `minecraft:rabbit`, never checking
+  plain "Rabbit". Chasing that down surfaced a second, more fundamental
+  bug: `player_find_items(["Iron Sword"])` and `(["iron sword"])` both
+  returned empty against data stored as `"minecraft:iron_sword"` - only the
+  exact underscore-joined registry string ever matched anything. Since
+  `wiki_page_search` naturally returns wiki-style names ("Iron Sword",
+  "Cooked Beef" - space-separated, title case), this silently broke the
+  core cross-referencing workflow for any multi-word item, not just a rough
+  edge. Fixed with `_normalize_item_name()` - strip any `namespace:`
+  prefix, replace underscores with spaces, lowercase, on both sides of the
+  comparison - applied in `player_find_items` (which already fetches
+  everything and filters client-side) and, via a query-string transform
+  rather than a fetch-strategy change, in `player_find_placements` (which
+  filters server-side in SQL and stays that way - fetching "everything" for
+  placements risks missing older matches past a fetch limit the way it
+  doesn't for the much smaller set of known containers).
 
 **Things that were tried and didn't help, which is itself useful to know:**
 

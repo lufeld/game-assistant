@@ -95,3 +95,34 @@ def test_player_find_items_checks_both_inventory_and_every_container(monkeypatch
         {"location": "inventory", "slot": 0, "item": "minecraft:iron_sword", "count": 1},
     ]
     assert result["diamond"] == []  # present in neither source
+
+
+def test_player_find_items_matches_wiki_style_names_against_registry_ids(monkeypatch):
+    # Confirmed live before this fix: player_find_items(["Iron Sword"]) and
+    # (["iron sword"]) both returned empty against data stored as
+    # "minecraft:iron_sword" - only the exact underscore-joined registry
+    # string ever matched. wiki_page_search naturally returns wiki-style
+    # names ("Iron Sword", "Cooked Beef"), so this broke the core
+    # cross-referencing workflow the agent is built around for any
+    # multi-word item.
+    monkeypatch.setattr(
+        tools.player_db, "get_inventory",
+        lambda: [{"slot": 0, "item": "minecraft:iron_sword", "count": 1}],
+    )
+    monkeypatch.setattr(tools.player_db, "find_container", lambda name_substring, limit: [])
+
+    for wiki_style_name in ("Iron Sword", "iron sword", "iron_sword"):
+        result = tools.player_find_items([wiki_style_name])
+        assert result[wiki_style_name] != [], f"{wiki_style_name!r} failed to match minecraft:iron_sword"
+
+
+def test_player_find_placements_matches_wiki_style_names(monkeypatch):
+    captured = {}
+    monkeypatch.setattr(
+        tools.player_db, "find_placements",
+        lambda name_substring: captured.setdefault("name_substring", name_substring) or [],
+    )
+
+    tools.player_find_placements("Crafting Table")
+
+    assert captured["name_substring"] == "Crafting_Table"

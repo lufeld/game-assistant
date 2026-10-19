@@ -123,18 +123,33 @@ item in the player's OVERALL possession - player_find_items() is more efficient 
 _ALL_CONTAINERS_LIMIT = 50  # generous - this is "check everywhere", not a narrow lookup
 
 
+def _normalize_item_name(name: str) -> str:
+    """Make a wiki-style title ("Iron Sword", "Cooked Beef") and a
+    Minecraft registry id ("minecraft:iron_sword") comparable: strip any
+    "namespace:" prefix, replace underscores with spaces, lowercase.
+    Without this, wiki-derived names (what wiki_page_search actually
+    returns) never matched stored items at all - confirmed live:
+    player_find_items(["Iron Sword"]) and (["iron sword"]) both returned
+    empty against data stored as "minecraft:iron_sword"; only the exact
+    underscore-joined registry string ever matched."""
+    if ":" in name:
+        name = name.split(":", 1)[1]
+    return name.replace("_", " ").lower()
+
+
 def player_find_items(names: list[str]) -> dict[str, list[dict]]:
     """Check BOTH the player's inventory AND every known chest/barrel for
     EACH of these item names, all in one call - use this instead of
     checking one item or one location at a time, especially when you have
     several candidate item names to check (e.g. multiple food item names
-    found from a wiki page). Returns a dict keyed by each name you passed
-    in, each with a list of matches (empty list if that name wasn't found
-    anywhere).
+    found from a wiki page). Matches regardless of whether the name is
+    phrased as a wiki title or a Minecraft registry id. Returns a dict
+    keyed by each name you passed in, each with a list of matches (empty
+    list if that name wasn't found anywhere).
 
     Args:
-        names: Item name substrings to search for, e.g. ["bread", "rabbit",
-            "cooked_beef"] - NOT category words like "food" or "tools",
+        names: Item name substrings to search for, e.g. ["Bread", "rabbit",
+            "cooked beef"] - NOT category words like "food" or "tools",
             real item names rarely contain those.
     """
     inventory = player_db.get_inventory()
@@ -142,14 +157,14 @@ def player_find_items(names: list[str]) -> dict[str, list[dict]]:
 
     results: dict[str, list[dict]] = {}
     for name in names:
-        needle = name.lower()
+        needle = _normalize_item_name(name)
         matches: list[dict] = []
         for slot in inventory:
-            if needle in slot["item"].lower():
+            if needle in _normalize_item_name(slot["item"]):
                 matches.append({"location": "inventory", "slot": slot["slot"], "item": slot["item"], "count": slot["count"]})
         for container in containers:
             for item in container["items"]:
-                if needle in item["item"].lower():
+                if needle in _normalize_item_name(item["item"]):
                     matches.append({
                         "location": "container", "kind": container["kind"],
                         "dim": container["dim"], "x": container["x"], "y": container["y"], "z": container["z"],
@@ -201,13 +216,22 @@ def player_deaths(limit: int | None = None) -> list[dict]:
 def player_find_placements(name_substring: str) -> list[dict]:
     """Where a functional block (torch, furnace, bed, ...) matching this
     name was placed in the world - not the same as player_find_items
-    (stored/carried items, not world placements).
+    (stored/carried items, not world placements). Matches regardless of
+    whether the name is phrased as a wiki title or a Minecraft registry id.
 
     Args:
         name_substring: Partial or full block name to search for, e.g.
             "torch" or "bed".
     """
-    return player_db.find_placements(name_substring)
+    # find_placements does its own SQL-level LIKE filtering (not a fetch-all
+    # we could normalize client-side the way player_find_items does -
+    # placements can be numerous enough that fetching "everything" and
+    # filtering in Python risks missing older matches past a fetch limit).
+    # Converting spaces to underscores here is the surgical fix: it makes a
+    # wiki-style query ("Crafting Table") match the stored registry-id form
+    # ("minecraft:crafting_table") without changing find_placements' own
+    # recency-limited SQL behavior at all.
+    return player_db.find_placements(name_substring.replace(" ", "_"))
 
 
 def player_visited_structures(kind_substring: str | None = None) -> list[dict]:
