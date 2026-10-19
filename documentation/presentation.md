@@ -1,6 +1,6 @@
 ---
 marp: true
-theme: dracula
+theme: gaia
 size: 16:9
 ---
 
@@ -9,10 +9,17 @@ size: 16:9
 
 section { font-size: 30px; }
 section h1 { margin-bottom: 0.45em; }
-section strong { color: var(--dracula-orange); }
-section em { color: var(--dracula-yellow); }
-section h1 strong { color: var(--dracula-green); }
-section code { color: var(--dracula-green); }
+section strong { color: var(--color-highlight); }
+section em { color: var(--color-dimmed); }
+section h1 strong { color: var(--color-highlight); }
+section code { background: #e3f2fd; color: #01579b; }
+/* block fences (```) use a separate, higher-specificity gaia rule that the
+   plain "section code" override above doesn't reach - measured its actual
+   rendered colors (#455a64 bg, ~#015884 text) at 1.06:1 contrast, same
+   problem as the inline code pill had. Same verified pairing as above,
+   6.48:1; pre code's own background is cleared so it doesn't double up. */
+section pre { background: #e3f2fd; }
+section pre code { background: transparent; color: #01579b; }
 section img, section figure { image-rendering: pixelated; }
 section ul > li > ul > li { margin-top: 0.1em; }
 
@@ -20,7 +27,7 @@ section ul > li > ul > li { margin-top: 0.1em; }
 header {
   font-family: 'Press Start 2P', monospace;
   font-size: 13px;
-  color: var(--dracula-purple);
+  color: var(--color-highlight);
   padding-top: 24px;
   letter-spacing: 1px;
 }
@@ -45,7 +52,7 @@ section.cols {
   align-content: start;
 }
 section.cols > h1, section.cols > ul { grid-column: 1 / -1; }
-section.cols > p { margin: 0.2em 0 0 0; color: #b9bfd6; }
+section.cols > p { margin: 0.2em 0 0 0; color: var(--color-dimmed); }
 section.cols > pre { margin-top: 0.3em; }
 
 /* title + closing slides */
@@ -57,7 +64,7 @@ section.title {
   text-align: center;
 }
 section.title h1 { font-size: 2.3em; line-height: 1.15; }
-section.title h2 { color: var(--dracula-comment); margin-top: 0.3em; }
+section.title h2 { color: var(--color-dimmed); margin-top: 0.3em; }
 section.title p { margin-top: 0.7em; }
 
 /* chapter dividers */
@@ -70,11 +77,11 @@ section.divider {
 section.divider h6 {
   font-family: 'Press Start 2P', monospace;
   font-size: 60px;
-  color: var(--dracula-purple);
+  color: var(--color-highlight);
   margin: 0;
 }
 section.divider h1 { font-size: 2.2em; margin: 0.35em 0 0 0; }
-section.divider p { color: #b9bfd6; font-size: 0.95em; margin-top: 0.6em; }
+section.divider p { color: var(--color-dimmed); font-size: 0.95em; margin-top: 0.6em; }
 </style>
 
 <!-- _class: title -->
@@ -144,7 +151,7 @@ Ask by **voice**, while playing, about the **game** *and* about **your world**.
 > 🔗 "I'm hungry, do I have any food left?"
 
 🏠 100 % local
-🎮 4–12 GB VRAM, next to the running game
+🎮 4 GB target · 12 GB ceiling, next to the running game
 ⏱️ fast enough to talk to
 
 <!--
@@ -569,7 +576,7 @@ Optional[T] = None is the one shape the converter does strip from "required".
 **🔁 ReAct agent**
 * 🎲 Whether a matching skill gets consulted varies run to run: 3 of 4 runs, at temperature 0.3 **and** 0.1
 * 🌡️ Temperature 0.1 made it worse: `player_inventory()` called 7× in a row, budget gone
-* 🐌 Slow, and 14B (≈ 9.3 GB) doesn't fit the 8 GB target next to the game → not in the voice loop
+* 🐌 Slow, and 14B (≈ 9.3 GB) doesn't fit the 4 GB target next to the game → not in the voice loop
 
 **🛤️ Router**
 * ➡️ One pass: it cannot look something up *because of* what it just read
@@ -605,7 +612,6 @@ Optional[T] = None is the one shape the converter does strip from "required".
 # Future work
 
 **Next**
-* 📏 An evaluation set with expected answers → measure accuracy & latency, not impressions
 * 🌱 Pre-seed common pages; say a filler line (*"let me check the wiki…"*) on a cache miss
 * 🔎 Resolve against a local index of verified page titles instead of keyword search
 

@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 400" width="1140" height="400">
   <defs>
-    <marker id="fg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f8f8f2"/></marker>
+    <marker id="fg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#37474f"/></marker>
   </defs>
   <style>
     text { font-family: 'Segoe UI', 'IBM Plex Sans', Helvetica, Arial, sans-serif; }
-    .t { fill: #f8f8f2; font-size: 22px; font-weight: 600; }
-    .s { fill: #b9bfd6; font-size: 15px; }
-    .k { fill: #f1fa8c; font-size: 15px; font-weight: 600; }
-    .d { fill: #f8f8f2; font-size: 16px; }
-    .l { fill: #8f97bd; font-size: 14px; }
-    .m { font-family: 'Cascadia Mono', Consolas, 'IBM Plex Mono', monospace; font-size: 14px; fill: #f1fa8c; }
-    .mk { font-family: 'Cascadia Mono', Consolas, 'IBM Plex Mono', monospace; font-size: 14px; fill: #8be9fd; }
+    .t { fill: #37474f; font-size: 22px; font-weight: 600; }
+    .s { fill: #455a64; font-size: 15px; }
+    .k { fill: #f9a825; font-size: 15px; font-weight: 600; }
+    .d { fill: #37474f; font-size: 16px; }
+    .l { fill: #455a64; font-size: 14px; }
+    .m { font-family: 'Cascadia Mono', Consolas, 'IBM Plex Mono', monospace; font-size: 14px; fill: #f9a825; }
+    .mk { font-family: 'Cascadia Mono', Consolas, 'IBM Plex Mono', monospace; font-size: 14px; fill: #0277bd; }
     .line { fill: none; stroke-width: 2; }
   </style>
 
   <!-- game side -->
-  <rect x="15" y="30" width="330" height="290" rx="12" fill="#2c3b33" stroke="#50fa7b" stroke-width="2" stroke-dasharray="7 5"/>
+  <rect x="15" y="30" width="330" height="290" rx="12" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2" stroke-dasharray="7 5"/>
   <text class="t" x="35" y="66">Minecraft + Fabric mod</text>
   <text class="s" x="35" y="90">client-side · no gameplay changes</text>
   <text class="k" x="35" y="128">every 100 ticks (5 s)</text>
@@ -27,28 +27,28 @@
   <text class="d" x="35" y="282">"respawn point set" → spawn</text>
 
   <!-- transport -->
-  <path class="line" stroke="#f8f8f2" marker-end="url(#fg)" d="M345,175 H517" stroke-width="3"/>
+  <path class="line" stroke="#37474f" marker-end="url(#fg)" d="M345,175 H517" stroke-width="3"/>
   <text class="t" x="431" y="160" text-anchor="middle" style="font-size:18px">WebSocket</text>
   <text class="l" x="431" y="200" text-anchor="middle">127.0.0.1:25585</text>
   <text class="l" x="431" y="218" text-anchor="middle">one JSON event per frame</text>
 
   <!-- ingest -->
-  <rect x="520" y="125" width="225" height="100" rx="10" fill="#343746" stroke="#bd93f9" stroke-width="2"/>
+  <rect x="520" y="125" width="225" height="100" rx="10" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
   <text class="t" x="632" y="162" text-anchor="middle" style="font-size:20px">player_ingest.py</text>
   <text class="s" x="632" y="188" text-anchor="middle">handle_event():</text>
   <text class="s" x="632" y="208" text-anchor="middle">dispatch on "kind"</text>
-  <path class="line" stroke="#f8f8f2" marker-end="url(#fg)" d="M745,175 H787"/>
+  <path class="line" stroke="#37474f" marker-end="url(#fg)" d="M745,175 H787"/>
 
   <!-- example event -->
-  <rect x="360" y="262" width="400" height="104" rx="8" fill="#21222c" stroke="#44475a" stroke-width="2"/>
+  <rect x="360" y="262" width="400" height="104" rx="8" fill="#eceff1" stroke="#cfd8dc" stroke-width="2"/>
   <text class="m" x="376" y="290"><tspan class="mk">"kind"</tspan>: "placement",</text>
   <text class="m" x="376" y="312"><tspan class="mk">"pos"</tspan>: [12, 65, -80],</text>
   <text class="m" x="376" y="334"><tspan class="mk">"item"</tspan>: "minecraft:torch",</text>
   <text class="m" x="376" y="356"><tspan class="mk">"action"</tspan>: "place"</text>
 
   <!-- player db -->
-  <path d="M790,46 v272 a167,16 0 0 0 334,0 v-272" fill="#2f3d4a" stroke="#8be9fd" stroke-width="2"/>
-  <ellipse cx="957" cy="46" rx="167" ry="16" fill="#2f3d4a" stroke="#8be9fd" stroke-width="2"/>
+  <path d="M790,46 v272 a167,16 0 0 0 334,0 v-272" fill="#e3f2fd" stroke="#0277bd" stroke-width="2"/>
+  <ellipse cx="957" cy="46" rx="167" ry="16" fill="#e3f2fd" stroke="#0277bd" stroke-width="2"/>
   <text class="t" x="957" y="100" text-anchor="middle">Player DB</text>
   <text class="s" x="957" y="122" text-anchor="middle">SQLite</text>
   <text class="k" x="812" y="166">🔄 replaced (snapshot)</text>

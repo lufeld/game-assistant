@@ -1,49 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 370" width="1140" height="370">
   <defs>
-    <marker id="fg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f8f8f2"/></marker>
+    <marker id="fg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#37474f"/></marker>
   </defs>
   <style>
     text { font-family: 'Segoe UI', 'IBM Plex Sans', Helvetica, Arial, sans-serif; }
-    .q { fill: #ffb86c; font-size: 22px; font-style: italic; }
-    .h { fill: #8f97bd; font-size: 15px; font-weight: 600; letter-spacing: 1.5px; }
+    .q { fill: #ef6c00; font-size: 22px; font-style: italic; }
+    .h { fill: #455a64; font-size: 15px; font-weight: 600; letter-spacing: 1.5px; }
     .m { font-family: 'Cascadia Mono', Consolas, 'IBM Plex Mono', monospace; font-size: 15px; }
-    .d { fill: #f8f8f2; font-size: 16px; }
-    .l { fill: #b9bfd6; font-size: 15px; }
-    .box { fill: #343746; stroke-width: 2; }
-    .line { fill: none; stroke: #f8f8f2; stroke-width: 2; }
+    .d { fill: #37474f; font-size: 16px; }
+    .l { fill: #455a64; font-size: 15px; }
+    .box { fill: #f3e5f5; stroke-width: 2; }
+    .line { fill: none; stroke: #37474f; stroke-width: 2; }
   </style>
 
   <text class="q" x="570" y="34" text-anchor="middle">"I am hungry, do I have any food left?"</text>
 
   <!-- hop 1 -->
-  <rect class="box" x="15" y="70" width="255" height="170" rx="10" stroke="#bd93f9"/>
+  <rect class="box" x="15" y="70" width="255" height="170" rx="10" stroke="#7b1fa2"/>
   <text class="h" x="33" y="100">HOP 1 · SKILL</text>
-  <text class="m" x="33" y="132" fill="#bd93f9">skill_category_lookup()</text>
+  <text class="m" x="33" y="132" fill="#7b1fa2">skill_category_lookup()</text>
   <text class="d" x="33" y="172">→ strategy: don't search</text>
   <text class="d" x="33" y="194">for the word "food"; look</text>
   <text class="d" x="33" y="216">up real item names first</text>
 
   <!-- hop 2 -->
-  <rect class="box" x="300" y="70" width="255" height="170" rx="10" stroke="#8be9fd"/>
+  <rect class="box" x="300" y="70" width="255" height="170" rx="10" stroke="#0277bd"/>
   <text class="h" x="318" y="100">HOP 2 · WIKI</text>
-  <text class="m" x="318" y="132" fill="#8be9fd">wiki_page_search(</text>
-  <text class="m" x="318" y="152" fill="#8be9fd">  "Food",</text>
-  <text class="m" x="318" y="172" fill="#8be9fd">  "list of food item names")</text>
+  <text class="m" x="318" y="132" fill="#0277bd">wiki_page_search(</text>
+  <text class="m" x="318" y="152" fill="#0277bd">  "Food",</text>
+  <text class="m" x="318" y="172" fill="#0277bd">  "list of food item names")</text>
   <text class="d" x="318" y="216">→ concrete food names</text>
 
   <!-- hop 3 -->
-  <rect class="box" x="585" y="70" width="255" height="170" rx="10" stroke="#50fa7b"/>
+  <rect class="box" x="585" y="70" width="255" height="170" rx="10" stroke="#2e7d32"/>
   <text class="h" x="603" y="100">HOP 3 · PLAYER</text>
-  <text class="m" x="603" y="132" fill="#50fa7b">player_find_items(</text>
-  <text class="m" x="603" y="152" fill="#50fa7b">  [ …all names… ])</text>
+  <text class="m" x="603" y="132" fill="#2e7d32">player_find_items(</text>
+  <text class="m" x="603" y="152" fill="#2e7d32">  [ …all names… ])</text>
   <text class="d" x="603" y="194">→ inventory + every known</text>
   <text class="d" x="603" y="216">chest, in a single call</text>
 
   <!-- answer -->
-  <rect x="870" y="70" width="255" height="170" rx="10" fill="#2c3b33" stroke="#50fa7b" stroke-width="2"/>
+  <rect x="870" y="70" width="255" height="170" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
   <text class="h" x="888" y="100">ANSWER</text>
-  <text class="d" x="888" y="138">which food the player</text>
-  <text class="d" x="888" y="160">has, and where it is</text>
+  <text class="d" x="888" y="138">whether the player has</text>
+  <text class="d" x="888" y="160">food, and where if so</text>
   <text class="l" x="888" y="206">3 hops of 10</text>
 
   <path class="line" marker-end="url(#fg)" d="M270,155 H297"/>
@@ -51,8 +51,8 @@
   <path class="line" marker-end="url(#fg)" d="M840,155 H867"/>
 
   <!-- router contrast -->
-  <rect x="15" y="275" width="1110" height="80" rx="10" fill="#3a2a33" stroke="#ff5555" stroke-width="1.5" stroke-dasharray="6 5"/>
-  <text class="h" x="35" y="305" style="fill:#ff5555">ROUTER</text>
+  <rect x="15" y="275" width="1110" height="80" rx="10" fill="#fce4ec" stroke="#c62828" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text class="h" x="35" y="305" style="fill:#c62828">ROUTER</text>
   <text class="d" x="120" y="305">one routing decision up front → one player lookup by a name it must already know.</text>
   <text class="l" x="120" y="333">No step can first learn which items count as food, then check for them. Item ids never contain the word "food".</text>
 </svg>

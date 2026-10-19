@@ -1,79 +1,79 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 470" width="1140" height="470">
   <defs>
-    <marker id="fg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f8f8f2"/></marker>
-    <marker id="cy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8be9fd"/></marker>
-    <marker id="gr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#50fa7b"/></marker>
-    <marker id="or" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ffb86c"/></marker>
-    <marker id="mu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8f97bd"/></marker>
+    <marker id="fg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#37474f"/></marker>
+    <marker id="cy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0277bd"/></marker>
+    <marker id="gr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2e7d32"/></marker>
+    <marker id="or" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ef6c00"/></marker>
+    <marker id="mu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#455a64"/></marker>
   </defs>
   <style>
     text { font-family: 'Segoe UI', 'IBM Plex Sans', Helvetica, Arial, sans-serif; }
-    .t { fill: #f8f8f2; font-size: 21px; font-weight: 600; }
-    .s { fill: #b9bfd6; font-size: 15px; }
-    .l { fill: #8f97bd; font-size: 14px; }
-    .box { fill: #343746; stroke-width: 2; }
+    .t { fill: #37474f; font-size: 21px; font-weight: 600; }
+    .s { fill: #455a64; font-size: 15px; }
+    .l { fill: #455a64; font-size: 14px; }
+    .box { fill: #f3e5f5; stroke-width: 2; }
     .line { fill: none; stroke-width: 2; }
   </style>
 
   <!-- return path: spoken answer back to the player -->
-  <path class="line" stroke="#50fa7b" stroke-dasharray="6 5" marker-end="url(#gr)" d="M935,50 V14 H180 V48"/>
+  <path class="line" stroke="#2e7d32" stroke-dasharray="6 5" marker-end="url(#gr)" d="M935,50 V14 H180 V48"/>
   <text class="l" x="395" y="36" text-anchor="middle">spoken answer, streamed sentence by sentence</text>
 
   <!-- voice row -->
-  <rect class="box" x="110" y="50" width="140" height="76" rx="10" stroke="#50fa7b"/>
+  <rect class="box" x="110" y="50" width="140" height="76" rx="10" stroke="#2e7d32"/>
   <text class="t" x="180" y="84" text-anchor="middle">Player</text>
   <text class="s" x="180" y="108" text-anchor="middle">asks by voice</text>
 
-  <rect class="box" x="305" y="50" width="180" height="76" rx="10" stroke="#6272a4"/>
+  <rect class="box" x="305" y="50" width="180" height="76" rx="10" stroke="#90a4ae"/>
   <text class="t" x="395" y="84" text-anchor="middle">Speech-to-Text</text>
   <text class="s" x="395" y="108" text-anchor="middle">Whisper</text>
 
-  <rect x="540" y="34" width="250" height="108" rx="12" fill="#3d3248" stroke="#ff79c6" stroke-width="3"/>
+  <rect x="540" y="34" width="250" height="108" rx="12" fill="#f3e5f5" stroke="#ad1457" stroke-width="3"/>
   <text class="t" x="665" y="72" text-anchor="middle" style="font-size:24px">Orchestrator</text>
-  <text class="s" x="665" y="98" text-anchor="middle" style="fill:#ff79c6">Router  ·  ReAct agent</text>
+  <text class="s" x="665" y="98" text-anchor="middle" style="fill:#ad1457">Router  ·  ReAct agent</text>
   <text class="s" x="665" y="122" text-anchor="middle">what to look up, then answer</text>
 
-  <rect class="box" x="845" y="50" width="180" height="76" rx="10" stroke="#6272a4"/>
+  <rect class="box" x="845" y="50" width="180" height="76" rx="10" stroke="#90a4ae"/>
   <text class="t" x="935" y="84" text-anchor="middle">Text-to-Speech</text>
   <text class="s" x="935" y="108" text-anchor="middle">pyttsx3</text>
 
-  <path class="line" stroke="#f8f8f2" marker-end="url(#fg)" d="M250,88 H302"/>
-  <path class="line" stroke="#f8f8f2" marker-end="url(#fg)" d="M485,88 H537"/>
-  <path class="line" stroke="#f8f8f2" marker-end="url(#fg)" d="M790,88 H842"/>
+  <path class="line" stroke="#37474f" marker-end="url(#fg)" d="M250,88 H302"/>
+  <path class="line" stroke="#37474f" marker-end="url(#fg)" d="M485,88 H537"/>
+  <path class="line" stroke="#37474f" marker-end="url(#fg)" d="M790,88 H842"/>
 
   <!-- LLM -->
-  <rect class="box" x="565" y="192" width="200" height="62" rx="10" stroke="#ffb86c"/>
+  <rect class="box" x="565" y="192" width="200" height="62" rx="10" stroke="#ef6c00"/>
   <text class="t" x="665" y="220" text-anchor="middle">Ollama</text>
   <text class="s" x="665" y="242" text-anchor="middle">local LLM</text>
-  <path class="line" stroke="#ffb86c" marker-start="url(#or)" marker-end="url(#or)" d="M665,145 V189"/>
+  <path class="line" stroke="#ef6c00" marker-start="url(#or)" marker-end="url(#or)" d="M665,145 V189"/>
 
   <!-- stores -->
-  <path d="M230,282 v62 a125,12 0 0 0 250,0 v-62" fill="#2f3d4a" stroke="#8be9fd" stroke-width="2"/>
-  <ellipse cx="355" cy="282" rx="125" ry="12" fill="#2f3d4a" stroke="#8be9fd" stroke-width="2"/>
+  <path d="M230,282 v62 a125,12 0 0 0 250,0 v-62" fill="#e3f2fd" stroke="#0277bd" stroke-width="2"/>
+  <ellipse cx="355" cy="282" rx="125" ry="12" fill="#e3f2fd" stroke="#0277bd" stroke-width="2"/>
   <text class="t" x="355" y="322" text-anchor="middle">Wiki DB</text>
   <text class="s" x="355" y="346" text-anchor="middle">Chroma + SQLite ledger</text>
 
-  <path d="M850,282 v62 a125,12 0 0 0 250,0 v-62" fill="#2f3d4a" stroke="#8be9fd" stroke-width="2"/>
-  <ellipse cx="975" cy="282" rx="125" ry="12" fill="#2f3d4a" stroke="#8be9fd" stroke-width="2"/>
+  <path d="M850,282 v62 a125,12 0 0 0 250,0 v-62" fill="#e3f2fd" stroke="#0277bd" stroke-width="2"/>
+  <ellipse cx="975" cy="282" rx="125" ry="12" fill="#e3f2fd" stroke="#0277bd" stroke-width="2"/>
   <text class="t" x="975" y="322" text-anchor="middle">Player DB</text>
   <text class="s" x="975" y="346" text-anchor="middle">SQLite</text>
 
-  <path class="line" stroke="#8be9fd" marker-end="url(#cy)" d="M556,142 C556,225 355,205 355,266"/>
+  <path class="line" stroke="#0277bd" marker-end="url(#cy)" d="M556,142 C556,225 355,205 355,266"/>
   <text class="l" x="430" y="208" text-anchor="middle">game knowledge</text>
-  <path class="line" stroke="#8be9fd" marker-end="url(#cy)" d="M774,142 C774,225 975,205 975,266"/>
+  <path class="line" stroke="#0277bd" marker-end="url(#cy)" d="M774,142 C774,225 975,205 975,266"/>
   <text class="l" x="900" y="208" text-anchor="middle">player state</text>
 
   <!-- external sources -->
-  <rect x="230" y="392" width="250" height="62" rx="10" fill="none" stroke="#8f97bd" stroke-width="2" stroke-dasharray="7 5"/>
+  <rect x="230" y="392" width="250" height="62" rx="10" fill="none" stroke="#455a64" stroke-width="2" stroke-dasharray="7 5"/>
   <text class="t" x="355" y="420" text-anchor="middle">minecraft.wiki</text>
   <text class="s" x="355" y="442" text-anchor="middle">the only network access</text>
-  <path class="line" stroke="#8f97bd" marker-end="url(#mu)" d="M355,392 V360"/>
+  <path class="line" stroke="#455a64" marker-end="url(#mu)" d="M355,392 V360"/>
   <text class="l" x="368" y="381">pulled on first question</text>
 
-  <rect x="850" y="392" width="250" height="62" rx="10" fill="none" stroke="#8f97bd" stroke-width="2" stroke-dasharray="7 5"/>
+  <rect x="850" y="392" width="250" height="62" rx="10" fill="none" stroke="#455a64" stroke-width="2" stroke-dasharray="7 5"/>
   <text class="t" x="975" y="420" text-anchor="middle">Minecraft + Fabric mod</text>
   <text class="s" x="975" y="442" text-anchor="middle">the running game</text>
-  <path class="line" stroke="#8f97bd" marker-end="url(#mu)" d="M975,392 V360"/>
+  <path class="line" stroke="#455a64" marker-end="url(#mu)" d="M975,392 V360"/>
   <text class="l" x="988" y="381">pushed live via WebSocket</text>
 
   <text class="l" x="665" y="330" text-anchor="middle" style="font-size:16px">everything runs locally</text>
