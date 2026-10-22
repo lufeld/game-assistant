@@ -1,0 +1,345 @@
+======================================================================
+[1/38] How do I make a beacon?
+======================================================================
+routed: {'entities': ['Beacon'], 'player_info': 'none', 'player_target': None}
+retrieved 5 chunk(s)
+
+To make a beacon, you need 5 glass, 1 nether star, and 3 obsidian. Arrange them in a specific pattern: the first row has glass, glass, glass; the second row has glass, nether star, glass; and the third row has obsidian, obsidian,obsidian.
+
+======================================================================
+[2/38] What do I need to craft a diamond sword?
+======================================================================
+routed: {'entities': ['Diamond Sword'], 'player_info': 'none', 'player_target': None}
+retrieved 4 chunk(s)
+
+You need 2 diamonds and 1 stick to craft a diamond sword. Arrange them in a vertical column: top to bottom, diamond, diamond, stick.
+
+======================================================================
+[3/38] What flowers exist in the game?
+======================================================================
+routed: {'entities': ['Flower'], 'player_info': 'none', 'player_target': None}
+retrieved 5 chunk(s)
+
+In the game, the following flowers exist: Dandelion, Poppy, Blue Orchid, Allium, Azure Bluet, Tulips (Red, Orange, White, Pink), Oxeye Daisy, Cornflower, Lily of the Valley, Eyeblossom, Wildflowers, Lilac, Peony, Pitcher Plant, Rose Bush, Sunflower, Cherry Leaves, Chorus Flower, Flowering Azalea, Flowering Azalea Leaves, Mangrove Propagule, Pink Petals, Spore Blossom, and Cactus Flower.
+
+======================================================================
+[4/38] How much damage does a diamond sword do?
+======================================================================
+routed: {'entities': ['Diamond Sword'], 'player_info': 'none', 'player_target': None}
+retrieved 4 chunk(s)
+
+A diamond sword deals 7 base damage in Java Edition and 8 base damage in Bedrock Edition. This damage can be increased by enchantments like Sharpness. For example, with Sharpness I, it deals 8 damage in Java Edition and 9 damage in Bedrock Edition, and so on, up to higher levels.
+
+======================================================================
+[5/38] What is a creeper afraid of?
+======================================================================
+routed: {'entities': ['Creeper'], 'player_info': 'none', 'player_target': None}
+retrieved 5 chunk(s)
+
+A creeper is afraid of ocelots and cats.
+
+======================================================================
+[6/38] How can I repair my sword?
+======================================================================
+routed: {'entities': ['Sword'], 'player_info': 'equipment', 'player_target': 'sword'}
+retrieved 6 chunk(s)
+
+You can repair your sword by using an anvil. Add units of the sword's tier repair material, and each unit will restore 25% of the sword's maximum durability, rounded down. Alternatively, you can combine two swords of the same tier in an anvil. Both methods preserve the sword's enchantments.
+
+======================================================================
+[7/38] Can I repair my sword somehow?
+======================================================================
+routed: {'entities': ['Sword'], 'player_info': 'equipment', 'player_target': None}
+retrieved 6 chunk(s)
+
+Yes, you can repair your sword. You can use an anvil by adding units of the sword's repair material, which restores 25% of the sword's maximum durability, rounded down. Alternatively, you can combine two swords of the same tier in an anvil. Both methods preserve the sword's enchantments.
+
+======================================================================
+[8/38] It just started to rain. Why does this happen? How long until it stops raining?
+======================================================================
+routed: {'entities': ['Rain'], 'player_info': 'none', 'player_target': None}
+retrieved 5 chunk(s)
+
+Rain starts randomly in the Overworld, especially in colder biomes or at higher altitudes, and it typically lasts between 0.5 to 1 Minecraft day. It can last up to 7.5 days with a delay between rains. It stops after a random timeor when you sleep in a bed, which clears the rain at sunrise.
+
+======================================================================
+[9/38] Does sun and rain affect the growth of my crops?
+======================================================================
+routed: {'entities': ['Sun', 'Rain'], 'player_info': 'none', 'player_target': None}
+retrieved 8 chunk(s)
+
+Yes, sun and rain affect the growth of your crops. Crops grow faster and healthier in sunlight, as they need light to grow. Rain helps hydrate farmland, which is necessary for crops to grow properly. Without rain, farmland becomes hydrated only if it's not already, and crops may grow slowly or not at all. So, both sunlight and rain are important for your crops to grow well.
+
+======================================================================
+[10/38] What is the best food to fill me up and saturate me the longest?
+======================================================================
+routed: {'entities': ['Food'], 'player_info': 'none', 'player_target': None}
+retrieved 5 chunk(s)
+
+The best food to fill you up and saturate you the longest is suspicious stew. It restores 14.133 saturation, which is the highest value among all foods listed, and provides a saturation boost that lasts 7.067 seconds (141 ticks),making it the most effective for long-term saturation.
+
+======================================================================
+[11/38] What does a wither skeleton drop when I kill it?
+======================================================================
+routed: {'entities': ['Wither Skeleton'], 'player_info': 'none', 'player_target': None}
+retrieved 5 chunk(s)
+
+When you kill a wither skeleton, it drops coal, bone, and a wither skeleton skull. The skull has a 2.5% drop chance in Java Edition and 2.5% in Bedrock Edition, with the chance increasing slightly if killed by a charged creeper. It also drops 5 experience orbs when killed by a player or tamed wolf. If the wither skeleton has naturally-spawned equipment, it drops an additional 1 or 3 experience orbs per piece. If the wither skeleton drops its stone sword, it drops 5 experience orbs instead of 6 or 8. A carved pumpkin or jack o'lantern worn by a wither skeleton on Halloween is never dropped. The stone sword has an 8.5% chance to drop, increasing by 1% per level of Looting, up to 11.5% with Looting III.
+
+======================================================================
+[12/38] Where do cows spawn?
+======================================================================
+routed: {'entities': ['Cow'], 'player_info': 'none', 'player_target': None}
+retrieved 5 chunk(s)
+
+Cows spawn on grass blocks in most grassy biomes of the Overworld, such as plains and forests, but not in snowy plains, meadows, cherry groves, mangrove swamps, or pale gardens. They require at least two blocks of space above thegrass block and a well-lit environment. Cows also spawn in villages inside animal pens, stables, and butcher house backyards during world generation. Additionally, a mooshroom can be sheared to turn into a cow, and two adult cowscan breed to spawn a baby cow.
+
+======================================================================
+[13/38] What mobs can spawn in a cold ocean?
+======================================================================
+routed: {'entities': ['Cold Ocean'], 'player_info': 'none', 'player_target': None}
+retrieved 5 chunk(s)
+
+In a cold ocean, the following mobs can spawn:  
+- Bat (ambient)  
+- Squid (water creature)  
+- Nautilus (water creature)  
+- Cod (water creature)  
+- Salmon (water creature)  
+- Dolphin (passive)  
+- Glow Squid (underground)  
+- Creeper (hostile)  
+- Skeleton (hostile)  
+- Spider (hostile)  
+- Zombie (hostile)  
+- Enderman (hostile)  
+- Witch (hostile)  
+- Zombie Villager (hostile)  
+
+These mobs spawn based on the spawn tables for both Java and Bedrock Edition, with the cold ocean variant including the same mobs as regular oceans, adjusted for temperature and environment.
+
+======================================================================
+[14/38] Can you tell me some things about the nether?
+======================================================================
+routed: {'entities': ['Nether'], 'player_info': 'none', 'player_target': None}
+retrieved 5 chunk(s)
+
+Sure! The Nether is a dangerous, volcanic dimension that looks like a hellish underworld. It has lava oceans, fire that burns forever, and unique biomes with different terrain, mobs, and structures. There are five biomes in the Nether, each with its own features. You'll find Nether fungi, mycelium (called nylium), and huge fungi that act like trees. Most creatures there are hostile, with only striders being fully passive.  
+
+The Nether has no daylight or weather, and light comes from fire, lava, portals, shroomlights, or glowstone. Even with zero light, there's a dim ambient glow, like light level 8 in the Overworld. There's no directional lighting, so no shadows move or change.  
+
+The terrain is cave-like with no sky, and areas far from you are covered in red or blue fog. Structures like Nether fortresses, Nether fossils, bastion remnants, and ruined portals appear in different biomes. Nether fortresses are where blazes and wither skeletons spawn, and they’re key to fighting the ender dragon and the wither. Bastion remnants have gold blocks and loot, and are home to piglins and piglin brutes.  
+
+Traveling in the Nether scales down Overworld distances—moving one block in the Nether equals eight blocks in the Overworld. So if you go from X=0, Z=0 to X=1000, Z=1000 in the Nether, you return to the Overworld at X=8000, Z=8000.  
+
+The Nether is 128 blocks high, with a bedrock ceiling at y-level 123 and a floor at y-level 0. In Java Edition, you can build up to 256 blocks, but in Bedrock Edition, the limit is 128 blocks. The Nether also has no weather or day-night cycle, and it's horizontally vast like the Overworld and End.
+
+======================================================================
+[15/38] How can I go to the nether?
+======================================================================
+routed: {'entities': ['Nether'], 'player_info': 'none', 'player_target': None}
+retrieved 5 chunk(s)
+
+You can go to the Nether by building a Nether portal in the Overworld. First, construct an obsidian frame that is at least 4 blocks wide and 5 blocks tall, up to 23 blocks wide and 23 blocks tall. Then, place fire inside the frame using flint and steel, a fire charge, or any ignitable material. Once activated, stand in the portal for 4 seconds to enter the Nether. You can also use commands if cheats are enabled, with the syntax in Java Edition.
+
+======================================================================
+[16/38] Can I heal a zombie?
+======================================================================
+routed: {'entities': ['Zombie'], 'player_info': 'none', 'player_target': None}
+retrieved 5 chunk(s)
+
+No, you cannot heal a zombie. Zombies are undead mobs and are not affected by the status effect Regeneration or any other healing mechanics. They can only be damaged or killed, not healed.
+
+======================================================================
+[17/38] How many diamonds do I have right now?
+======================================================================
+routed: {'entities': [], 'player_info': 'inventory', 'player_target': 'diamond'}
+retrieved 1 chunk(s)
+
+You have 0 diamonds right now.
+
+======================================================================
+[18/38] Tell me the way back home.
+======================================================================
+routed: {'entities': [], 'player_info': 'spawn_point', 'player_target': None}
+retrieved 1 chunk(s)
+
+To get back home, head northeast, about 2 blocks from where you are now. The spawn point is at -29, 72, 53 in the overworld. Follow that direction and you'll reach it.
+
+======================================================================
+[19/38] Where did I put my extra torches?
+======================================================================
+routed: {'entities': [], 'player_info': 'placements', 'player_target': 'torch'}
+retrieved 1 chunk(s)
+
+You put your extra torches in a chest at -32, 72, 55, which is west, about 2 blocks away.
+
+======================================================================
+[20/38] What's in my inventory?
+======================================================================
+routed: {'entities': [], 'player_info': 'inventory', 'player_target': None}
+retrieved 1 chunk(s)
+
+You have one iron sword and nine torches in your inventory.
+
+======================================================================
+[21/38] What am I wearing right now?
+======================================================================
+routed: {'entities': [], 'player_info': 'equipment', 'player_target': None}
+retrieved 1 chunk(s)
+
+You are wearing an iron sword in your main hand and a shield in your off hand.
+
+======================================================================
+[22/38] Do I have any potion effects active?
+======================================================================
+routed: {'entities': [], 'player_info': 'effects', 'player_target': None}
+retrieved 1 chunk(s)
+
+No, you do not have any potion effects active.
+
+======================================================================
+[23/38] How much health do I have left?
+======================================================================
+routed: {'entities': [], 'player_info': 'vitals', 'player_target': None}
+retrieved 1 chunk(s)
+
+You have 20.0 health left.
+
+======================================================================
+[24/38] Where am I right now?
+======================================================================
+routed: {'entities': [], 'player_info': 'position', 'player_target': None}
+retrieved 1 chunk(s)
+
+You are at coordinates -30, 72, 55 in the Overworld, on a snowy plains biome.
+
+======================================================================
+[25/38] Where's my bed?
+======================================================================
+routed: {'entities': [], 'player_info': 'spawn_point', 'player_target': None}
+retrieved 1 chunk(s)
+
+Your bed is at -29, 72, 53 in the overworld, northeast of your current position, about 2 blocks away.
+
+======================================================================
+[26/38] Where did I last die?
+======================================================================
+routed: {'entities': [], 'player_info': 'deaths', 'player_target': None}
+retrieved 1 chunk(s)
+
+You last died at coordinates -25, 72, 52, which is northeast, about 6 blocks away.
+
+======================================================================
+[27/38] Is it nighttime right now?
+======================================================================
+routed: {'entities': [], 'player_info': 'game_time', 'player_target': None}
+retrieved 1 chunk(s)
+
+No, it is not nighttime right now. It is currently day.
+
+======================================================================
+[28/38] Have I found a village yet?
+======================================================================
+routed: {'entities': [], 'player_info': 'structures', 'player_target': 'village'}
+retrieved 1 chunk(s)
+
+You have not found a village yet.
+
+======================================================================
+[29/38] Where's the chest with my emeralds?
+======================================================================
+routed: {'entities': [], 'player_info': 'containers', 'player_target': 'emerald'}
+retrieved 1 chunk(s)
+
+I don't know
+
+======================================================================
+[30/38] I am hungry, do I have anything I could eat.
+======================================================================
+routed: {'entities': [], 'player_info': 'vitals', 'player_target': 'food'}
+retrieved 1 chunk(s)
+
+You have 20/20 hunger, so you are not hungry. You don't need to eat anything right now.
+
+======================================================================
+[31/38] Do I have food items I can consume safely?
+======================================================================
+routed: {'entities': ['Food'], 'player_info': 'vitals', 'player_target': None}
+retrieved 6 chunk(s)
+
+Yes, you have food items you can consume safely. Your hunger level is at 20/20, which means you are not starving, so you can eat food without any restrictions in survival mode. You can safely consume items like bread, cake, honeybottles, or milk buckets, as they restore hunger and saturation without causing negative effects. Just make sure you're not already at full hunger—since you're not, you're fine to eat.
+
+======================================================================
+[32/38] What is the weather like today?
+======================================================================
+routed: {'entities': ['Weather'], 'player_info': 'none', 'player_target': None}
+retrieved 4 chunk(s)
+
+I don't know.
+
+======================================================================
+[33/38] Hey, how's it going?
+======================================================================
+routed: {'entities': [], 'player_info': 'none', 'player_target': None}
+retrieved 0 chunk(s)
+
+Hey, how's it going? I'm doing great, thanks for asking!
+
+======================================================================
+[34/38] What do I need to make a diamond sword and a beacon?
+======================================================================
+routed: {'entities': ['Diamond Sword', 'Beacon'], 'player_info': 'none', 'player_target': None}
+retrieved 9 chunk(s)
+
+To make a diamond sword, you need 2 diamonds and 1 stick, arranged in a vertical column (top to bottom: diamond, diamond, stick).  
+
+To make a beacon, you need 5 glass, 1 nether star, and 3 obsidian, arranged in a specific shape: first row (glass, glass, glass), second row (glass, nether star, glass), third row (obsidian, obsidian, obsidian).
+
+======================================================================
+[35/38] What does the black monster in the nether drop?
+======================================================================
+routed: {'entities': ['Black Monster'], 'player_info': 'none', 'player_target': None}
+retrieved 5 chunk(s)
+
+The black monster in the Nether, the wither skeleton, drops coal, bone, and a wither skeleton skull. It also drops 5 experience orbs when killed by a player or tamed wolf. If killed by a charged creeper, it has an 8.5% chance of dropping its unenchanted stone sword, increasing by 1% per level of looting up to 11.5%. A carved pumpkin or jack o'lantern worn on Halloween is never dropped.
+
+======================================================================
+[36/38] How do I farm slimes?
+======================================================================
+routed: {'entities': ['Slime'], 'player_info': 'none', 'player_target': None}
+retrieved 5 chunk(s)
+
+You can farm slimes by building in a swamp area between Y=51 and Y=69 with light level 7 or less, especially on a full moon. Set up a structure with a light level of 7 or lower and ensure the moon is full. Place a block with a light source or use torches to keep the light level low. Slimes will spawn naturally in this area, and you can collect slimeballs when they die. To increase efficiency, place a fence or wall to prevent slimes from escaping, and use a mechanism to keep them in a confined space. You can also use trial chambers with trial spawners, which have a 25% chance to spawn slimes, though they only spawn medium and semi-large slimes. For a more reliable farm, use a slimechunk in the Overworld below Y=40, where slimes spawn in groups of four (Java Edition) or individually (Bedrock Edition). Use a system to keep the slimes in a small area and collect slimeballs when they die.
+
+======================================================================
+[37/38] Can you help me with my slime farm?
+======================================================================
+routed: {'entities': ['Slime'], 'player_info': 'none', 'player_target': 'slime farm'}
+retrieved 5 chunk(s)
+
+Sure! To build an effective slime farm, you’ll want to focus on swamps or slime chunks, depending on what you have access to.  
+
+In swamps, slimes spawn between Y=51 and Y=69 when the light level is 7 or less and it's a full moon (not new moon). This means you can set up a swamp farm in a dimly lit area with a full moon—just make sure the light level is low enough and the moon phase is correct.  
+
+For slime chunks (Java Edition), slimes spawn in chunks below Y=40, and the chunk type is determined by the world seed. If you're playing Java Edition, you can use the world seed and chunk coordinates to find slime chunks with a specific algorithm. In Bedrock Edition, slime chunks are fixed in the same coordinates across all worlds, so you can just explore those areas.  
+
+To maximize output:  
+- Use a swamp farm with a full moon and low light.  
+- Place a trapdoor or block with a collision hitbox to prevent spawning issues.  
+- Use a hopper or chest to collect slimeballs, which drop when slimes die.  
+- For efficiency, consider using trial chambers—about 25% of them have slime spawners, and they spawn medium or semi-large slimes.  
+
+Also, when a large slime dies, it spawns 2–4 medium slimes, and when a medium slime dies, it spawns 2–4 small ones. So, keeping a group of slimes alive and letting them die in a controlled area can increase your slimeball yield.  
+
+Just make sure to avoid lava or cactus, since slimes don’t pathfind and will get stuck. And remember—slimes deal continuous damage to players, snow golems, and iron golems they touch, so keep distance if you're nearby.  
+
+Let me know if you'd like help setting up a specific layout!
+
+======================================================================
+[38/38] Why do no slimes spawn in my slime farm?
+======================================================================
+routed: {'entities': ['Slime'], 'player_info': 'none', 'player_target': None}
+retrieved 5 chunk(s)
+
+You likely don't have enough space for a slime to spawn—slimes need a 2.08×2.08×2.08 block space that is completely clear of solid or liquid blocks. Even a glass pane or a button can block spawning. Also, if your farm is in a 2-block tall area, small and medium slimes won’t spawn there. Make sure your farm is in a slime chunk, and that the light level is 7 or less if it’s in a swamp. If it’s not in a swamp, ensure the area is below Y=40 and in a slime chunk. Check that the space is fully open and not obstructed.

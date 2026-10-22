@@ -120,7 +120,7 @@ item in the player's OVERALL possession - player_find_items() is more efficient 
     return player_db.get_inventory()
 
 
-_ALL_CONTAINERS_LIMIT = 50  # generous - this is "check everywhere", not a narrow lookup
+_ALL_CONTAINERS_LIMIT = 50
 
 
 def _normalize_item_name(name: str) -> str:
@@ -223,14 +223,6 @@ def player_find_placements(name_substring: str) -> list[dict]:
         name_substring: Partial or full block name to search for, e.g.
             "torch" or "bed".
     """
-    # find_placements does its own SQL-level LIKE filtering (not a fetch-all
-    # we could normalize client-side the way player_find_items does -
-    # placements can be numerous enough that fetching "everything" and
-    # filtering in Python risks missing older matches past a fetch limit).
-    # Converting spaces to underscores here is the surgical fix: it makes a
-    # wiki-style query ("Crafting Table") match the stored registry-id form
-    # ("minecraft:crafting_table") without changing find_placements' own
-    # recency-limited SQL behavior at all.
     return player_db.find_placements(name_substring.replace(" ", "_"))
 
 
@@ -245,7 +237,7 @@ def player_visited_structures(kind_substring: str | None = None) -> list[dict]:
     return player_db.get_visited_structures(kind_substring)
 
 
-# --- seed pages -----------------------------------------------------------
+# --- skills -----------------------------------------------------------
 
 # General starting points for broad "what X exist" questions - the model
 # can call wiki_page_search on one of these to get a list of specific information
