@@ -95,11 +95,6 @@ section.divider p { color: var(--color-dimmed); font-size: 0.95em; margin-top: 0
 
 **Lukas A. Feldgrill**
 
-<!--
-STS = speech-to-speech: the player talks, the assistant talks back.
-Everything runs locally on the player's machine next to the game.
--->
-
 ---
 <!-- paginate: true -->
 <!-- footer: 'Lukas A. Feldgrill | Agentic STS Game-Assistant' -->
@@ -114,11 +109,6 @@ Everything runs locally on the player's machine next to the game.
 * 🧭 Players lose overview of the game and often don't know what to do next.
 * 🔍 Looking something up means alt-tabbing to the wiki, and the wiki knows nothing about **your** world.
 
-<!--
-The creeper: the classic "nobody told me" moment for new players.
-Last point is the bridge to this phase: the Feb prototype only knew the game, not the player's world.
--->
-
 ---
 <!-- _class: small -->
 
@@ -131,12 +121,6 @@ Last point is the bridge to this phase: the Feb prototype only knew the game, no
 | Game state **not** observed | Take game state into account | ✅ Fabric mod → Player DB |
 | Classify → rewrite query → answer (3 LLM calls) | Add an orchestrator | ✅ two of them: router & ReAct agent |
 | Some hallucinations | Fine-tune the LLM | ⏸️ not pursued; grounding + "I don't know" instead |
-
-<!--
-The old pipeline: intent classifier ("guide" vs "recipe"), keyword rewrite, then answer - three sequential LLM calls,
-retrieving from three hand-written markdown guides plus datapack recipes.
-This phase was a fresh start on the knowledge + orchestration side; STT, TTS, GUI and the model were kept.
--->
 
 ---
 
@@ -153,12 +137,6 @@ Ask by **voice**, while playing, about the **game** *and* about **your world**.
 🏠 100 % local
 🎮 4 GB target · 12 GB ceiling, next to the running game
 ⏱️ fast enough to talk to
-
-<!--
-These three questions come back throughout the talk:
-1) pure game knowledge, 2) pure player state, 3) needs both, chained: first learn what counts as food, then check the player.
-Constraints: no cloud, must fit on a mid-range GPU while Minecraft itself is running, answers must arrive at conversation speed.
--->
 
 ---
 
@@ -189,25 +167,11 @@ The big picture, and two ways to run it
 
 ![w:1140](diagrams/architecture.svg)
 
-<!--
-Voice loop: Whisper -> orchestrator -> pyttsx3; the answer is streamed sentence by sentence, so speech starts early.
-Orchestrator is the swappable part. Both read the same two stores.
-Wiki DB fills lazily from minecraft.wiki (the only network access). Player DB fills continuously from a Fabric mod.
--->
-
 ---
 
 # Two ways to orchestrate
 
 ![w:1140](diagrams/orchestrators.svg)
-
-<!--
-Research question: can letting the model chain lookups answer questions that need BOTH sources?
-
-Router: the LLM decides WHAT is needed, plain code decides HOW to fetch it. Exactly two LLM calls.
-ReAct agent: the LLM decides what AND how, one tool call at a time, each informed by the previous result.
-The agent exists as a comparison (proof of concept), not as a replacement.
--->
 
 ---
 <!-- _class: divider -->
@@ -235,11 +199,6 @@ Game knowledge from the wiki, player state from the game
 | **Queried by** | semantic search, scoped to one page | exact lookups, no embeddings |
 | **Kept fresh by** | revision-id check on every lookup | latest event wins |
 
-<!--
-Two very different kinds of data, so two very different pipelines.
-Only thing they share: SQLite as the ledger.
--->
-
 ---
 <!-- _class: small -->
 
@@ -259,13 +218,6 @@ Only thing they share: SQLite as the ledger.
 
 ![w:1140](diagrams/wiki_pipeline.svg)
 
-<!--
-resolve.py, fetch.py, parse.py, store.py - each a plain function, tested independently.
-Freshness without a TTL: prop=info returns the live revid for free; compare with the stored revid.
-Two caches on purpose: wiki_cache = "raw wikitext on disk", pages ledger = "what is in Chroma right now".
-After a parser fix, pages can be re-parsed and re-stored without touching the network.
--->
-
 ---
 <!-- _class: small -->
 
@@ -282,13 +234,6 @@ After a parser fix, pages can be re-parsed and re-stored without touching the ne
 ✅ With the franchise filter → #1 **Wither Skeleton** (live, today)
 
 💡 In the pipeline, the LLM extracts a clean entity first, so raw phrases rarely reach the search at all.
-
-<!--
-Minicraft's article mentions "black ... monsters" in its cave description - pure word overlap.
-The search response even contained MediaWiki's own "did you mean: block monster".
-Agent side: wiki_search_candidates returns the ranked list and lets the model pick - it never writes to the alias cache,
-so one bad guess can't poison later lookups.
--->
 
 ---
 <!-- _class: cols small -->
@@ -316,11 +261,6 @@ The diamond sword has 7 base damage
 * 🧹 Drop the noise: image fields, colour codes, *History / Trivia / Gallery* sections
 * 🧪 Every bug found on a real page became a test against that page (Diamond Sword, Wither Skeleton, Cow, Cold Ocean, The Nether)
 
-<!--
-Other silent deletions found the same way: {{JE}}/{{BE}} row labels in tables vanished (blank rows), <br> and <ref> glued words together,
-and the whole Wither Skeleton drop table disappeared from the "Drops" section.
--->
-
 ---
 
 # Storing & retrieving wiki text
@@ -331,10 +271,6 @@ and the whole Wither Skeleton drop table disappeared from the "Drops" section.
 * 🎯 Search is **scoped to the resolved page**: top-5 chunks of *that* page
   → "which section?" instead of "which page out of thousands?"
 * 🥈 "What does a wither skeleton drop?": the *Drops* chunk ranked only **4th** → top-5, not top-1
-
-<!--
-No query-rewrite LLM call: widening k and letting the answering model read 5 chunks is cheaper than an extra call.
--->
 
 ---
 <!-- _class: small -->
@@ -357,12 +293,6 @@ The Feb plan: *"Switch to Graph RAG to more accurately structure the data of the
 
 ![w:1140](diagrams/player_pipeline.svg)
 
-<!--
-Mod: Minecraft 26.2, Fabric, Java 25, client-side only.
-One persistent WebSocket connection, not HTTP. Python hosts the server, the mod connects out:
-that way the whole Python side can be developed and tested without the game (player_simulate.py replays a JSONL file).
--->
-
 ---
 <!-- _class: small -->
 
@@ -376,12 +306,6 @@ that way the whole Python side can be developed and tested without the game (pla
 * 🧩 Read through fixed functions (`find_item`, `find_container`, `find_placements`, …), never text-to-SQL
 * 🧭 Directions are computed in code: *"northeast, about 40 blocks away"*
 * 🧪 Ingest is unit-tested over a real WebSocket, no mocks
-
-<!--
-Placements are an allowlist on purpose: missing an item type is better than logging 4000 stone blocks.
-Chests/barrels are covered on screen close instead of on placement.
-Bearing: atan2 on the X/Z deltas, Minecraft's north is -Z.
--->
 
 ---
 <!-- _class: divider -->
@@ -401,11 +325,6 @@ Router first, then the ReAct agent
 
 ![w:1140](diagrams/router.svg)
 
-<!--
-Model: qwen3:4b-instruct (~2.5 GB). Same model for both calls.
-The model never decides HOW something is retrieved - gather_context() is deterministic Python.
--->
-
 ---
 <!-- _class: small -->
 
@@ -423,11 +342,6 @@ Q: "Where did I put my torches?"
 * 🎯 19 few-shot examples, one per category, temperature 0.1
 * 💡 Without examples, *"How do I make a beacon?"* came back as **player state** with **no entity**
 
-<!--
-The 12 values: none, inventory, equipment, effects, vitals, position, spawn_point, deaths, game_time, containers, placements, structures.
-player_target is only filled for categories that search by name.
--->
-
 ---
 <!-- _class: small -->
 
@@ -443,11 +357,6 @@ player_target is only filled for categories that search by name.
 * ⚡ Streamed: speech starts after the first sentence
 
 ✅ Fails gracefully: wrong page for "bingus bongus" → *"I don't know"* instead of nonsense
-
-<!--
-"A gap is not evidence of no": asked "where do I get gold?" with empty context, the model once said gold doesn't exist.
-Small talk ("hey, how's it going?") is explicitly allowed without context.
--->
 
 ---
 
@@ -491,11 +400,6 @@ They are pulled in on demand instead of bloating the system prompt: one hop, no 
 # Worked example: chaining both sources
 
 ![w:1140](diagrams/trace_food.svg)
-
-<!--
-This is the path skill_category_lookup prescribes; it completed end to end live once wiki_page_search was capped (next chapter).
-Router: it can fetch wiki pages AND player state in one pass, but the player lookup has to be decided up front.
--->
 
 ---
 <!-- _class: divider -->
@@ -562,11 +466,6 @@ Router: it can fetch wiki pages AND player state in one pass, but the player loo
 | 📚 Asked for 10 results → table dump → forgot the player check | reworded twice ❌ | hard cap at 3 results ✅ |
 | 🔍 Two single-item tools → checked one source, gave up early | – | one `player_find_items(names)` ✅ |
 | 💭 Thinking model puts everything into `thinking`, empty answer | – | one free re-prompt ✅ |
-
-<!--
-The schema bug was confirmed by reading ollama/_utils.py: type annotations are copied, default values are not.
-Optional[T] = None is the one shape the converter does strip from "required".
--->
 
 ---
 <!-- _class: small -->

@@ -1,20 +1,22 @@
+# Pinned to exact versions this project has been developed and tested against
+
 # --- Wiki ingestion pipeline (src/modules/wiki/) ---
-httpx>=0.28.1
-wikitextparser>=0.56.0
-chromadb>=0.4.22
+httpx==0.28.1
+wikitextparser==2.0.0
+chromadb==1.4.1
 
 # --- Orchestrator (src/modules/orchestrator.py) ---
-ollama>=0.6.1
+ollama==0.6.1
 
 # --- Player state ingest (src/modules/player/player_ingest.py) ---
-websockets>=13.0
+websockets==16.0
 
 # --- Voice pipeline (src/modules/speech_to_text.py, text_to_speech.py, voice_loop.py) ---
 # tkinter (assistant_gui.py) is part of the Python standard library, not pip-installable.
-openai-whisper>=20231117
-pyttsx3>=2.90
-sounddevice>=0.4.6
-numpy>=1.23.0,<2.0.0
+openai-whisper==20250625
+pyttsx3==2.99
+sounddevice==0.5.3
+numpy==1.26.4
 
 # --- Testing (src/modules/*/tests/) ---
-pytest>=8.0.0
+pytest==9.1.1
