@@ -313,10 +313,7 @@ def _player_state_context(routed: dict) -> str | None:
             position = player_db.get_position()
 
             if not spawn:
-                # No bed slept in / respawn anchor activated yet, so the
-                # spawn point itself is unset - a placed-but-unused bed is
-                # still a reasonable answer to "where's my bed", even though
-                # it hasn't actually set the spawn point.
+                # No bed slept in / respawn anchor activated yet, so the spawn point itself is unset
                 beds = player_db.find_placements("bed")
                 if not beds:
                     return "The player has no spawn point set, and no bed has been placed."
@@ -425,16 +422,6 @@ def gather_context(question: str, routed: dict, *, n_results: int = N_RESULTS) -
 def _answer_messages(question: str, chunks: list[str]) -> list[dict]:
     context = (
         "\n\n---\n\n".join(chunks) if chunks
-        # Descriptive, not a command: an imperative like "say you don't know"
-        # here was followed too literally, even for pure chitchat with no
-        # factual question at all (empty chunks also happens then, since
-        # there's nothing to look up) - "Hey, how's it going?" got answered
-        # "I don't know". The instruction for what to actually do with a
-        # retrieval gap belongs in ANSWER_SYSTEM_PROMPT, with proper scoping,
-        # not repeated here as a command. This still needs to state that a
-        # gap isn't evidence of "no" - that was a real failure mode: asked
-        # "where do I get gold?" with empty context, the model answered "you
-        # don't get gold in Minecraft" instead of saying it didn't know.
         else "No matching information was found for this question."
     )
     return [
